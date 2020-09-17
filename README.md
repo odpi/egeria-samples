@@ -8,6 +8,7 @@ starting points for working with Egeria.
 
 - [ansible-collection](ansible-collection) defines an [Ansible](https://www.ansible.com)
     collection for automating the deployment and operations of an Egeria OMAG Server Platform
+- [demos](demos) provides resources used in demos and hands-on labs
 - [helm-charts](helm-charts) define [Helm](https://helm.sh) charts that compose multiple
     components together for deployment into [Kubernetes](https://kubernetes.io), for more
     complex demonstration scenarios 
