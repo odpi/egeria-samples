@@ -19,7 +19,7 @@
 
     - name: setup Information Server variables
       import_role:
-        name: IBM.infosvr
+        name: ibm.infosvr
         tasks_from: setup_vars.yml
       when: ('ibm_information_server_engine' in group_names)
 
