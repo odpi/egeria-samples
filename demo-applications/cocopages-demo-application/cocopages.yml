@@ -1,0 +1,475 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 8082
+  adminConnectors:
+    - type: http
+      port: 8083
+
+
+#
+# Initial Contact List
+#
+initialContactList:
+    - recordId: 1
+      contactType: E
+      firstName: Zach
+      lastName: Now
+      company: Coco Pharmaceuticals
+      jobTitle: Founder
+      userId: zachnow
+      workLocation: 3
+    - recordId: 2
+      contactType: E
+      firstName: Steve
+      lastName: Starter
+      company: Coco Pharmaceuticals
+      jobTitle: Founder
+      userId: stevestarter
+      workLocation: 1
+    - recordId: 3
+      contactType: E
+      firstName: Terri
+      lastName: Daring
+      company: Coco Pharmaceuticals
+      jobTitle: Founder
+      userId: terridaring
+      workLocation: 2
+    - recordId: 4
+      contactType: E
+      firstName: Tanya
+      lastName: Tidie
+      company: Coco Pharmaceuticals
+      jobTitle: Data Steward, Clinical Trials
+      userId: tanyatidie
+      workLocation: 3
+    - recordId: 5
+      contactType: E
+      firstName: Polly
+      lastName: Tasker
+      company: Coco Pharmaceuticals
+      jobTitle: IT Project Manager
+      userId: pollytasker
+      workLocation: 1
+    - recordId: 6
+      contactType: E
+      firstName: Tessa
+      lastName: Tube
+      company: Coco Pharmaceuticals
+      jobTitle: Lead Researcher, Clinical Trials
+      userId: tessatube
+      workLocation: 3
+    - recordId: 7
+      contactType: E
+      firstName: Callie
+      lastName: Quartile
+      company: Coco Pharmaceuticals
+      jobTitle: Data Scientist
+      userId: calliequartile
+      workLocation: 3
+    - recordId: 8
+      contactType: E
+      firstName: Ivor
+      lastName: Padlock
+      company: Coco Pharmaceuticals
+      jobTitle: Chief Security Officer
+      userId: ivorpadlock
+      workLocation: 1
+    - recordId: 9
+      contactType: E
+      firstName: Bob
+      lastName: Nitter
+      company: Coco Pharmaceuticals
+      jobTitle: Application Developer
+      userId: bobnitter
+      workLocation: 1
+    - recordId: 10
+      contactType: E
+      firstName: Faith
+      lastName: Broker
+      company: Coco Pharmaceuticals
+      jobTitle: Human Resources and Compliance Director
+      userId: faithbroker
+      workLocation: 1
+    - recordId: 11
+      contactType: E
+      firstName: Sally
+      lastName: Counter
+      company: Coco Pharmaceuticals
+      jobTitle: Payment Clerk
+      userId: sallycounter
+      workLocation: 2
+    - recordId: 12
+      contactType: E
+      firstName: Lemmie
+      lastName: Stage
+      company: Coco Pharmaceuticals
+      jobTitle: DataStage Specialist
+      userId: lemmiestage
+      workLocation: 1
+    - recordId: 13
+      contactType: E
+      firstName: Erin
+      lastName: Overview
+      company: Coco Pharmaceuticals
+      jobTitle: Information Architect
+      userId: erinoverview
+      workLocation: 2
+    - recordId: 14
+      contactType: E
+      firstName: Harry
+      lastName: Hopeful
+      company: Coco Pharmaceuticals
+      jobTitle: Sales Specialist, New York
+      userId: harryhopeful
+      workLocation: 3
+    - recordId: 15
+      contactType: E
+      firstName: Gary
+      lastName: Geeke
+      company: Coco Pharmaceuticals
+      jobTitle: IT Infrastructure Lead
+      userId: garygeeke
+      workLocation: 1
+    - recordId: 16
+      contactType: P
+      firstName: Grant
+      lastName: Able
+      company: Hampton Hosptial
+      jobTitle: Consultant
+      userId: grantable
+      workLocation: 4
+    - recordId: 17
+      contactType: P
+      firstName: Robbie
+      lastName: Records
+      company: Hampton Hosptial
+      jobTitle: Patient Records Manager
+      userId: robbierecords
+      workLocation: 4
+    - recordId: 18
+      contactType: E
+      firstName: Reggie
+      lastName: Mint
+      company: Coco Pharmaceuticals
+      jobTitle: Chief Finance Officer (CFO)
+      userId: reggiemint
+      workLocation: 2
+    - recordId: 19
+      contactType: E
+      firstName: Peter
+      lastName: Profile
+      company: Coco Pharmaceuticals
+      jobTitle: Information Analyst
+      userId: peterprofile
+      workLocation: 2
+    - recordId: 20
+      contactType: C
+      firstName: Nancy
+      lastName: Noah
+      company: IBM
+      jobTitle: Cloud Architect
+      userId: nancynoah
+      workLocation: 2
+    - recordId: 21
+      contactType: C
+      firstName: Sidney
+      lastName: Seeker
+      company: Sec Inc Consultancy Services
+      jobTitle: Fraud Investigator
+      userId: sidneyseeker
+      workLocation: 2
+    - recordId: 22
+      contactType: E
+      firstName: Tom
+      lastName: Tally
+      company: Coco Pharmaceuticals
+      jobTitle: Accounts Manager, Finance HQ
+      userId: tomtally
+      workLocation: 2
+    - recordId: 23
+      contactType: P
+      firstName: Julie
+      lastName: Stitched
+      company: Hampton Hospital
+      jobTitle: Surgeon
+      userId: juliestitched
+      workLocation: 4
+    - recordId: 24
+      contactType: C
+      firstName: Des
+      lastName: Signa
+      company: IBM
+      jobTitle: Mobile Developer
+      userId: dessigna
+      workLocation: 2
+    - recordId: 25
+      contactType: P
+      firstName: Angela
+      lastName: Cummings
+      company: Coco Pharmaceuticals
+      jobTitle: Nurse
+      userId: angelacummings
+      workLocation: 4
+    - recordId: 26
+      contactType: E
+      firstName: Jules
+      lastName: Keeper
+      company: Coco Pharmaceuticals
+      jobTitle: Chief Data Officer (CDO)
+      userId: juleskeeper
+      workLocation: 2
+    - recordId: 27
+      contactType: E
+      firstName: Stew
+      lastName: Faster
+      company: Coco Pharmaceuticals
+      jobTitle: Manufacturing Lead
+      userId: stewfaster
+      workLocation: 2
+
+
+
+#
+# Initial Email List
+#
+initialEmailList:
+    - recordId: 1
+      emailType: C
+      emailAddress:  ZachNow@Coco-Pharmaceuticals.com
+    - recordId: 1
+      emailType: S
+      emailAddress:  zach@Coco-Pharmaceuticals.com
+    - recordId: 2
+      emailType: C
+      emailAddress:  SteveStarter@Coco-Pharmaceuticals.com
+    - recordId: 2
+      emailType: S
+      emailAddress:  steve@Coco-Pharmaceuticals.com
+    - recordId: 3
+      emailType: C
+      emailAddress:  TerriDaring@Coco-Pharmaceuticals.com
+    - recordId: 3
+      emailType: S
+      emailAddress:  terri@Coco-Pharmaceuticals.com
+    - recordId: 4
+      emailType: C
+      emailAddress:  TanyaTidy@Coco-Pharmaceuticals.com
+    - recordId: 4
+      emailType: S
+      emailAddress:  tanya@Coco-Pharmaceuticals.com
+    - recordId: 5
+      emailType: C
+      emailAddress:  PollyTasker@Coco-Pharmaceuticals.com
+    - recordId: 5
+      emailType: S
+      emailAddress:  polly@Coco-Pharmaceuticals.com
+    - recordId: 6
+      emailType: C
+      emailAddress:  TessaTube@Coco-Pharmaceuticals.com
+    - recordId: 6
+      emailType: S
+      emailAddress:  tessa@Coco-Pharmaceuticals.com
+    - recordId: 7
+      emailType: C
+      emailAddress:  CallieQuartile@Coco-Pharmaceuticals.com
+    - recordId: 7
+      emailType: S
+      emailAddress:  callie@Coco-Pharmaceuticals.com
+    - recordId: 8
+      emailType: C
+      emailAddress:  IvorPadlock@Coco-Pharmaceuticals.com
+    - recordId: 8
+      emailType: S
+      emailAddress:  ivor@Coco-Pharmaceuticals.com
+    - recordId: 9
+      emailType: C
+      emailAddress:  BobNitter@Coco-Pharmaceuticals.com
+    - recordId: 10
+      emailType: C
+      emailAddress:  FaithBroker@Coco-Pharmaceuticals.com
+    - recordId: 11
+      emailType: C
+      emailAddress:  SallyCounter@Coco-Pharmaceuticals.com
+    - recordId: 12
+      emailType: C
+      emailAddress:  LemmieStage@Coco-Pharmaceuticals.com
+    - recordId: 13
+      emailType: C
+      emailAddress:  ErinOverview@Coco-Pharmaceuticals.com
+    - recordId: 14
+      emailType: C
+      emailAddress:  HarryHopeful@Coco-Pharmaceuticals.com
+    - recordId: 15
+      emailType: C
+      emailAddress:  GaryGeeke@Coco-Pharmaceuticals.com
+    - recordId: 16
+      emailType: C
+      emailAddress:  Grant@hh-care.org
+    - recordId: 17
+      emailType: C
+      emailAddress:  RobbieRec@hh-care.org
+    - recordId: 18
+      emailType: C
+      emailAddress:  ReggieMint@Coco-Pharmaceuticals.com
+    - recordId: 19
+      emailType: C
+      emailAddress:  PeterProfile@Coco-Pharmaceuticals.com
+    - recordId: 20
+      emailType: C
+      emailAddress:  nancy_noah@gb.ibm.com
+    - recordId: 21
+      emailType: C
+      emailAddress:  SJKSeeker@SecIncConSvcs.gmail
+    - recordId: 22
+      emailType: C
+      emailAddress:  TomTally@Coco-Pharmaceuticals.com
+    - recordId: 23
+      emailType: C
+      emailAddress:  Julie-Stitched@hh-care.org
+    - recordId: 24
+      emailType: C
+      emailAddress:  des_signa@gb.ibm.com
+    - recordId: 25
+      emailType: C
+      emailAddress:  Angela@hh-care.org
+    - recordId: 26
+      emailType: C
+      emailAddress:  JulesKeeper@Coco-Pharmaceuticals.com
+    - recordId: 27
+      emailType: C
+      emailAddress:  StewFaster@Coco-Pharmaceuticals.com
+
+#
+# Initial Phone List
+#
+initialPhoneList:
+    - recordId: 1
+      contactType: O
+      phoneNumber: 1-912-333-4444 (ext 4)
+    - recordId: 1
+      contactType: M
+      phoneNumber: 1-912-380-7277
+    - recordId: 2
+      contactType: O
+      phoneNumber: 31-20-5274986 (ext 2)
+    - recordId: 3
+      contactType: O
+      phoneNumber: 44-20-372-2223 (ext 4)
+    - recordId: 4
+      contactType: O
+      phoneNumber: 1-912-333-4444
+    - recordId: 5
+      contactType: O
+      phoneNumber: 31-20-5274986 (ext 3)
+    - recordId: 6
+      contactType: O
+      phoneNumber: 1-912-333-4444 (ext 5)
+    - recordId: 7
+      contactType: O
+      phoneNumber: 1-912-333-4444 (ext 3)
+    - recordId: 8
+      contactType: O
+      phoneNumber: 31-20-5274986 (ext 4)
+    - recordId: 9
+      contactType: O
+      phoneNumber: 31-20-5274986 (ext 5)
+    - recordId: 10
+      contactType: O
+      phoneNumber: 31-20-5274986 (ext 6)
+    - recordId: 11
+      contactType: O
+      phoneNumber: 44-20-372-2223 (ext 2)
+    - recordId: 12
+      contactType: O
+      phoneNumber: 31-20-5274986 (ext 7)
+    - recordId: 13
+      contactType: O
+      phoneNumber: 44-20-372-2223 (ext 3)
+    - recordId: 14
+      contactType: O
+      phoneNumber: 1-912-333-4444 (ext 6)
+    - recordId: 14
+      contactType: M
+      phoneNumber: 1-912-345-8765
+    - recordId: 15
+      contactType: M
+      phoneNumber: 31-20-5274986 (ext 8)
+    - recordId: 16
+      contactType: M
+      phoneNumber: 1-912-456-6789
+    - recordId: 17
+      contactType: O
+      phoneNumber: 1-912-876-3456
+    - recordId: 18
+      contactType: O
+      phoneNumber: 44-20-372-2223 (ext 5)
+    - recordId: 19
+      contactType: O
+      phoneNumber: 44-20-372-2223 (ext 6)
+    - recordId: 20
+      contactType: M
+      phoneNumber: 44-800-323-4564
+    - recordId: 21
+      contactType: M
+      phoneNumber: 44-877-399-1999
+    - recordId: 22
+      contactType: O
+      phoneNumber: 44-20-372-2223 (ext 7)
+    - recordId: 23
+      contactType: M
+      phoneNumber: 1-912-666-4783
+    - recordId: 24
+      contactType: M
+      phoneNumber: 44-0800-567-1234
+    - recordId: 25
+      contactType: M
+      phoneNumber: 1-912-445-6655
+    - recordId: 26
+      contactType: O
+      phoneNumber: 44-20-372-2223 (ext 8)
+    - recordId: 27
+      contactType: O
+      phoneNumber: 44-20-372-2223 (ext 9)
+
+#
+# Initial Work Location List
+#
+initialWorkLocationList:
+    - wlId: 1
+      wlName: Amsterdam Lab
+      buildingName:
+      streetNumber: 1833
+      streetName: Wilhelmdreef
+      district: Amsterdam-Zuidoost
+      city: Amsterdam
+      area: North Holland
+      country: Netherlands
+    - wlId: 2
+      wlName: London Lab
+      buildingName:
+      streetNumber: 32
+      streetName: Wibble Road
+      district: Cortervill
+      city: London
+      area: Greater London
+      country: United Kingdom
+    - wlId: 3
+      wlName: New York Lab
+      buildingName:
+      streetNumber: 27
+      streetName: Code Street
+      district: Harlem
+      city: New York
+      area: NY
+      country: United States
+    - wlId: 4
+      wlName: Hampton Hospital
+      buildingName: Oncology Unit 1, Hampton Hospital
+      streetNumber:
+      streetName: Nightingale Street
+      district: Harlem
+      city: New York
+      area: NY
+      country: United States
+
