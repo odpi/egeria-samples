@@ -1,0 +1,372 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+
+
+
+#
+# Kafka Configuration:
+#  - kafkaTopicName - name of topic to publish to - avoid mixing "-" and "." as spacers in the name - use one or other.
+#  - kafkaBootstrapServerURL - location of the kafka broker - typically localhost:9092
+#  - kafkaProperties - see [Apache Kafka producer configurations](http://kafka.apache.org/0100/documentation.html#producerconfigs) for more information and options
+#
+kafkaTopicName: openlineage.topic
+kafkaBootstrapServerURL : localhost:9092
+kafkaProperties:
+    acks: all
+    retries: 1
+    batch.size: 16384
+    linger.ms: 0
+    buffer.memory: 33554432
+    max.request.size: 10485760
+    key.serializer: org.apache.kafka.common.serialization.StringSerializer
+    value.serializer: org.apache.kafka.common.serialization.StringSerializer
+    bring.up.retries: 10
+    bring.up.minSleepTime: 5000
+
+
+#
+# Initial Employee database
+#
+initialEmployees:
+    - personalDetails:
+          pnum: 133777
+          firstName: Zach
+          lastName: Now
+          employeeStatus: EXECUTIVE
+          jobLevel: 9
+          departmentCode: 9999
+          role: Founder
+          locationCode: 3
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 439222
+          firstName: Steve
+          lastName: Starter
+          employeeStatus: EXECUTIVE
+          jobLevel: 9
+          departmentCode: 9999
+          role: Founder
+          locationCode: 1
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 371803
+          firstName: Terri
+          lastName: Daring
+          employeeStatus: EXECUTIVE
+          jobLevel: 9
+          departmentCode: 9999
+          role: Founder
+          locationCode: 2
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 209482
+          firstName: Tanya
+          lastName: Tidie
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 2
+          departmentCode: 4051
+          role: Data Steward
+          locationCode: 3
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 338575
+          firstName: Polly
+          lastName: Tasker
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 7
+          departmentCode: 2373
+          role: IT Project Leader
+          locationCode: 1
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 302145
+          firstName: Tessa
+          lastName: Tube
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 7
+          departmentCode: 2343
+          role: Lead Researcher
+          locationCode: 3
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 328080
+          firstName: Callie
+          lastName: Quartile
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 5
+          departmentCode: 4051
+          role: Data Scientist
+          locationCode: 3
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 499888
+          firstName: Ivor
+          lastName: Padlock
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 8
+          departmentCode: 2373
+          role: Chief Security Officer
+          locationCode: 1
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 458109
+          firstName: Bob
+          lastName: Nitter
+          employeeStatus: PART_TIME_PERMANENT
+          jobLevel: 4
+          departmentCode: 3082
+          role: Application Developer
+          locationCode: 1
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 139870
+          firstName: Faith
+          lastName: Broker
+          employeeStatus: EXECUTIVE
+          jobLevel: 8
+          departmentCode: 2373
+          role: Human Resources and Compliance Director
+          locationCode: 1
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 457911
+          firstName: Sally
+          lastName: Counter
+          employeeStatus: PART_TIME_PERMANENT
+          jobLevel: 2
+          departmentCode: 6877
+          role: Payment Clerk
+          locationCode: 2
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 818928
+          firstName: Lemmie
+          lastName: Stage
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 4
+          departmentCode: 3082
+          role: DataStage Specialist
+          locationCode: 1
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 324713
+          firstName: Erin
+          lastName: Overview
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 7
+          departmentCode: 7432
+          role: Information Architect
+          locationCode: 2
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 144994
+          firstName: Harry
+          lastName: Hopeful
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 6
+          departmentCode: 2343
+          role: Sales Speciclist, NY
+          locationCode: 3
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 199995
+          firstName: Gary
+          lastName: Geeke
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 6
+          departmentCode: 3082
+          role: IT Infrastructure Lead
+          locationCode: 1
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 188888
+          firstName: Reggie
+          lastName: Mint
+          employeeStatus: EXECUTIVE
+          jobLevel: 8
+          departmentCode: 5656
+          role: Chief Finance Officer (CFO)
+          locationCode: 2
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 986419
+          firstName: Peter
+          lastName: Profile
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 5
+          departmentCode: 7432
+          role: Information Analyst
+          locationCode: 2
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 896522
+          firstName: Tom
+          lastName: Tally
+          employeeStatus: FULL_TIME_PERMANENT
+          jobLevel: 7
+          departmentCode: 6788
+          role: Accounts Manager, Finance HQ
+          locationCode: 2
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 296776
+          firstName: Jules
+          lastName: Keeper
+          employeeStatus: EXECUTIVE
+          jobLevel: 8
+          departmentCode: 5656
+          role: Chief Data Officer (CDO)
+          locationCode: 2
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 483942
+          firstName: Stew
+          lastName: Faster
+          employeeStatus: EXECUTIVE
+          jobLevel: 8
+          departmentCode: 5656
+          role: Head of Manufacturing
+          locationCode: 2
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+    - personalDetails:
+          pnum: 921848
+          firstName: Reddy
+          lastName: Leftie
+          employeeStatus: LEFT
+          jobLevel: 3
+          departmentCode: 6877
+          role: Procurement Lead
+          locationCode: 2
+          taxStatus: 1
+      roles:
+      salaryHistory:
+      bonusHistory:
+      awardHistory:
+
+
+
+
+
+
+#
+# Initial list of departments
+#
+initialDepartments:
+    - departmentCode: 4051
+      departmentName: Clinical Trials
+      managerPNUM: 302145
+    - departmentCode: 3082
+      departmentName: IT
+      managerPNUM: 338575
+    - departmentCode: 7432
+      departmentName: Chief Data Office
+      managerPNUM: 296776
+    - departmentCode: 6877
+      departmentName: Accounts
+      managerPNUM: 896522
+    - departmentCode: 6788
+      departmentName: Finance
+      managerPNUM: 188888
+    - departmentCode: 2373
+      departmentName: Amsterdam Lab
+      managerPNUM: 439222
+    - departmentCode: 5656
+      departmentName: London Lab
+      managerPNUM: 371803
+    - departmentCode: 2343
+      departmentName: New York Lab
+      managerPNUM: 133777
+    - departmentCode: 9999
+      departmentName: Founders
+      managerPNUM:
+    - departmentCode: 1199
+      departmentName: Sales
+      managerPNUM: 144994
+    - departmentCode: 7893
+      departmentName: Manufacturing
+      managerPNUM: 483942

@@ -1,0 +1,463 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 8084
+  adminConnectors:
+    - type: http
+      port: 8085
+
+
+#
+# Initial Users
+#
+initialUsers:
+  - employeeNumber: 133777
+    employeeType: E
+    firstName: Zach
+    lastName: Now
+    description: Founder
+    userId: zachnow
+  - employeeNumber: 439222
+    employeeType: E
+    firstName: Steve
+    lastName: Starter
+    description: Founder
+    userId: stevestarter
+  - employeeNumber: 371803
+    employeeType: E
+    firstName: Terri
+    lastName: Daring
+    description: Founder
+    userId: terridaring
+  - employeeNumber: 209482
+    employeeType: E
+    firstName: Tanya
+    lastName: Tidie
+    description: Data Steward, Clinical Trials
+    userId: tanyatidie
+  - employeeNumber: 338575
+    employeeType: E
+    firstName: Polly
+    lastName: Tasker
+    description: IT Project Manager
+    userId: pollytasker
+  - employeeNumber: 302145
+    employeeType: E
+    firstName: Tessa
+    lastName: Tube
+    description: Lead Researcher, Clinical Trials
+    userId: tessatube
+  - employeeNumber: 328080
+    employeeType: E
+    firstName: Callie
+    lastName: Quartile
+    description: Data Scientist
+    userId: calliequartile
+  - employeeNumber: 499888
+    employeeType: E
+    firstName: Ivor
+    lastName: Padlock
+    description: Chief Security Officer
+    userId: ivorpadlock
+  - employeeNumber: 458109
+    employeeType: E
+    firstName: Bob
+    lastName: Nitter
+    description: Application Developer
+    userId: bobnitter
+  - employeeNumber: 139870
+    employeeType: E
+    firstName: Faith
+    lastName: Broker
+    description: Human Resources and Compliance Director
+    userId: faithbroker
+  - employeeNumber: 457911
+    employeeType: E
+    firstName: Sally
+    lastName: Counter
+    description: Payment Clerk
+    userId: sallycounter
+  - employeeNumber: 818928
+    employeeType: E
+    firstName: Lemmie
+    lastName: Stage
+    description: DataStage Specialist
+    userId: lemmiestage
+  - employeeNumber: 324713
+    employeeType: E
+    firstName: Erin
+    lastName: Overview
+    description: Information Architect
+    userId: erinoverview
+  - employeeNumber: 144994
+    employeeType: E
+    firstName: Harry
+    lastName: Hopeful
+    description: Sales Specialist, New York
+    userId: harryhopeful
+  - employeeNumber: 199995
+    employeeType: E
+    firstName: Gary
+    lastName: Geeke
+    description: IT Infrastructure Lead
+    userId: garygeeke
+  - employeeType: P
+    firstName: Grant
+    lastName: Able
+    description: Consultant
+    userId: grantable
+  - employeeType: P
+    firstName: Robbie
+    lastName: Records
+    description: Patient Records Manager
+    userId: robbierecords
+  - employeeNumber: 188888
+    employeeType: E
+    firstName: Reggie
+    lastName: Mint
+    description: Chief Finance Officer (CFO)
+    userId: reggiemint
+  - employeeNumber: 986419
+    employeeType: E
+    firstName: Peter
+    lastName: Profile
+    description: Information Analyst
+    userId: peterprofile
+  - employeeType: C
+    firstName: Nancy
+    lastName: Noah
+    description: Cloud Architect
+    userId: nancynoah
+  - employeeType: C
+    firstName: Sidney
+    lastName: Seeker
+    description: Fraud Investigator
+    userId: sidneyseeker
+  - employeeNumber: 896522
+    employeeType: E
+    firstName: Tom
+    lastName: Tally
+    description: Accounts Manager, Finance HQ
+    userId: tomtally
+  - employeeType: P
+    firstName: Julie
+    lastName: Stitched
+    description: Surgeon
+    userId: juliestitched
+  - employeeType: C
+    firstName: Des
+    lastName: Signa
+    description: Mobile Developer
+    userId: dessigna
+  - employeeType: P
+    firstName: Angela
+    lastName: Cummings
+    description: Nurse
+    userId: angelacummings
+  - employeeNumber: 296776
+    employeeType: E
+    firstName: Jules
+    lastName: Keeper
+    description: Chief Data Officer (CDO)
+    userId: juleskeeper
+  - employeeNumber: 483942
+    employeeType: E
+    firstName: Stew
+    lastName: Faster
+    description: Manufacturing Lead
+    userId: stewfaster
+  - employeeNumber: 921848
+    employeeType: E
+    firstName: Reddy
+    lastName: Leftie
+    description: Procurement Lead
+    userId: reddyleftie
+  - systemName: cocoMDS1
+    description: Data Lake Operations - a metadata server used to manage the data in the data lake.
+    userId: cocoMDS1npa
+  - systemName: cocoMDS2
+    description: Governance - a metadata server used by all of the governance teams to operate the governance programs.
+    userId: cocoMDS2npa
+  - systemName: cocoMDS3
+    description: Research - a metadata server used by the research teams who are developing new treatments.
+    userId: cocoMDS3npa
+  - systemName: cocoMDS4
+    description: Data Lake Users - a metadata access point used by general business users and the executive team to access data from the data lake.
+    userId: cocoMDS4npa
+  - systemName: cocoMDS5
+    description: Business Systems - a repository proxy used to connect to the existing ETL tool that manages data movement amongst the business systems.
+    userId: cocoMDS5npa
+  - systemName: cocoMDS6
+    description: Manufacturing - a metadata server used by the supplies warehouse, manufacturing and distribution teams.
+    userId: cocoMDS6npa
+  - systemName: cocoMDSx
+    description: Development - a metadata server used by the software development teams building new IT capability.
+    userId: cocoMDSxnpa
+  - systemName: cocoView1
+    description: Ecosystem UI - a view server that runs the services for the user interface.
+    userId: cocoMDSxnpa
+  - systemName: exchangeDL01
+    description: Metadata Exchange - an integration daemon that supports the automatic exchange of metadata with third party technologies.
+    userId: exchangeDL01npa
+  - systemName: onboardDL01
+    description: Integration connector onboarding metadata into the data lake.
+    userId: onboardDL01npa
+  - systemName: monitorDL01
+    description: Integration connector monitoring metadata into the data lake.
+    userId: monitorDL01npa
+  - systemName: monitorGov01
+    description: Metadata Governance Activity Monitor - an integration daemon that supports the capture of lineage for the governance actions and external processing in the data lake.
+    userId: monitorGov01npa
+  - systemName: governDL01
+    description: Metadata Governance - an engine host that runs governance functions that monitor, validate, correct and enrich metadata for use by all of the technologies in the connected open metadata ecosystem.
+    userId: governDL01npa
+  - systemName: cocoOLS1
+    description: Open Lineage Server - managing lineage for business.
+    userId: cocoOLS1npa
+
+
+#
+# Initial list of groups
+#
+initialGroups:
+   - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+     description: Contains entries of individuals who are managers
+     commonName: managers
+   - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+     description: Contains entries of individuals who are employees of Coco Pharmaceuticals
+     commonName: employees
+   - distinguishedName: cn=contractors,ou=roles,ou=groups,o=cocoPharma
+     description: Contains entries of individuals who are contractors to Coco Pharmaceuticals
+     commonName: contractors
+   - distinguishedName: cn=hampton-hospital,ou=partners,ou=groups,o=cocoPharma
+     description: Contains entries of individuals who work for Hampton Hospital
+     commonName: hampton-hospital
+   - distinguishedName: cn=patients,ou=partners,ou=groups,o=cocoPharma
+     commonName: patients
+     description: The list of patients with access to the portal so they can view their records.
+   - distinguishedName: cn=founders,ou=departments,ou=groups,o=cocoPharma
+     commonName: founders
+     description: The list of founders for the organization.
+   - distinguishedName: ou=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+     description: Contains entries of all known users with access to Coco Pharmaceuticals' open metadata systems
+     commonName: open-metadata-users
+   - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+     description: Contains entries of the Coco Pharmaceuticals' systems
+     commonName: npa
+
+
+#
+# Initial membership
+#
+initialMembership:
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: reggiemint
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: zachnow
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: stevestarter
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: terridaring
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: tomtally
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: harryhopeful
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: juleskeeper
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: faithbroker
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: ivorpadlock
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: garygeeke
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: erinoverview
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: pollytasker
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: stewfaster
+    - distinguishedName: cn=managers,ou=roles,ou=groups,o=cocoPharma
+      userId: tessatube
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: zachnow
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: stevestarter
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: terridaring
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: reggiemint
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: tomtally
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: sallycounter
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: harryhopeful
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: juleskeeper
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: faithbroker
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: ivorpadlock
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: garygeeke
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: erinoverview
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: peterprofile
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: pollytasker
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: bobnitter
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: lemmiestage
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: stewfaster
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: tessatube
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: calliequartile
+    - distinguishedName: cn=employees,ou=roles,ou=groups,o=cocoPharma
+      userId: tanyatidie
+    - distinguishedName: cn=contractors,ou=roles,ou=groups,o=cocoPharma
+      userId: sidneyseeker
+    - distinguishedName: cn=contractors,ou=roles,ou=groups,o=cocoPharma
+      userId: nancynoah
+    - distinguishedName: cn=contractors,ou=roles,ou=groups,o=cocoPharma
+      userId: dessigna
+    - distinguishedName: cn=hampton-hospital,ou=partners,ou=groups,o=cocoPharma
+      userId: grantable
+    - distinguishedName: cn=hampton-hospital,ou=partners,ou=groups,o=cocoPharma
+      userId: juliestitched
+    - distinguishedName: cn=hampton-hospital,ou=partners,ou=groups,o=cocoPharma
+      userId: robbierecords
+    - distinguishedName: cn=hampton-hospital,ou=partners,ou=groups,o=cocoPharma
+      userId: angelacummings
+    - distinguishedName: cn=patients,ou=partners,ou=groups,o=cocoPharma
+      userId: florencepaynter,ou=people,o=cocoPharma
+    - distinguishedName: cn=patients,ou=partners,ou=groups,o=cocoPharma
+      userId: georgepie
+    - distinguishedName: cn=founders,ou=departments,ou=groups,o=cocoPharma
+      userId: zachnow
+    - distinguishedName: cn=founders,ou=departments,ou=groups,o=cocoPharma
+      userId: stevestarter
+    - distinguishedName: cn=founders,ou=departments,ou=groups,o=cocoPharma
+      userId: terridaring
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: zachnow
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: stevestarter
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: terridaring
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: reggiemint
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: tomtally
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: sallycounter
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: harryhopeful
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: juleskeeper
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: faithbroker
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: ivorpadlock
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: garygeeke
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: erinoverview
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: peterprofile
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: pollytasker
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: bobnitter
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: lemmiestage
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: stewfaster
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: tessatube
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: calliequartile
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: tanyatidie
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: grantable
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: juliestitched
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: robbierecords
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: angelacummings
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS1npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS2npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS3npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS4npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS5npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS6npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS7nap
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS8npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDSxnap
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: exchangeDL01npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: monitorGov01npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: governDL01npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoOLS1npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoView1npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: onboardDL01npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: monitorDL01npa
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: sidneyseeker
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: nancynoah
+    - distinguishedName: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+      userId: dessigna
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS1npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS2npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS3npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS4npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS5npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS6npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS7nap
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDS8npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoMDSxnap
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: exchangeDL01npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: monitorGov01npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: governDL01npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoOLS1npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: cocoView1npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: onboardDL01npa
+    - distinguishedName: cn=npa,ou=roles,ou=groups,o=cocoPharma
+      userId: monitorDL01npa
+
