@@ -4,6 +4,12 @@
 # Link to help info - https://git-scm.com/docs/gitignore
 #
 
+# Maven
+target*
+dependency-reduced-pom.xml
+core*.dmp
+pom.xml.releaseBackup
+
 # IntelliJ
 *.iml
 **.iml
