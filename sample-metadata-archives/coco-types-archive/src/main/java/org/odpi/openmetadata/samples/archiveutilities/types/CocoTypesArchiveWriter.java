@@ -11,6 +11,8 @@ import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.p
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.ClassificationDef;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.ClassificationPropagationRule;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.EntityDef;
+import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.EnumDef;
+import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.EnumElementDef;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.RelationshipDef;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.RelationshipEndCardinality;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.RelationshipEndDef;
@@ -82,11 +84,80 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
 
 
     /**
+     * Create a enum type that can be used as a type of attribute in an entity, relationship or classification.
+     * It defines a set of values that the attribute can be set up with along with a default value.
+     *
+     * @return enum attribute type definition (EnumDef)
+     */
+    private EnumDef getBiopsyScopeEnum()
+    {
+        final String guid            = "fdb05618-d0fe-4725-946f-138ba74f6f43";
+        final String name            = "BiopsyScope";
+        final String description     = "Defines scope of the tissue removal for a biopsy.";
+        final String descriptionGUID = null;
+
+        EnumDef enumDef = archiveHelper.getEmptyEnumDef(guid, name, description, descriptionGUID);
+
+        ArrayList<EnumElementDef> elementDefs = new ArrayList<>();
+        EnumElementDef            elementDef;
+
+        final int    element1Ordinal         = 0;
+        final String element1Value           = "Unclassified";
+        final String element1Description     = "There is no information on the scope of the biopsy.";
+        final String element1DescriptionGUID = null;
+
+        elementDef = archiveHelper.getEnumElementDef(element1Ordinal,
+                                                     element1Value,
+                                                     element1Description,
+                                                     element1DescriptionGUID);
+        elementDefs.add(elementDef);
+        enumDef.setDefaultValue(elementDef);
+
+        final int    element2Ordinal         = 1;
+        final String element2Value           = "Excisional";
+        final String element2Description     = "The biopsy removed all of the suspicious tissue.";
+        final String element2DescriptionGUID = null;
+
+        elementDef = archiveHelper.getEnumElementDef(element2Ordinal,
+                                                     element2Value,
+                                                     element2Description,
+                                                     element2DescriptionGUID);
+        elementDefs.add(elementDef);
+
+        final int    element3Ordinal         = 2;
+        final String element3Value           = "Incisional";
+        final String element3Description     = "The biopsy took a sample of the tissue under examination.";
+        final String element3DescriptionGUID = null;
+
+        elementDef = archiveHelper.getEnumElementDef(element3Ordinal,
+                                                     element3Value,
+                                                     element3Description,
+                                                     element3DescriptionGUID);
+        elementDefs.add(elementDef);
+
+        final int    element99Ordinal         = 99;
+        final String element99Value           = "Other";
+        final String element99Description     = "Another biopsy scope.";
+        final String element99DescriptionGUID = null;
+
+        elementDef = archiveHelper.getEnumElementDef(element99Ordinal,
+                                                     element99Value,
+                                                     element99Description,
+                                                     element99DescriptionGUID);
+        elementDefs.add(elementDef);
+
+        enumDef.setElementDefs(elementDefs);
+
+        return enumDef;
+    }
+
+
+    /**
      * Create the type definition for BiopsyReport.
      *
-     * @return Entity type definition (EntityDef)
+     * @return entity type definition (EntityDef)
      */
-    private EntityDef addBiopsyReportEntity()
+    private EntityDef getBiopsyReportEntity()
     {
         final String guid = "78479770-79ae-4bd8-b0ec-bf5e60c01e66";
 
@@ -115,9 +186,10 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
         final String attribute2Description     = "How was the biopsy taken?";
         final String attribute2DescriptionGUID = null;
 
-        property = archiveHelper.getStringTypeDefAttribute(attribute1Name,
-                                                           attribute1Description,
-                                                           attribute1DescriptionGUID);
+        property = archiveHelper.getEnumTypeDefAttribute("BiopsyScope",
+                                                         attribute1Name,
+                                                         attribute1Description,
+                                                         attribute1DescriptionGUID);
         properties.add(property);
         property = archiveHelper.getStringTypeDefAttribute(attribute2Name,
                                                            attribute2Description,
@@ -130,7 +202,13 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
     }
 
 
-    private RelationshipDef addBiopsySupportingEvidenceRelationship()
+    /**
+     * Crete a new type of relationship to link a biopsy report to other elements - assets, glossary terms, other definitions etc, that support the
+     * conclusions of the biopsy report.
+     *
+     * @return relationship type definition (RelationshipDef)
+     */
+    private RelationshipDef getBiopsySupportingEvidenceRelationship()
     {
         final String guid            = "54300f97-0140-4adb-b9a9-308514694f8d";
         final String name            = "BiopsySupportingEvidence";
@@ -191,9 +269,9 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
         final String attribute1Description     = "Information for the clinical trials team relating to the evidence.";
         final String attribute1DescriptionGUID = null;
 
-        property = archiveHelper.getArrayStringTypeDefAttribute(attribute1Name,
-                                                                attribute1Description,
-                                                                attribute1DescriptionGUID);
+        property = archiveHelper.getMapStringStringTypeDefAttribute(attribute1Name,
+                                                                    attribute1Description,
+                                                                    attribute1DescriptionGUID);
         properties.add(property);
 
 
@@ -203,8 +281,13 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
     }
 
 
-
-    private ClassificationDef addReviewedByClinicalTrialsClassification()
+    /**
+     * Build a classification that can be attached to an asset to indicate that a member of the clinical trials has reviewed the contents
+     * and made notes of their observations and conclusions.
+     *
+     * @return classification type definition (ClassificationDef)
+     */
+    private ClassificationDef getReviewedByClinicalTrialsClassification()
     {
         final String guid = "c2fa7555-f366-4869-88f3-897d6f2ec5a4";
 
@@ -255,9 +338,9 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
                                                            attribute3Description,
                                                            attribute3DescriptionGUID);
         properties.add(property);
-        property = archiveHelper.getArrayStringTypeDefAttribute(attribute4Name,
-                                                                attribute4Description,
-                                                                attribute4DescriptionGUID);
+        property = archiveHelper.getMapStringStringTypeDefAttribute(attribute4Name,
+                                                                    attribute4Description,
+                                                                    attribute4DescriptionGUID);
         properties.add(property);
 
         classificationDef.setPropertiesDefinition(properties);
@@ -275,11 +358,16 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
     protected OpenMetadataArchive getOpenMetadataArchive()
     {
         /*
+         * Add attribute type definitions.
+         */
+        this.archiveBuilder.addEnumDef(getBiopsyScopeEnum());
+
+        /*
          * Add the specialized types
          */
-        this.archiveBuilder.addEntityDef(addBiopsyReportEntity());
-        this.archiveBuilder.addRelationshipDef(addBiopsySupportingEvidenceRelationship());
-        this.archiveBuilder.addClassificationDef(addReviewedByClinicalTrialsClassification());
+        this.archiveBuilder.addEntityDef(getBiopsyReportEntity());
+        this.archiveBuilder.addRelationshipDef(getBiopsySupportingEvidenceRelationship());
+        this.archiveBuilder.addClassificationDef(getReviewedByClinicalTrialsClassification());
 
         /*
          * The completed archive is ready to be packaged up and returned
