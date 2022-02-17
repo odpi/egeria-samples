@@ -110,6 +110,7 @@ public class CocoPagesOrgSyncIntegrationConnector extends OrganizationIntegrator
 
             throw new ConnectorCheckedException(OrgSyncIntegrationConnectorErrorCode.UNEXPECTED_EXCEPTION.getMessageDefinition(connectorName,
                                                                                                                                error.getClass().getName(),
+                                                                                                                               methodName,
                                                                                                                                error.getMessage()),
                                                 this.getClass().getName(),
                                                 methodName,

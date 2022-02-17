@@ -14,7 +14,7 @@ server:
 #  - kafkaBootstrapServerURL - location of the kafka broker - typically localhost:9092
 #  - kafkaProperties - see [Apache Kafka producer configurations](http://kafka.apache.org/0100/documentation.html#producerconfigs) for more information and options
 #
-kafkaTopicName: openlineage.topic
+kafkaTopicName: hrim.topic
 kafkaBootstrapServerURL : localhost:9092
 kafkaProperties:
     acks: all

@@ -47,6 +47,5 @@ __MACOSX
 **/.factorypath
 **/**.code-workspace
 
-# Output files from the sample utilities
-CocoTypesArchive.json
+
 

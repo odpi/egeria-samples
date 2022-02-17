@@ -17,7 +17,7 @@
 
     <groupId>org.odpi.egeria</groupId>
     <artifactId>egeria-sample-connectors-ldap</artifactId>
-    <version>3.4-SNAPSHOT</version>
+    <version>3.6-SNAPSHOT</version>
 
     <name>LDAP Open Metadata Security Samples</name>
     <description>
@@ -26,6 +26,7 @@
     </description>
 
     <properties>
+
         <open-metadata.version>${project.version}</open-metadata.version>
 
         <!-- Level of Java  -->
@@ -83,6 +84,12 @@
             <groupId>org.odpi.egeria</groupId>
             <artifactId>security-integrator-api</artifactId>
             <version>${open-metadata.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.directory.api</groupId>
+            <artifactId>api-all</artifactId>
+            <version>${ldap.api.version}</version>
         </dependency>
 
     </dependencies>

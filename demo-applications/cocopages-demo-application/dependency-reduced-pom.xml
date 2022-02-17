@@ -4,7 +4,7 @@
   <groupId>org.odpi.egeria</groupId>
   <artifactId>cocopages-demo-application</artifactId>
   <name>Company Directory (cocopages)</name>
-  <version>3.4-SNAPSHOT</version>
+  <version>3.6-SNAPSHOT</version>
   <description>Coco Pharmaceuticals demo application used by whole company to manage contact information for employees, contractors and business partners.</description>
   <scm>
     <connection>scm:git:git://github.com/odpi/egeria-samples.git</connection>

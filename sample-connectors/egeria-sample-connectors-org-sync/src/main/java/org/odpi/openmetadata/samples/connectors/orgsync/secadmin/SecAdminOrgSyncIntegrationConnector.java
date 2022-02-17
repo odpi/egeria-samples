@@ -3,10 +3,9 @@
 
 package org.odpi.openmetadata.samples.connectors.orgsync.secadmin;
 
-import org.odpi.openmetadata.accessservices.communityprofile.metadataelement.ActorProfileElement;
-import org.odpi.openmetadata.accessservices.communityprofile.metadataelement.PersonalProfileElement;
-import org.odpi.openmetadata.accessservices.communityprofile.metadataelement.SecurityGroupElement;
-import org.odpi.openmetadata.accessservices.communityprofile.metadataelement.UserIdentityElement;
+import org.odpi.openmetadata.accessservices.communityprofile.metadataelements.ActorProfileElement;
+import org.odpi.openmetadata.accessservices.communityprofile.metadataelements.SecurityGroupElement;
+import org.odpi.openmetadata.accessservices.communityprofile.metadataelements.UserIdentityElement;
 import org.odpi.openmetadata.accessservices.communityprofile.properties.SecurityGroupProperties;
 import org.odpi.openmetadata.accessservices.communityprofile.properties.UserIdentityProperties;
 import org.odpi.openmetadata.frameworks.connectors.ffdc.ConnectorCheckedException;
@@ -224,6 +223,7 @@ public class SecAdminOrgSyncIntegrationConnector extends OrganizationIntegratorC
 
             throw new ConnectorCheckedException(OrgSyncIntegrationConnectorErrorCode.UNEXPECTED_EXCEPTION.getMessageDefinition(connectorName,
                                                                                                                                error.getClass().getName(),
+                                                                                                                               methodName,
                                                                                                                                error.getMessage()),
                                                 this.getClass().getName(),
                                                 methodName,

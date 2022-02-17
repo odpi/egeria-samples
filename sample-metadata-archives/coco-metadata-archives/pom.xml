@@ -14,14 +14,14 @@
         <url>http://github.com/odpi/egeria/tree/master</url>
     </scm>
 
-    <name>Coco Pharmaceuticals Specialized Types</name>
+    <name>Coco Pharmaceuticals Metadata Archives</name>
     <description>
-        Sample showing how to extend the open metadata types.
+        Samples showing how to to build open metadata archives.
     </description>
 
     <groupId>org.odpi.egeria</groupId>
-    <artifactId>coco-types-archive</artifactId>
-    <version>3.5-SNAPSHOT</version>
+    <artifactId>coco-metadata-archives</artifactId>
+    <version>3.6-SNAPSHOT</version>
 
     <!-- The Apache license is used for code and the creative commons license is used for documentation -->
 
@@ -77,6 +77,24 @@
         </dependency>
 
         <dependency>
+            <groupId>org.odpi.egeria</groupId>
+            <artifactId>content-pack-helpers</artifactId>
+            <version>${open-metadata.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.odpi.egeria</groupId>
+            <artifactId>discovery-service-connectors</artifactId>
+            <version>${open-metadata.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.odpi.egeria</groupId>
+            <artifactId>governance-action-connectors</artifactId>
+            <version>${open-metadata.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
@@ -122,7 +140,7 @@
                             </descriptorRefs>
                             <archive>
                                 <manifest>
-                                    <mainClass>org.odpi.openmetadata.samples.archiveutilities.types.CocoTypeArchiveWriter</mainClass>
+                                    <mainClass>org.odpi.openmetadata.samples.archiveutilities.governanceengines.CocoGovernanceEnginesArchiveWriter</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>
