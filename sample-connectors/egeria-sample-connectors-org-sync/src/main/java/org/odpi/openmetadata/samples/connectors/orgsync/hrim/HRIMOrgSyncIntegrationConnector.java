@@ -111,6 +111,7 @@ public class HRIMOrgSyncIntegrationConnector extends OrganizationIntegratorConne
 
             throw new ConnectorCheckedException(OrgSyncIntegrationConnectorErrorCode.UNEXPECTED_EXCEPTION.getMessageDefinition(connectorName,
                                                                                                                                error.getClass().getName(),
+                                                                                                                               methodName,
                                                                                                                                error.getMessage()),
                                                 this.getClass().getName(),
                                                 methodName,

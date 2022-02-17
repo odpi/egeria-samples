@@ -17,7 +17,7 @@
 
     <groupId>org.odpi.egeria</groupId>
     <artifactId>secadmin-demo-application</artifactId>
-    <version>3.4-SNAPSHOT</version>
+    <version>3.6-SNAPSHOT</version>
 
     <name>Security Admin (SecAdmin)</name>
     <description>

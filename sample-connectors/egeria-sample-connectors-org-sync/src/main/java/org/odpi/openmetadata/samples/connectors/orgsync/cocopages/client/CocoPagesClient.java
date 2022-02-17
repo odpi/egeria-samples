@@ -2,16 +2,45 @@
 /* Copyright Contributors to the ODPi Egeria project. */
 package org.odpi.openmetadata.samples.connectors.orgsync.cocopages.client;
 
+import org.odpi.openmetadata.frameworks.auditlog.AuditLog;
+import org.odpi.openmetadata.samples.connectors.orgsync.ffdc.OrgSyncIntegrationConnectorErrorCode;
+import org.odpi.openmetadata.samples.connectors.orgsync.rest.RESTClient;
+import org.odpi.openmetadata.frameworks.connectors.ffdc.ConnectorCheckedException;
+
 import java.util.List;
 
 public class CocoPagesClient
 {
-    private String targetRootURL;
+    private String     targetRootURL;
+    private RESTClient restClient = null;
 
 
-    public CocoPagesClient(String targetRootURL)
+    public CocoPagesClient(String   connectorName,
+                           String   applicationName,
+                           String   targetRootURL,
+                           AuditLog auditLog,
+                           String   methodName) throws ConnectorCheckedException
     {
         this.targetRootURL = targetRootURL;
+
+        try
+        {
+            if (targetRootURL != null)
+            {
+                restClient = new RESTClient(applicationName, targetRootURL, auditLog);
+            }
+        }
+        catch (Exception error)
+        {
+            throw new ConnectorCheckedException(
+                    OrgSyncIntegrationConnectorErrorCode.UNEXPECTED_EXCEPTION.getMessageDefinition(connectorName,
+                                                                                                   error.getClass().getName(),
+                                                                                                   methodName,
+                                                                                                   error.getMessage()),
+                    this.getClass().getName(),
+                    methodName,
+                    error);
+        }
     }
 
 

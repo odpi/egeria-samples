@@ -17,7 +17,7 @@
 
     <groupId>org.odpi.egeria</groupId>
     <artifactId>egeria-sample-connectors-org-sync</artifactId>
-    <version>3.4-SNAPSHOT</version>
+    <version>3.6-SNAPSHOT</version>
 
     <name>Coco Pharmaceuticals Organization Data Synchronization Connector</name>
     <description>
@@ -71,6 +71,26 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Libraries for calling REST APIs -->
+
+        <dependency>
+            <groupId>org.odpi.egeria</groupId>
+            <artifactId>rest-client-connectors-api</artifactId>
+            <version>${open-metadata.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.odpi.egeria</groupId>
+            <artifactId>rest-client-factory</artifactId>
+            <version>${open-metadata.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.odpi.egeria</groupId>
+            <artifactId>spring-rest-client-connector</artifactId>
+            <version>${open-metadata.version}</version>
         </dependency>
 
     </dependencies>

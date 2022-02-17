@@ -127,6 +127,12 @@ public enum OrgSyncIntegrationConnectorAuditCode implements AuditLogMessageSet
                               "Its presence is still needed in the metadata repository for lineage reporting.",
                    "No action is required.  This message is to record the reason why the Topic was archived."),
 
+    CLIENT_SIDE_REST_API_ERROR( "ORG-SYNC-INTEGRATION-CONNECTOR-0030",
+                                OMRSAuditLogRecordSeverity.EXCEPTION,
+                                "A client-side exception was received from API call {0} to OMAG Server {1} at {2}.  The error message was {3}",
+                                "The server has issued a call to the open metadata access service REST API in a remote server and has received an exception from the local client libraries.",
+                                "Look for errors in the local server's console to understand and correct the source of the error.")
+
 
     ;
 

@@ -369,6 +369,7 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
         this.archiveBuilder.addRelationshipDef(getBiopsySupportingEvidenceRelationship());
         this.archiveBuilder.addClassificationDef(getReviewedByClinicalTrialsClassification());
 
+
         /*
          * The completed archive is ready to be packaged up and returned
          */

@@ -26,15 +26,20 @@ import org.odpi.openmetadata.frameworks.auditlog.messagesets.ExceptionMessageSet
  */
 public enum OrgSyncIntegrationConnectorErrorCode implements ExceptionMessageSet
 {
-    NO_URL(500, "ORG-SYNC-INTEGRATION-CONNECTOR-400-001",
-             "The {0} integration connector is unable to connect to the {1} application because the ",
+    NO_URL(400, "ORG-SYNC-INTEGRATION-CONNECTOR-400-001",
+             "The {0} integration connector is unable to connect to the {1} application because the URL is null",
              "The connector shuts down.",
              "Add the URL of the application to the networkAddress attribute of the connector's endpoint in the Connection object associated with its configuration."),
 
     UNEXPECTED_EXCEPTION(500, "ORG-SYNC-INTEGRATION-CONNECTOR-500-001",
-             "The {0} integration connector received an unexpected exception {1} when cataloguing user information; the error message was: {2}",
+             "The {0} integration connector received an unexpected {1} exception in method {2}; the error message was: {3}",
              "The connector is unable to catalog one or more element.",
              "Use the details from the error message to determine the cause of the error and retry the request once it is resolved."),
+
+    CLIENT_SIDE_REST_API_ERROR(503, "ORG-SYNC-INTEGRATION-CONNECTOR-503-001",
+                               "A client-side exception of {0} was received from API call {1} to URL {2}.  The error message was {3}",
+                               "The integration has issued a call to the open metadata access service REST API in a remote server and has received an exception from the local client libraries.",
+                               "Look for errors in the local server's console to understand and correct the source of the error.")
     ;
 
 
