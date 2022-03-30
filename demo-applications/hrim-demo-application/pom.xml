@@ -17,7 +17,7 @@
 
     <groupId>org.odpi.egeria</groupId>
     <artifactId>hrim-demo-application</artifactId>
-    <version>3.6-SNAPSHOT</version>
+    <version>3.8-SNAPSHOT</version>
 
     <name>HR Information Manager (HRIM)</name>
     <description>

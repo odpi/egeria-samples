@@ -1685,7 +1685,7 @@ public class LDAPServerSecurityConnector extends OpenMetadataServerSecurityConne
     @Override
     public void  validateUserForEntityClassificationAdd(String               userId,
                                                         String               metadataCollectionName,
-                                                        EntityDetail         instance,
+                                                        EntitySummary        instance,
                                                         String               classificationName,
                                                         InstanceProperties   properties) throws UserNotAuthorizedException
     {
@@ -1706,7 +1706,7 @@ public class LDAPServerSecurityConnector extends OpenMetadataServerSecurityConne
     @Override
     public void  validateUserForEntityClassificationUpdate(String               userId,
                                                            String               metadataCollectionName,
-                                                           EntityDetail         instance,
+                                                           EntitySummary        instance,
                                                            String               classificationName,
                                                            InstanceProperties   properties) throws UserNotAuthorizedException
     {
@@ -1726,7 +1726,7 @@ public class LDAPServerSecurityConnector extends OpenMetadataServerSecurityConne
     @Override
     public void  validateUserForEntityClassificationDelete(String               userId,
                                                            String               metadataCollectionName,
-                                                           EntityDetail         instance,
+                                                           EntitySummary        instance,
                                                            String               classificationName) throws UserNotAuthorizedException
     {
     }

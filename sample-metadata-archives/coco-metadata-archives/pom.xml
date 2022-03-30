@@ -21,7 +21,7 @@
 
     <groupId>org.odpi.egeria</groupId>
     <artifactId>coco-metadata-archives</artifactId>
-    <version>3.6-SNAPSHOT</version>
+    <version>3.8-SNAPSHOT</version>
 
     <!-- The Apache license is used for code and the creative commons license is used for documentation -->
 
