@@ -17,7 +17,7 @@
 
     <groupId>org.odpi.egeria</groupId>
     <artifactId>egeria-sample-connectors-org-sync</artifactId>
-    <version>3.6-SNAPSHOT</version>
+    <version>3.8-SNAPSHOT</version>
 
     <name>Coco Pharmaceuticals Organization Data Synchronization Connector</name>
     <description>
