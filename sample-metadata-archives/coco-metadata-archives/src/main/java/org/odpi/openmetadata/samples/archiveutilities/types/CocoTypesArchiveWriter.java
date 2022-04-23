@@ -56,7 +56,7 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
     /**
      * Default constructor initializes the archive.
      */
-    private CocoTypesArchiveWriter()
+    public CocoTypesArchiveWriter()
     {
         List<OpenMetadataArchive> dependentOpenMetadataArchives = new ArrayList<>();
 
@@ -381,7 +381,7 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
      * Generates and writes out an open metadata archive containing all of the connector types
      * describing the ODPi Egeria data store open connectors.
      */
-    private void writeOpenMetadataArchive()
+    public void writeOpenMetadataArchive()
     {
         try
         {
@@ -392,28 +392,6 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
         catch (Exception error)
         {
             System.out.println("error is " + error.toString());
-        }
-    }
-
-
-    /**
-     * Main program to initiate the archive writer for the connector types for data store connectors supported by
-     * ODPi Egeria.
-     *
-     * @param args ignored
-     */
-    public static void main(String[] args)
-    {
-        try
-        {
-            CocoTypesArchiveWriter archiveWriter = new CocoTypesArchiveWriter();
-
-            archiveWriter.writeOpenMetadataArchive();
-        }
-        catch (Exception error)
-        {
-            System.err.println("Exception: " + error.toString());
-            System.exit(-1);
         }
     }
 }
