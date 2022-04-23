@@ -36,8 +36,9 @@
 
         <!-- Versions of dependent libraries -->
         <dropwizard.version>2.0.24</dropwizard.version>
-        <kafka.version>3.0.0</kafka.version>
-        <jackson.version>2.13.0</jackson.version>
+        <kafka.version>3.1.0</kafka.version>
+        <jackson.version>2.13.2</jackson.version>
+        <jackson.databind.version>2.13.2.2</jackson.databind.version>
 
     </properties>
 
@@ -58,7 +59,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
+            <version>${jackson.databind.version}</version>
         </dependency>
 
         <dependency>

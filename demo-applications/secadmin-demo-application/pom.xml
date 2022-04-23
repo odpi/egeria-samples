@@ -36,7 +36,8 @@
 
         <!-- Versions of dependent libraries -->
         <dropwizard.version>2.0.24</dropwizard.version>
-        <jackson.version>2.13.0</jackson.version>
+        <jackson.version>2.13.2</jackson.version>
+        <jackson.databind.version>2.13.2.2</jackson.databind.version>
 
     </properties>
 

@@ -47,7 +47,7 @@ public class CocoClinicalTrialsArchiveWriter extends OMRSArchiveWriter
     /**
      * Default constructor initializes the archive.
      */
-    private CocoClinicalTrialsArchiveWriter()
+    public CocoClinicalTrialsArchiveWriter()
     {
         List<OpenMetadataArchive> dependentOpenMetadataArchives = new ArrayList<>();
 
@@ -101,7 +101,7 @@ public class CocoClinicalTrialsArchiveWriter extends OMRSArchiveWriter
     /**
      * Generates and writes out the open metadata archive created in the builder.
      */
-    private void writeOpenMetadataArchive()
+    public void writeOpenMetadataArchive()
     {
         try
         {
@@ -112,27 +112,6 @@ public class CocoClinicalTrialsArchiveWriter extends OMRSArchiveWriter
         catch (Exception error)
         {
             System.out.println("error is " + error.toString());
-        }
-    }
-
-
-    /**
-     * Main program to initiate the archive writer.
-     *
-     * @param args ignored
-     */
-    public static void main(String[] args)
-    {
-        try
-        {
-            CocoClinicalTrialsArchiveWriter archiveWriter = new CocoClinicalTrialsArchiveWriter();
-
-            archiveWriter.writeOpenMetadataArchive();
-        }
-        catch (Exception error)
-        {
-            System.err.println("Exception: " + error.toString());
-            System.exit(-1);
         }
     }
 }

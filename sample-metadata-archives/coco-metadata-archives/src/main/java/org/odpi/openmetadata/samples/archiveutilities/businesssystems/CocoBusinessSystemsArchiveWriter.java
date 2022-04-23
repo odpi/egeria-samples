@@ -16,12 +16,12 @@ import java.util.List;
 
 
 /**
- * CocoGovernanceEnginesArchiveWriter creates a physical open metadata archive file containing the descriptions of the
+ * CocoBusinessSystemsArchiveWriter creates a physical open metadata archive file containing the descriptions of the
  * data flows from Coco Pharmaceuticals business systems to the data lake.
  */
 public class CocoBusinessSystemsArchiveWriter extends OMRSArchiveWriter
 {
-    private static final String archiveFileName = "CocoClinicalBusinessSystemsArchive.json";
+    private static final String archiveFileName = "CocoBusinessSystemsArchive.json";
 
     /*
      * This is the header information for the archive.
@@ -47,7 +47,7 @@ public class CocoBusinessSystemsArchiveWriter extends OMRSArchiveWriter
     /**
      * Default constructor initializes the archive.
      */
-    private CocoBusinessSystemsArchiveWriter()
+    public CocoBusinessSystemsArchiveWriter()
     {
         List<OpenMetadataArchive> dependentOpenMetadataArchives = new ArrayList<>();
 
@@ -99,7 +99,7 @@ public class CocoBusinessSystemsArchiveWriter extends OMRSArchiveWriter
     /**
      * Generates and writes out the open metadata archive created in the builder.
      */
-    private void writeOpenMetadataArchive()
+    public void writeOpenMetadataArchive()
     {
         try
         {
@@ -110,27 +110,6 @@ public class CocoBusinessSystemsArchiveWriter extends OMRSArchiveWriter
         catch (Exception error)
         {
             System.out.println("error is " + error.toString());
-        }
-    }
-
-
-    /**
-     * Main program to initiate the archive writer.
-     *
-     * @param args ignored
-     */
-    public static void main(String[] args)
-    {
-        try
-        {
-            CocoBusinessSystemsArchiveWriter archiveWriter = new CocoBusinessSystemsArchiveWriter();
-
-            archiveWriter.writeOpenMetadataArchive();
-        }
-        catch (Exception error)
-        {
-            System.err.println("Exception: " + error.toString());
-            System.exit(-1);
         }
     }
 }
