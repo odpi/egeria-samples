@@ -1,0 +1,4 @@
+org.odpi.egeria.connectors.file.auditlog
+org.odpi.egeria.connectors.file.eventmapper
+org.odpi.egeria.connectors.file.repositoryconnector
+org.odpi.egeria.connectors.file.repositoryconnector.model

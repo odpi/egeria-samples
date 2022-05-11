@@ -1,0 +1,20 @@
+[
+  {
+    "atlas": "hive_principal_type",
+    "omrs": "AssetOwnerType",
+    "propertyMappings": [
+      {
+        "atlas": "USER",
+        "omrs": "UserId"
+      },
+      {
+        "atlas": "ROLE",
+        "omrs": "Other"
+      },
+      {
+        "atlas": "GROUP",
+        "omrs": "Other"
+      }
+    ]
+  }
+]

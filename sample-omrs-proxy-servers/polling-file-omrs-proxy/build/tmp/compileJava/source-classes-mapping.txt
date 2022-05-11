@@ -1,0 +1,25 @@
+org/odpi/egeria/connectors/file/repositoryconnector/model/FileGuid.java
+ org.odpi.egeria.connectors.file.repositoryconnector.model.FileGuid
+org/odpi/egeria/connectors/file/repositoryconnector/FileOMRSRepositoryConnector.java
+ org.odpi.egeria.connectors.file.repositoryconnector.FileOMRSRepositoryConnector
+org/odpi/egeria/connectors/file/eventmapper/package-info.java
+ org.odpi.egeria.connectors.file.eventmapper.package-info
+org/odpi/egeria/connectors/file/auditlog/FileOMRSErrorCode.java
+ org.odpi.egeria.connectors.file.auditlog.FileOMRSErrorCode
+org/odpi/egeria/connectors/file/repositoryconnector/model/package-info.java
+ org.odpi.egeria.connectors.file.repositoryconnector.model.package-info
+org/odpi/egeria/connectors/file/auditlog/package-info.java
+ org.odpi.egeria.connectors.file.auditlog.package-info
+org/odpi/egeria/connectors/file/repositoryconnector/package-info.java
+ org.odpi.egeria.connectors.file.repositoryconnector.package-info
+org/odpi/egeria/connectors/file/repositoryconnector/FileOMRSRepositoryConnectorProvider.java
+ org.odpi.egeria.connectors.file.repositoryconnector.FileOMRSRepositoryConnectorProvider
+org/odpi/egeria/connectors/file/auditlog/FileOMRSAuditCode.java
+ org.odpi.egeria.connectors.file.auditlog.FileOMRSAuditCode
+org/odpi/egeria/connectors/file/eventmapper/FileOMRSRepositoryEventMapper.java
+ org.odpi.egeria.connectors.file.eventmapper.FileOMRSRepositoryEventMapper
+ org.odpi.egeria.connectors.file.eventmapper.FileOMRSRepositoryEventMapper$PollingThread
+org/odpi/egeria/connectors/file/eventmapper/FileOMRSRepositoryEventMapperProvider.java
+ org.odpi.egeria.connectors.file.eventmapper.FileOMRSRepositoryEventMapperProvider
+org/odpi/egeria/connectors/file/repositoryconnector/FileOMRSMetadataCollection.java
+ org.odpi.egeria.connectors.file.repositoryconnector.FileOMRSMetadataCollection
