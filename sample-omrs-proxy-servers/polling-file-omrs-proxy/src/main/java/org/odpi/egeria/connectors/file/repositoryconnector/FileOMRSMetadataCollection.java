@@ -13,6 +13,7 @@ import org.odpi.openmetadata.frameworks.connectors.properties.beans.Connection;
 import org.odpi.openmetadata.frameworks.connectors.properties.beans.ConnectorType;
 import org.odpi.openmetadata.repositoryservices.archivemanager.OMRSArchiveManager;
 import org.odpi.openmetadata.adapters.repositoryservices.inmemory.repositoryconnector.InMemoryOMRSRepositoryConnectorProvider;
+import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.OMRSMetadataCollection;
 import org.odpi.openmetadata.adminservices.configuration.properties.OpenMetadataExchangeRule;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.repositoryconnector.OMRSRepositoryConnector;
 import org.odpi.openmetadata.repositoryservices.localrepository.repositoryconnector.LocalOMRSConnectorProvider;
@@ -20,7 +21,6 @@ import org.odpi.openmetadata.repositoryservices.localrepository.repositoryconnec
 import org.odpi.openmetadata.repositoryservices.localrepository.repositorycontentmanager.OMRSRepositoryContentHelper;
 import org.odpi.openmetadata.repositoryservices.localrepository.repositorycontentmanager.OMRSRepositoryContentManager;
 import org.odpi.openmetadata.repositoryservices.localrepository.repositorycontentmanager.OMRSRepositoryContentValidator;
-import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.OMRSFixedTypeMetadataCollectionBase;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.search.SearchClassifications;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.search.SearchProperties;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.OMRSFixedTypeMetadataCollectionBase;
@@ -32,6 +32,7 @@ import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollec
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.repositoryconnector.OMRSRepositoryValidator;
 import org.odpi.openmetadata.repositoryservices.eventmanagement.OMRSRepositoryEventExchangeRule;
 import org.odpi.openmetadata.repositoryservices.ffdc.exception.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +48,8 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
     private Set<InstanceStatus> availableStates;
     private FileOMRSRepositoryEventMapper eventMapper = null;
     private String folderLocation = null;
-    String myMetadataCollectionId = null;
+    String metadataCollectionId = null;
+    OMRSMetadataCollection inMemoryMetadataCollection = null;
 
     /**
      * @param parentConnector      connector that this metadata collection supports.
@@ -78,13 +80,16 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
               supportedAttributeTypeNames,
               supportedTypeNames);
         this.folderLocation = folderLocation;
-        this.myMetadataCollectionId = metadataCollectionId;
+        this.metadataCollectionId = metadataCollectionId;
 try {
     OMRSRepositoryConnector embeddedInMemoryConnector = initializeInMemoryRepositoryConnector();
-    } catch (ConnectionCheckedException cce) {
+    this.inMemoryMetadataCollection =  embeddedInMemoryConnector.getMetadataCollection();
+} catch (ConnectionCheckedException cce) {
                 //TODO
     } catch (ConnectorCheckedException cce) {
                  //TODO
+    } catch (Exception e) {
+                 // TODO
     }
 
 
@@ -121,11 +126,11 @@ try {
         localOMRSRepositoryConnector.setRepositoryHelper(new OMRSRepositoryContentHelper(localRepositoryContentManager));
         localOMRSRepositoryConnector.setRepositoryValidator(new OMRSRepositoryContentValidator(localRepositoryContentManager));
         localOMRSRepositoryConnector.setAuditLog(auditLog);
-        localOMRSRepositoryConnector.setMetadataCollectionId( myMetadataCollectionId);
+        localOMRSRepositoryConnector.setMetadataCollectionId(metadataCollectionId);
 //        localRepositoryContentManager.setupEventProcessor(localOMRSRepositoryConnector, localRepositoryEventManager);
         repositoryConnector.setRepositoryHelper(new OMRSRepositoryContentHelper(localRepositoryContentManager));
         repositoryConnector.setRepositoryValidator(new OMRSRepositoryContentValidator(localRepositoryContentManager));
-        repositoryConnector.setMetadataCollectionId(myMetadataCollectionId);
+        repositoryConnector.setMetadataCollectionId(metadataCollectionId);
         repositoryConnector.start();
         localOMRSRepositoryConnector.start();
 
@@ -181,51 +186,26 @@ try {
                                                                                       TypeErrorException,
                                                                                       PropertyErrorException,
                                                                                       PagingErrorException,
-                                                                                      UserNotAuthorizedException
+                                                                                      UserNotAuthorizedException,
+                                                                                      FunctionNotSupportedException
     {
-        /*
-         * Validate parameters
-         */
-        super.findEntitiesParameterValidation(userId,
-                                              entityTypeGUID,
-                                              entitySubtypeGUIDs,
-                                              matchProperties,
-                                              fromEntityElement,
-                                              limitResultsByStatus,
-                                              matchClassifications,
-                                              asOfTime,
-                                              sequencingProperty,
-                                              sequencingOrder,
-                                              pageSize);
+
+        // call the embedded in memory connector
+        List<EntityDetail>  foundEntities = null;
+        // TODO do we need to fix up provenance headers
+        return inMemoryMetadataCollection.findEntities(userId,
+                                                                    entityTypeGUID,
+                                                                    entitySubtypeGUIDs,
+                                                                    matchProperties,
+                                                                    fromEntityElement,
+                                                                    limitResultsByStatus,
+                                                                    matchClassifications,
+                                                                    asOfTime,
+                                                                    sequencingProperty,
+                                                                    sequencingOrder,
+                                                                    pageSize);
 
 
-
-        /*
-         * Perform operation
-         *
-         * This is a brute force implementation of locating in entity since it iterates through all of
-         * the stored entities.
-         */
-        List<EntityDetail>         foundEntities = new ArrayList<>();
-
-
-//
-//        for (EntityDetail  entity : entityStore.values())
-//        {
-//            if (entity != null)
-//            {
-//                if ((repositoryValidator.verifyInstanceType(repositoryName, entityTypeGUID, entitySubtypeGUIDs, entity)) &&
-//                        (repositoryValidator.verifyInstanceHasRightStatus(limitResultsByStatus, entity)) &&
-//                        (repositoryValidator.verifyMatchingClassifications(matchClassifications, entity)) &&
-//                        (repositoryValidator.verifyMatchingInstancePropertyValues(matchProperties, entity, entity.getProperties())))
-//                {
-//                    foundEntities.add(entity);
-//                }
-//            }
-//        }
-        //TODO
-
-        return repositoryHelper.formatEntityResults(foundEntities, fromEntityElement, sequencingProperty, sequencingOrder, pageSize);
     }
 
     /**
