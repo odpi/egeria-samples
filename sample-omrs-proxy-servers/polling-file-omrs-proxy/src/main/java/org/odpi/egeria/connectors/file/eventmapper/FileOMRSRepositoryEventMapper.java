@@ -18,6 +18,7 @@ import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollec
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.TypeDefCategory;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.TypeDefPatch;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.repositoryeventmapper.OMRSRepositoryEventMapperBase;
+import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.instances.InstanceGraph;
 
 import org.odpi.openmetadata.repositoryservices.ffdc.exception.TypeErrorException;
 import org.odpi.openmetadata.repositoryservices.ffdc.exception.ClassificationErrorException;
@@ -128,7 +129,7 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
 //            raiseConnectorCheckedException(FileOMRSErrorCode.REST_CLIENT_FAILURE, methodName, e, fileRepositoryConnector.getServerName());
         }
 //        this.fileMetadataCollection.setEventMapper(this);
-        this.metadataCollectionId = fileRepositoryConnector.getMetadataCollectionId();
+
         this.originatorServerName = fileRepositoryConnector.getServerName();
         this.originatorServerType = fileRepositoryConnector.getServerType();
         pollingThread.start();
@@ -196,7 +197,7 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
                     // call the repository connector to refresh its contents.
                     fileRepositoryConnector.refreshRepository();
 
-                    List<EntityDetail> csvFile = getEntitiesByTypeGuid( "CSVFile");
+                    List<EntityDetail> csvFiles = getEntitiesByTypeGuid( "CSVFile");
 //                    List<EntityDetail> dataManagerEntities = getEntitiesByTypeGuid("Connection");
 //                    List<EntityDetail> folderEntities = getEntitiesByTypeGuid("ConnectorType");
 //                    List<EntityDetail> tabularFileColumnEntities = getEntitiesByTypeGuid( "Endpoint");
@@ -204,12 +205,24 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
 //                    List<Relationship>  connectionConnectorTypeRelationships = getRelationshipsByTypeGuid( "ConnectionConnectorType");
 //                    List<Relationship>  connectionToAssetRelationship = getRelationshipsByTypeGuid( "ConnectionToAsset");
 
-                    //  TODO   then create an refresh response event per file
-                    //  TODO send the event
-                    OMRSInstanceEvent instanceEvent =null;
-//                    fileRepositoryConnector.
 
-//                    repositoryEventManager.sendInstanceEvent("", instanceEvent);
+
+                    for (EntityDetail csvFile: csvFiles ) {
+                        // create a batch event per file
+                        List<Relationship> relationshipList = new ArrayList<>();
+                        List<EntityDetail> entityList = new ArrayList<>();
+                        entityList.add(csvFile);
+                        // TODO fill in the lists
+                        InstanceGraph instances = new InstanceGraph(entityList, relationshipList);
+
+                        // send the event
+                        repositoryEventProcessor.processInstanceBatchEvent("",
+                                                                           fileRepositoryConnector.getMetadataCollectionId(),
+                                                                           fileRepositoryConnector.getServerName(),
+                                                                           fileRepositoryConnector.getServerType(),
+                                                                           fileRepositoryConnector.getOrganizationName(),
+                                                                           instances);
+                    }
 
 
                 } catch ( Exception e) {
