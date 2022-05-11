@@ -36,6 +36,18 @@ maven-eclipse.xml
 __MACOSX
 .DS_Store
 
+# Ignore generated files
+open-metadata-implementation/access-services/subject-area/subject-area-server/src/main/java/org/odpi/openmetadata/accessservices/subjectarea/generated/**
+sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/6.7/executionHistory/executionHistory.bin
+sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/6.7/executionHistory/executionHistory.lock
+sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/6.7/fileHashes/fileHashes.bin
+sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/6.7/fileHashes/fileHashes.lock
+sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/6.7/javaCompile/classAnalysis.bin
+sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/6.7/javaCompile/javaCompile.lock
+sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+sample-omrs-proxy-servers/polling-file-omrs-proxy/build/**
+
+
 # Ignore sub-charts
 # when helm pulls in dependencies (dependency.yaml) it keeps the chart locally. We don't want
 # to check these into git as they are not owned by this project and helm will automatically

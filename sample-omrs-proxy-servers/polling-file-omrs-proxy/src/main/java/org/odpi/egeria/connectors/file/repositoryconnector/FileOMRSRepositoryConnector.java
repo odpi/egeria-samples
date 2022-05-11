@@ -57,12 +57,6 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
     public OMRSMetadataCollection getMetadataCollection() throws RepositoryErrorException {
         final String methodName = "getMetadataCollection";
         if (metadataCollection == null) {
-            // If the metadata collection has not yet been created, attempt to create it now
-//            try {
-//                connectToAtlas(methodName);
-//            } catch (ConnectorCheckedException e) {
-//                raiseRepositoryErrorException(FileOMRSErrorCode.REST_CLIENT_FAILURE, methodName, e, getServerName());
-//            }
             EndpointProperties endpointProperties = connectionProperties.getEndpoint();
             if (endpointProperties == null) {
                 //raiseConnectorCheckedException(FileOMRSErrorCode.REST_CLIENT_FAILURE, methodName, null, "null");
