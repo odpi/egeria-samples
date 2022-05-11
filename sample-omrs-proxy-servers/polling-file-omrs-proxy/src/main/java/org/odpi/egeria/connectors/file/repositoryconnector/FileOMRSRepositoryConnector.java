@@ -9,11 +9,16 @@ import org.odpi.openmetadata.frameworks.connectors.ffdc.ConnectorCheckedExceptio
 import org.odpi.openmetadata.frameworks.connectors.properties.EndpointProperties;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.OMRSMetadataCollection;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.repositoryconnector.OMRSRepositoryConnector;
-import org.odpi.openmetadata.repositoryservices.ffdc.exception.RepositoryErrorException;
+import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.instances.InstanceProperties;
+import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.instances.EntityDetail;
+import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.instances.InstanceStatus;
+import org.odpi.openmetadata.repositoryservices.ffdc.exception.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,6 +53,61 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
 
     public void refreshRepository() {
         // TODO refresh the repository content
+
+
+        File folder = new File(this.folderLocation);
+
+        if(!folder.exists()){
+            // TODO error
+        } else if(!folder.isDirectory()) {
+            // TODO error
+        } else {
+            FileFilter fileFilter = file -> !file.isDirectory() && file.getName()
+                    .endsWith(".csv");
+            File[] csvFiles = folder.listFiles(fileFilter);
+            OMRSMetadataCollection inMemoryMetadataCollection = null;
+            try {
+                FileOMRSMetadataCollection fileMetadataCollection = (FileOMRSMetadataCollection)getMetadataCollection();
+                inMemoryMetadataCollection = fileMetadataCollection.getInMemoryMetadataCollection();
+            } catch( RepositoryErrorException e) {
+                //TODO
+            }
+
+            for (File csvFie:csvFiles) {
+                // add csv file entity
+                //TODO
+                InstanceProperties   initialProperties =null;
+                String entityTypeGUID = repositoryHelper.getTypeDefByName("FileOMRSMetadatacollection",
+                                                                    "CSVFile").getGUID();
+                try {
+                    EntityDetail addedEntity = inMemoryMetadataCollection.addEntity(
+                            "userId",
+                            entityTypeGUID,
+                            initialProperties,
+                            null,
+                            InstanceStatus.ACTIVE);
+                } catch (InvalidParameterException e) {
+                    //TODO
+                } catch (RepositoryErrorException e) {
+                    //TODO
+                } catch (TypeErrorException e) {
+                    //TODO
+                } catch (PropertyErrorException e) {
+                    //TODO
+                } catch (ClassificationErrorException e) {
+                    //TODO
+                } catch (StatusNotSupportedException e) {
+                    //TODO
+                } catch (FunctionNotSupportedException e) {
+                    //TODO
+                } catch (UserNotAuthorizedException e) {
+                    //TODO
+                }
+
+            }
+
+
+        }
     }
 
     /**
@@ -61,7 +121,8 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
             if (endpointProperties == null) {
                 //raiseConnectorCheckedException(FileOMRSErrorCode.REST_CLIENT_FAILURE, methodName, null, "null");
             } else {
-               this.folderLocation = endpointProperties.getProtocol() + "://" + endpointProperties.getAddress();
+//               this.folderLocation = endpointProperties.getProtocol() + "://" + endpointProperties.getAddress();
+                this.folderLocation = endpointProperties.getAddress();
                auditLog.logMessage(methodName, FileOMRSAuditCode.CONNECTING_TO_FOLDER.getMessageDefinition(folderLocation));
                // TODO check folder exists
 

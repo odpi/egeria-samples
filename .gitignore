@@ -36,7 +36,7 @@ maven-eclipse.xml
 __MACOSX
 .DS_Store
 
-# Ignore generated files
+# Ignore generated files for the sample repository proxy
 open-metadata-implementation/access-services/subject-area/subject-area-server/src/main/java/org/odpi/openmetadata/accessservices/subjectarea/generated/**
 sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/6.7/executionHistory/executionHistory.bin
 sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/6.7/executionHistory/executionHistory.lock
@@ -46,6 +46,7 @@ sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/6.7/javaCompile/classA
 sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/6.7/javaCompile/javaCompile.lock
 sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/buildOutputCleanup/buildOutputCleanup.lock
 sample-omrs-proxy-servers/polling-file-omrs-proxy/build/**
+sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/buildOutputCleanup/outputFiles.bin
 
 
 # Ignore sub-charts
