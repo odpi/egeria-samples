@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: CC-BY-4.0 -->
 <!-- Copyright Contributors to the Egeria project. -->
 
-# Egeria Samples - in developement - not for use until more complete
+# Egeria Samples 
 
 This repository captures various samples that can be useful either for learning or as initial
 starting points for working with Egeria.

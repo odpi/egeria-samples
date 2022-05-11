@@ -3,6 +3,8 @@
 
 # Repository proxy (adapter) polling example using files 
 
+In development - not for use until more complete
+
  This [repository proxy](https://egeria-project.org/concepts/repository-proxy/?h=repository) provides an example implementation for interacting with a files in a folder, which uses  
  the open metadata standards of Egeria.
 
