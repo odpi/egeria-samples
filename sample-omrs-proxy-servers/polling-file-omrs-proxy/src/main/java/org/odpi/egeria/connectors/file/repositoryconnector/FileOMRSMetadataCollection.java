@@ -73,9 +73,9 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
                                       List<String> supportedTypeNames,
                                       String folderLocation) {
         super(parentConnector,
-        repositoryName,
-        repositoryHelper,
-        repositoryValidator,
+              repositoryName,
+              repositoryHelper,
+              repositoryValidator,
               metadataCollectionId,
               supportedAttributeTypeNames,
               supportedTypeNames);
@@ -93,6 +93,9 @@ try {
     }
 
 
+    }
+    OMRSMetadataCollection getInMemoryMetadataCollection() {
+        return inMemoryMetadataCollection;
     }
     private OMRSRepositoryConnector initializeInMemoryRepositoryConnector() throws ConnectionCheckedException ,ConnectorCheckedException {
 
