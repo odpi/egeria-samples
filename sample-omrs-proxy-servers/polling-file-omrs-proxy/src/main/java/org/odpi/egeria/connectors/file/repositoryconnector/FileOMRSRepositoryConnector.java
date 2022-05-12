@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
     private final List<String> supportedAttributeTypeNames = Arrays.asList(new String[]{"foo", "bar"});
     private final List<String> supportedTypeNames = Arrays.asList(new String[]{
                                                                                 // entity types
-                                                                                "CSVFile",
+                                                                                "DataFile",
                                                                                 "Connection",
                                                                                 "ConnectorType",
                                                                                 "Endpoint",
@@ -62,9 +63,7 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
         } else if(!folder.isDirectory()) {
             // TODO error
         } else {
-            FileFilter fileFilter = file -> !file.isDirectory() && file.getName()
-                    .endsWith(".csv");
-            File[] csvFiles = folder.listFiles(fileFilter);
+            File[] dataFiles = folder.listFiles();
             OMRSMetadataCollection inMemoryMetadataCollection = null;
             try {
                 FileOMRSMetadataCollection fileMetadataCollection = (FileOMRSMetadataCollection)getMetadataCollection();
@@ -72,13 +71,56 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
             } catch( RepositoryErrorException e) {
                 //TODO
             }
+            InstanceProperties initialProperties=null;
+            for (File dataFile:dataFiles) {
+                // add data file entity
+                //TODO populate initial properties
+                try {
+                    String canonicalName = dataFile.getCanonicalPath();
+                    String name = dataFile.getName();
 
-            for (File csvFie:csvFiles) {
-                // add csv file entity
-                //TODO
-                InstanceProperties   initialProperties =null;
+
+                     initialProperties = repositoryHelper.addStringPropertyToInstance("refreshRepository",
+                                                                                                        null,
+                                                                                                        "name",
+                                                                                                        name,
+                                                                                                        "refreshRepository");
+                    initialProperties = repositoryHelper.addStringPropertyToInstance("refreshRepository",
+                                                                                     initialProperties,
+                                                                                     "qualifiedName",
+                                                                                     canonicalName,  // TODO prefix
+                                                                                     "refreshRepository");
+                    initialProperties = repositoryHelper.addStringPropertyToInstance("refreshRepository",
+                                                                                     initialProperties,
+                                                                                     "GUID",
+                                                                                     canonicalName,    //dodo generate a unique quid.
+                                                                                     "refreshRepository");
+                    int lastDotIndex = name.lastIndexOf(".");
+                    if (name.length() >2 && lastDotIndex != -1 && lastDotIndex < name.length()-1) {
+                        // if we can see a file type then add then add as an attribute
+                        String fileType = name.substring(lastDotIndex+1 );
+                        repositoryHelper.addStringPropertyToInstance("refreshRepository",
+                                                                                         initialProperties,
+                                                                                         "fileType",
+                                                                                         fileType,
+                                                                                         "refreshRepository");
+                    }
+                } catch( IOException e) {
+                    // TODO
+                }
+
+                /*
+                    TODO add
+                        final String attribute1Name            = "createTime";
+                        final String attribute1Description     = "Creation time of the data store.";
+                        final String attribute2Name            = "modifiedTime";
+                        final String attribute2Description     = "Last known modification time.";
+                 */
+
+
+
                 String entityTypeGUID = repositoryHelper.getTypeDefByName("FileOMRSMetadatacollection",
-                                                                    "CSVFile").getGUID();
+                                                                    "DataFile").getGUID();
                 try {
                     EntityDetail addedEntity = inMemoryMetadataCollection.addEntity(
                             "userId",
@@ -111,26 +153,48 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
     }
 
     /**
-     * {@inheritDoc}
+     * Attempt to connect to the folder.
+     *
+     * @param methodName the method attempting to connect
+     * @throws ConnectorCheckedException if there is any issue connecting
      */
-    @Override
-    public OMRSMetadataCollection getMetadataCollection() throws RepositoryErrorException {
-        final String methodName = "getMetadataCollection";
-        if (metadataCollection == null) {
-            EndpointProperties endpointProperties = connectionProperties.getEndpoint();
-            if (endpointProperties == null) {
-                //raiseConnectorCheckedException(FileOMRSErrorCode.REST_CLIENT_FAILURE, methodName, null, "null");
-            } else {
-//               this.folderLocation = endpointProperties.getProtocol() + "://" + endpointProperties.getAddress();
-                this.folderLocation = endpointProperties.getAddress();
-               auditLog.logMessage(methodName, FileOMRSAuditCode.CONNECTING_TO_FOLDER.getMessageDefinition(folderLocation));
-               // TODO check folder exists
-
-            }
-
+    private void connectToFolder(String methodName) throws ConnectorCheckedException {
+        EndpointProperties endpointProperties = connectionProperties.getEndpoint();
+        if (endpointProperties == null) {
+            //raiseConnectorCheckedException(FileOMRSErrorCode.REST_CLIENT_FAILURE, methodName, null, "null");
+        } else {
+            this.folderLocation = endpointProperties.getAddress();
+            metadataCollection = new FileOMRSMetadataCollection(this,
+                                                                serverName,
+                                                                repositoryHelper,
+                                                                repositoryValidator,
+                                                                metadataCollectionId,
+                                                                supportedAttributeTypeNames,
+                                                                supportedTypeNames,
+                                                                folderLocation
+            );
         }
-        return super.getMetadataCollection();
     }
+
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public OMRSMetadataCollection getMetadataCollection() throws RepositoryErrorException {
+            final String methodName = "getMetadataCollection";
+            if (metadataCollection == null) {
+                // If the metadata collection has not yet been created, attempt to create it now
+                try {
+                    connectToFolder(methodName);
+                 } catch (ConnectorCheckedException e) {
+//                    raiseRepositoryErrorException(ApacheAtlasOMRSErrorCode.REST_CLIENT_FAILURE, methodName, e, getServerName());
+                      // TODO
+                }
+            }
+            return super.getMetadataCollection();
+        }
+
 
     /**
      * {@inheritDoc}
@@ -144,18 +208,7 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
         auditLog.logMessage(methodName, FileOMRSAuditCode.REPOSITORY_SERVICE_STARTING.getMessageDefinition());
 
         if (metadataCollection == null) {
-            // If the metadata collection has not yet been created, attempt to create it now
-//            connectToAtlas(methodName);
-            //this.folderLocation = endpointProperties.getProtocol() + "://" + endpointProperties.getAddress();
-             metadataCollection = new FileOMRSMetadataCollection(this,
-                        serverName,
-                        repositoryHelper,
-                        repositoryValidator,
-                        metadataCollectionId,
-                        supportedAttributeTypeNames,
-                        supportedTypeNames,
-                        folderLocation
-             );
+            connectToFolder(methodName);
         }
 
         auditLog.logMessage(methodName, FileOMRSAuditCode.REPOSITORY_SERVICE_STARTED.getMessageDefinition(getServerName()));

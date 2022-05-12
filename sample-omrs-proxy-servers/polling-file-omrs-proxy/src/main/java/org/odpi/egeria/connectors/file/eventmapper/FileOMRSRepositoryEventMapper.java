@@ -117,10 +117,8 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
         this.fileRepositoryConnector = (FileOMRSRepositoryConnector) this.repositoryConnector;
         this.repositoryHelper = this.fileRepositoryConnector.getRepositoryHelper();
 
+
         // this.deserializer = new EntityMessageDeserializer();
-
-
-
 
         this.pollingThread = new PollingThread();
         try {
@@ -167,7 +165,7 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
 
             final List<String> supportedTypeNames = Arrays.asList(new String[]{
                     // entity types
-                    "CSVFile",
+                    "DataFile",
                     "Connection",
                     "ConnectorType",
                     "Endpoint",
@@ -185,6 +183,7 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
 //                OMRSRepositoryEventManager repositoryEventManager = fileRepositoryConnector.getOutboundRepositoryEventManager();
 
                 if (typeNameToGuidMap == null) {
+                    typeNameToGuidMap = new HashMap<>();
                     // populate the type name to guid map
                        for (String typeName : supportedTypeNames) {
                         TypeDef typeDef = repositoryHelper.getTypeDefByName("FileOMRSRepositoryEventMapper",
@@ -197,7 +196,7 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
                     // call the repository connector to refresh its contents.
                     fileRepositoryConnector.refreshRepository();
 
-                    List<EntityDetail> csvFiles = getEntitiesByTypeGuid( "CSVFile");
+                    List<EntityDetail> dataFiles = getEntitiesByTypeGuid( "DataFile");
 //                    List<EntityDetail> dataManagerEntities = getEntitiesByTypeGuid("Connection");
 //                    List<EntityDetail> folderEntities = getEntitiesByTypeGuid("ConnectorType");
 //                    List<EntityDetail> tabularFileColumnEntities = getEntitiesByTypeGuid( "Endpoint");
@@ -207,11 +206,11 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
 
 
 
-                    for (EntityDetail csvFile: csvFiles ) {
+                    for (EntityDetail dataFile: dataFiles ) {
                         // create a batch event per file
                         List<Relationship> relationshipList = new ArrayList<>();
                         List<EntityDetail> entityList = new ArrayList<>();
-                        entityList.add(csvFile);
+                        entityList.add(dataFile);
                         // TODO fill in the lists
                         InstanceGraph instances = new InstanceGraph(entityList, relationshipList);
 
