@@ -15,7 +15,7 @@ The repository proxy provides:
 
 Furthermore, only a subset of the open types are implemented, namely:
 Entity types
-* CSVFile
+* DataFile
 * Connection
 * ConnectorType
 Endpoint

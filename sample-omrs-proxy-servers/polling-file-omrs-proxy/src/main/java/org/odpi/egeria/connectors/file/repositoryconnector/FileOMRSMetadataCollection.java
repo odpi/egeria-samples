@@ -108,7 +108,7 @@ try {
         OMRSRepositoryConnector repositoryConnector = (OMRSRepositoryConnector) connector;
 
         OMRSRepositoryContentManager localRepositoryContentManager = new OMRSRepositoryContentManager("USER_ID", auditLog);
-//        OMRSRepositoryContentHelper omrsRepositoryHelper = new OMRSRepositoryContentHelper(localRepositoryContentManager);
+        OMRSRepositoryContentHelper omrsRepositoryHelper = new OMRSRepositoryContentHelper(localRepositoryContentManager);
 
 //
 //        OMRSRepositoryEventManager localRepositoryEventManager = new OMRSRepositoryEventManager("local repository outbound",
@@ -119,7 +119,6 @@ try {
         LocalOMRSRepositoryConnector localOMRSRepositoryConnector = (LocalOMRSRepositoryConnector) new LocalOMRSConnectorProvider("testLocalMetadataCollectionId",
                                                                                                                                   connection,
                                                                                                                                   null,
-//
                                                                                                                                   null,
                                                                                                                                   localRepositoryContentManager,
                                                                                                                                   new OMRSRepositoryEventExchangeRule(OpenMetadataExchangeRule.ALL, null))
