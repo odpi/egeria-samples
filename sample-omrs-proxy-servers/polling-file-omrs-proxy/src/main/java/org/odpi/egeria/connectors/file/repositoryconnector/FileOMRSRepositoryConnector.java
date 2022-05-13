@@ -120,7 +120,6 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
             InstanceProperties initialProperties=null;
             for (File dataFile:dataFiles) {
                 // add data file entity
-                //TODO populate initial properties
                 try {
                     String canonicalName = dataFile.getCanonicalPath();
                     String name = dataFile.getName();
