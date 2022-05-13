@@ -125,7 +125,7 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
         localOMRSRepositoryConnector.setRepositoryValidator(new OMRSRepositoryContentValidator(localRepositoryContentManager));
         localOMRSRepositoryConnector.setAuditLog(auditLog);
         localOMRSRepositoryConnector.setMetadataCollectionId(metadataCollectionId);
-//        localRepositoryContentManager.setupEventProcessor(localOMRSRepositoryConnector, localRepositoryEventManager);
+        localRepositoryContentManager.setupEventProcessor(localOMRSRepositoryConnector, localRepositoryEventManager);
         repositoryConnector.setRepositoryHelper(new OMRSRepositoryContentHelper(localRepositoryContentManager));
         repositoryConnector.setRepositoryValidator(new OMRSRepositoryContentValidator(localRepositoryContentManager));
         repositoryConnector.setMetadataCollectionId(metadataCollectionId);
