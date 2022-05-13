@@ -13,6 +13,7 @@ import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollec
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.instances.EntityDetail;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.instances.InstanceStatus;
 import org.odpi.openmetadata.repositoryservices.ffdc.exception.*;
+import org.odpi.openmetadata.frameworks.connectors.ffdc.ConnectionCheckedException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +50,52 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
      */
     public FileOMRSRepositoryConnector() {
 
-//        atlasEntityTypesByName = new HashMap<>();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public synchronized void start() throws ConnectorCheckedException {
+
+        super.start();
+        final String methodName = "start";
+
+        auditLog.logMessage(methodName, FileOMRSAuditCode.REPOSITORY_SERVICE_STARTING.getMessageDefinition());
+
+        if (metadataCollection == null) {
+            try {
+                connectToFolder(methodName);
+            } catch (RepositoryErrorException cause) {
+                raiseConnectorCheckedException(FileOMRSErrorCode.FAILED_TO_START_CONNECTOR, methodName, null);
+            }
+        }
+
+        auditLog.logMessage(methodName, FileOMRSAuditCode.REPOSITORY_SERVICE_STARTED.getMessageDefinition(getServerName()));
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public synchronized void disconnect() {
+        final String methodName = "disconnect";
+        auditLog.logMessage(methodName, FileOMRSAuditCode.REPOSITORY_SERVICE_SHUTDOWN.getMessageDefinition(getServerName()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public OMRSMetadataCollection getMetadataCollection() throws RepositoryErrorException {
+        final String methodName = "getMetadataCollection";
+        if (metadataCollection == null) {
+            // If the metadata collection has not yet been created, attempt to create it now
+            connectToFolder(methodName);
+        }
+
+        return super.getMetadataCollection();
     }
 
     public void refreshRepository() {
@@ -156,12 +202,12 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
      * Attempt to connect to the folder.
      *
      * @param methodName the method attempting to connect
-     * @throws ConnectorCheckedException if there is any issue connecting
+     * @throws RepositoryErrorException if there is any issue connecting
      */
-    private void connectToFolder(String methodName) throws ConnectorCheckedException {
+    private void connectToFolder(String methodName) throws RepositoryErrorException {
         EndpointProperties endpointProperties = connectionProperties.getEndpoint();
         if (endpointProperties == null) {
-            //raiseConnectorCheckedException(FileOMRSErrorCode.REST_CLIENT_FAILURE, methodName, null, "null");
+            raiseRepositoryErrorException(FileOMRSErrorCode.FOLDER_NOT_SUPPLIED_IN_CONFIG, methodName, null, "null");
         } else {
             this.folderLocation = endpointProperties.getAddress();
             metadataCollection = new FileOMRSMetadataCollection(this,
@@ -177,93 +223,50 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
     }
 
 
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public OMRSMetadataCollection getMetadataCollection() throws RepositoryErrorException {
-            final String methodName = "getMetadataCollection";
-            if (metadataCollection == null) {
-                // If the metadata collection has not yet been created, attempt to create it now
-                try {
-                    connectToFolder(methodName);
-                 } catch (ConnectorCheckedException e) {
-//                    raiseRepositoryErrorException(ApacheAtlasOMRSErrorCode.REST_CLIENT_FAILURE, methodName, e, getServerName());
-                      // TODO
-                }
-            }
-            return super.getMetadataCollection();
-        }
+
+
 
 
     /**
-     * {@inheritDoc}
+     * Throws a ConnectorCheckedException using the provided parameters.
+     * @param errorCode the error code for the exception
+     * @param methodName the name of the method throwing the exception
+     * @param cause the underlying cause of the exception (if any, null otherwise)
+     * @param params any parameters for formatting the error message
+     * @throws ConnectorCheckedException always
      */
-    @Override
-    public synchronized void start() throws ConnectorCheckedException {
-
-        super.start();
-        final String methodName = "start";
-
-        auditLog.logMessage(methodName, FileOMRSAuditCode.REPOSITORY_SERVICE_STARTING.getMessageDefinition());
-
-        if (metadataCollection == null) {
-            connectToFolder(methodName);
+    private void raiseConnectorCheckedException(FileOMRSErrorCode errorCode, String methodName, Throwable cause, String ...params) throws ConnectorCheckedException {
+        if (cause == null) {
+            throw new ConnectorCheckedException(errorCode.getMessageDefinition(params),
+                    this.getClass().getName(),
+                    methodName);
+        } else {
+            throw new ConnectorCheckedException(errorCode.getMessageDefinition(params),
+                    this.getClass().getName(),
+                    methodName,
+                    cause);
         }
-
-        auditLog.logMessage(methodName, FileOMRSAuditCode.REPOSITORY_SERVICE_STARTED.getMessageDefinition(getServerName()));
-
     }
 
     /**
-     * {@inheritDoc}
+     * Throws a RepositoryErrorException using the provided parameters.
+     * @param errorCode the error code for the exception
+     * @param methodName the name of the method throwing the exception
+     * @param cause the underlying cause of the exception (or null if none)
+     * @param params any parameters for formatting the error message
+     * @throws RepositoryErrorException always
      */
-    @Override
-    public synchronized void disconnect() {
-        final String methodName = "disconnect";
-        auditLog.logMessage(methodName, FileOMRSAuditCode.REPOSITORY_SERVICE_SHUTDOWN.getMessageDefinition(getServerName()));
+    private void raiseRepositoryErrorException(FileOMRSErrorCode errorCode, String methodName, Throwable cause, String ...params) throws RepositoryErrorException {
+        if (cause == null) {
+            throw new RepositoryErrorException(errorCode.getMessageDefinition(params),
+                    this.getClass().getName(),
+                    methodName);
+        } else {
+            throw new RepositoryErrorException(errorCode.getMessageDefinition(params),
+                    this.getClass().getName(),
+                    methodName,
+                    cause);
+        }
     }
-
-//    /**
-//     * Throws a ConnectorCheckedException using the provided parameters.
-//     * @param errorCode the error code for the exception
-//     * @param methodName the name of the method throwing the exception
-//     * @param cause the underlying cause of the exception (if any, null otherwise)
-//     * @param params any parameters for formatting the error message
-//     * @throws ConnectorCheckedException always
-//     */
-//    private void raiseConnectorCheckedException(FileOMRSErrorCode errorCode, String methodName, Throwable cause, String ...params) throws ConnectorCheckedException {
-//        if (cause == null) {
-//            throw new ConnectorCheckedException(errorCode.getMessageDefinition(params),
-//                    this.getClass().getName(),
-//                    methodName);
-//        } else {
-//            throw new ConnectorCheckedException(errorCode.getMessageDefinition(params),
-//                    this.getClass().getName(),
-//                    methodName,
-//                    cause);
-//        }
-//    }
-//
-//    /**
-//     * Throws a RepositoryErrorException using the provided parameters.
-//     * @param errorCode the error code for the exception
-//     * @param methodName the name of the method throwing the exception
-//     * @param cause the underlying cause of the exception (or null if none)
-//     * @param params any parameters for formatting the error message
-//     * @throws RepositoryErrorException always
-//     */
-//    private void raiseRepositoryErrorException(FileOMRSErrorCode errorCode, String methodName, Throwable cause, String ...params) throws RepositoryErrorException {
-//        if (cause == null) {
-//            throw new RepositoryErrorException(errorCode.getMessageDefinition(params),
-//                    this.getClass().getName(),
-//                    methodName);
-//        } else {
-//            throw new RepositoryErrorException(errorCode.getMessageDefinition(params),
-//                    this.getClass().getName(),
-//                    methodName,
-//                    cause);
-//        }
-//    }
 
 }
