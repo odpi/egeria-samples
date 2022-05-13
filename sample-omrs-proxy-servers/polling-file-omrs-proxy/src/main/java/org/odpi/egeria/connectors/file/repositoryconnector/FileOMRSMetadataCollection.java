@@ -71,7 +71,7 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
                                       String metadataCollectionId,
                                       List<String> supportedAttributeTypeNames,
                                       List<String> supportedTypeNames,
-                                      String folderLocation) {
+                                      String folderLocation) throws  RepositoryErrorException {
         super(parentConnector,
               repositoryName,
               repositoryHelper,
@@ -81,18 +81,14 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
               supportedTypeNames);
         this.folderLocation = folderLocation;
         this.metadataCollectionId = metadataCollectionId;
-try {
-    OMRSRepositoryConnector embeddedInMemoryConnector = initializeInMemoryRepositoryConnector();
-    this.inMemoryMetadataCollection =  embeddedInMemoryConnector.getMetadataCollection();
-} catch (ConnectionCheckedException cce) {
-                //TODO
-    } catch (ConnectorCheckedException cce) {
-                 //TODO
-    } catch (Exception e) {
-                 // TODO
-    }
-
-
+        try {
+            OMRSRepositoryConnector embeddedInMemoryConnector = initializeInMemoryRepositoryConnector();
+            this.inMemoryMetadataCollection = embeddedInMemoryConnector.getMetadataCollection();
+        } catch (ConnectionCheckedException e) {
+            raiseRepositoryErrorException(FileOMRSErrorCode.COLLECTION_FAILED_INITIALISE, "FileOMRSMetadataCollection constructor", e, "null");
+        } catch (ConnectorCheckedException e) {
+            raiseRepositoryErrorException(FileOMRSErrorCode.COLLECTION_FAILED_INITIALISE, "FileOMRSMetadataCollection constructor", e, "null");
+        }
     }
     OMRSMetadataCollection getInMemoryMetadataCollection() {
         return inMemoryMetadataCollection;
@@ -125,7 +121,7 @@ try {
                 .getConnector(connection);
 
 
-        localOMRSRepositoryConnector.setRepositoryHelper(new OMRSRepositoryContentHelper(localRepositoryContentManager));
+        localOMRSRepositoryConnector.setRepositoryHelper(omrsRepositoryHelper);
         localOMRSRepositoryConnector.setRepositoryValidator(new OMRSRepositoryContentValidator(localRepositoryContentManager));
         localOMRSRepositoryConnector.setAuditLog(auditLog);
         localOMRSRepositoryConnector.setMetadataCollectionId(metadataCollectionId);
