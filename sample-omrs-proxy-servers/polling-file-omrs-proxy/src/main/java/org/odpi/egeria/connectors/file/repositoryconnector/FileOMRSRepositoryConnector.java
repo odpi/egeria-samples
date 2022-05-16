@@ -28,7 +28,31 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
 
     private static final Logger log = LoggerFactory.getLogger(org.odpi.egeria.connectors.file.repositoryconnector.FileOMRSRepositoryConnector.class);
 
-    private final List<String> supportedAttributeTypeNames = Arrays.asList(new String[]{"foo", "bar"});
+    private final List<String> supportedAttributeTypeNames = Arrays.asList(new String[]{
+            "object",
+            "boolean",
+            "byte",
+            "char",
+            "short",
+            "int",
+            "long",
+            "float",
+            "biginteger",
+            "bigdecimal",
+            "string",
+            "date",
+            "map<string,boolean>",
+            "map<string,int>",
+            "map<string,long>",
+            "map<string,object>",
+            "array<string>",
+            "array<int>"
+    });
+
+
+
+
+
     private final List<String> supportedTypeNames = Arrays.asList(new String[]{
                                                                                 // entity types
                                                                                 "DataFile",
@@ -216,7 +240,9 @@ public class FileOMRSRepositoryConnector extends OMRSRepositoryConnector {
                                                                 metadataCollectionId,
                                                                 supportedAttributeTypeNames,
                                                                 supportedTypeNames,
+                                                                auditLog,
                                                                 folderLocation
+
             );
         }
     }

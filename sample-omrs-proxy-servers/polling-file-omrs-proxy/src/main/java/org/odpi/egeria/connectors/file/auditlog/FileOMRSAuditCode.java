@@ -6,8 +6,6 @@ import org.odpi.openmetadata.frameworks.auditlog.messagesets.AuditLogMessageDefi
 import org.odpi.openmetadata.frameworks.auditlog.messagesets.AuditLogMessageSet;
 import org.odpi.openmetadata.repositoryservices.auditlog.OMRSAuditLogRecordSeverity;
 
-import java.text.MessageFormat;
-
 /**
  * The FileOMRSAuditCode is used to define the message content for the OMRS Audit Log.
  *
@@ -78,7 +76,54 @@ public enum FileOMRSAuditCode implements AuditLogMessageSet {
             "The Sample file repository proxy event mapper failed to consume an event",
             "The local server failed to consume an Sample file repository proxy event.",
             "Investigate the logs for additional information and raise a GitHub issue with the details."),
+    EVENT_MAPPER_ACQUIRING_TYPES_LOOP("OMRS-FILE-REPOSITORY-0012",
+                                  OMRSAuditLogRecordSeverity.INFO,
+                                  "The Sample file repository proxy event mapper loop for acquiring types has started",
+                                  "The Sample file repository proxy event mapper loop is attempting to get the types.",
+                                  "No action is required.  This is part of the normal operation of the service."),
+    EVENT_MAPPER_ACQUIRING_TYPES_LOOP_FOUND_TYPE("OMRS-FILE-REPOSITORY-0013",
+                                      OMRSAuditLogRecordSeverity.INFO,
+                                      "The Sample file repository proxy event mapper loop for acquiring types has found type {0}",
+                                      "The Sample file repository proxy event mapper loop has found a type.",
+                                      "No action is required.  This is part of the normal operation of the service."),
+    EVENT_MAPPER_ACQUIRING_TYPES_LOOP_PRE_WAIT("OMRS-FILE-REPOSITORY-0014",
+                                                 OMRSAuditLogRecordSeverity.INFO,
+                                                 "The Sample file repository proxy event mapper loop for acquiring types has completed a scan",
+                                                 "The Sample file repository proxy event mapper acquiring types loop is about the sleep for 1 second then retry.",
+                                                 "No action is required.  This is part of the normal operation of the service."),
+    EVENT_MAPPER_ACQUIRING_TYPES_LOOP_POST_WAIT("OMRS-FILE-REPOSITORY-0015",
+                                                 OMRSAuditLogRecordSeverity.INFO,
+                                                "The Sample file repository proxy event mapper loop for acquiring types has woken; we have retried {0} times  ",
+                                                 "The Sample file repository proxy event mapper acquiring types loop has woken from its 1 second sleep.",
+                                                 "No action is required.  This is part of the normal operation of the service."),
+    EVENT_MAPPER_ACQUIRED_ALL_TYPES("OMRS-FILE-REPOSITORY-0016",
+                                    OMRSAuditLogRecordSeverity.INFO,
+                                    "The Sample file repository proxy event mapper has acquired the types it needs",
+                                    "The Sample file repository proxy event mapper is about to construct the events.",
+                                    "No action is required.  This is part of the normal operation of the service."),
+    EVENT_MAPPER_ACQUIRING_TYPES_LOOP_INTERRUPTED_EXCEPTION("OMRS-FILE-REPOSITORY-0017",
+    OMRSAuditLogRecordSeverity.EXCEPTION,
+            "The Sample file repository proxy event mapper sleep has failed with an interrupted exception",
+            "The Sample file repository proxy event mapper's acquiring types loop sleep has been interrupted.",
+            "No action is required.  This is part of the normal operation of the service."),
+    EVENT_MAPPER_POLL_LOOP_PRE_WAIT("OMRS-FILE-REPOSITORY-0017",
+                                               OMRSAuditLogRecordSeverity.INFO,
+                                               "The Sample file repository proxy event mapper polling loop  has completed a scan",
+                                               "The Sample file repository proxy event mapper polling loop is about the sleep for 1 second then retry.",
+                                               "No action is required.  This is part of the normal operation of the service."),
+    EVENT_MAPPER_POLL_LOOP_POST_WAIT("OMRS-FILE-REPOSITORY-0018",
+                                                OMRSAuditLogRecordSeverity.INFO,
+                                                "The Sample file repository proxy event mapper polling loop has woken.",
+                                                "The Sample file repository proxy event mapper loop has woken from its 1 second sleep.",
+                                                "No action is required.  This is part of the normal operation of the service."),
+
+    EVENT_MAPPER_POLL_LOOP_INTERRUPTED_EXCEPTION("OMRS-FILE-REPOSITORY-0019",
+                                                            OMRSAuditLogRecordSeverity.EXCEPTION,
+                                                            "The Sample file repository proxy event mapper polling loop sleep has failed with an interrupted exception",
+                                                            "The Sample file repository proxy event mapper's polling loop sleep has been interrupted.",
+                                                            "No action is required.  This is part of the normal operation of the service."),
     ;
+
 
     private String logMessageId;
     private OMRSAuditLogRecordSeverity severity;

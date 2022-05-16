@@ -4,6 +4,7 @@ package org.odpi.egeria.connectors.file.repositoryconnector;
 
 import org.odpi.egeria.connectors.file.auditlog.FileOMRSErrorCode;
 import org.odpi.egeria.connectors.file.eventmapper.FileOMRSRepositoryEventMapper;
+import org.odpi.openmetadata.frameworks.auditlog.AuditLog;
 
 import org.odpi.openmetadata.frameworks.connectors.Connector;
 import org.odpi.openmetadata.frameworks.connectors.ConnectorBroker;
@@ -61,6 +62,7 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
      * @param metadataCollectionId unique identifier for the repository
      * @param supportedAttributeTypeNames supported attribute type names
      * @param supportedTypeNames   supported type names
+     * @param auditLog             audit log
      * @param folderLocation       folder location
      */
 
@@ -71,6 +73,7 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
                                       String metadataCollectionId,
                                       List<String> supportedAttributeTypeNames,
                                       List<String> supportedTypeNames,
+                                      AuditLog auditLog,
                                       String folderLocation) throws  RepositoryErrorException {
         super(parentConnector,
               repositoryName,
@@ -79,10 +82,13 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
               metadataCollectionId,
               supportedAttributeTypeNames,
               supportedTypeNames);
+
         this.folderLocation = folderLocation;
         this.metadataCollectionId = metadataCollectionId;
         try {
-            OMRSRepositoryConnector embeddedInMemoryConnector = initializeInMemoryRepositoryConnector();
+            OMRSRepositoryConnector embeddedInMemoryConnector = initializeInMemoryRepositoryConnector(  repositoryHelper,
+                                                                                                        repositoryValidator,
+                                                                                                        auditLog);
             this.inMemoryMetadataCollection = embeddedInMemoryConnector.getMetadataCollection();
         } catch (ConnectionCheckedException e) {
             raiseRepositoryErrorException(FileOMRSErrorCode.COLLECTION_FAILED_INITIALISE, "FileOMRSMetadataCollection constructor", e, "null");
@@ -93,7 +99,9 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
     OMRSMetadataCollection getInMemoryMetadataCollection() {
         return inMemoryMetadataCollection;
     }
-    private OMRSRepositoryConnector initializeInMemoryRepositoryConnector() throws ConnectionCheckedException ,ConnectorCheckedException {
+    private OMRSRepositoryConnector initializeInMemoryRepositoryConnector(OMRSRepositoryHelper  repositoryHelper,
+                                                                          OMRSRepositoryValidator repositoryValidator,
+                                                                          AuditLog auditLog) throws ConnectionCheckedException ,ConnectorCheckedException {
 
         Connection connection = new Connection();
         ConnectorType connectorType = new ConnectorType();
@@ -104,15 +112,8 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
         OMRSRepositoryConnector repositoryConnector = (OMRSRepositoryConnector) connector;
 
         OMRSRepositoryContentManager localRepositoryContentManager = new OMRSRepositoryContentManager("USER_ID", auditLog);
-        OMRSRepositoryContentHelper omrsRepositoryHelper = new OMRSRepositoryContentHelper(localRepositoryContentManager);
 
-//
-//        OMRSRepositoryEventManager localRepositoryEventManager = new OMRSRepositoryEventManager("local repository outbound",
-//                                                                                                new OMRSRepositoryEventExchangeRule(OpenMetadataExchangeRule.ALL, null),
-//                                                                                                new OMRSRepositoryContentValidator(localRepositoryContentManager),
-//                                                                                                auditLog);
-
-        LocalOMRSRepositoryConnector localOMRSRepositoryConnector = (LocalOMRSRepositoryConnector) new LocalOMRSConnectorProvider("testLocalMetadataCollectionId",
+        LocalOMRSRepositoryConnector localOMRSRepositoryConnector = (LocalOMRSRepositoryConnector) new LocalOMRSConnectorProvider(metadataCollectionId,
                                                                                                                                   connection,
                                                                                                                                   null,
                                                                                                                                   null,
@@ -120,14 +121,13 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
                                                                                                                                   new OMRSRepositoryEventExchangeRule(OpenMetadataExchangeRule.ALL, null))
                 .getConnector(connection);
 
-
-        localOMRSRepositoryConnector.setRepositoryHelper(omrsRepositoryHelper);
-        localOMRSRepositoryConnector.setRepositoryValidator(new OMRSRepositoryContentValidator(localRepositoryContentManager));
         localOMRSRepositoryConnector.setAuditLog(auditLog);
+        localOMRSRepositoryConnector.setRepositoryHelper(repositoryHelper);
+        localOMRSRepositoryConnector.setRepositoryValidator(repositoryValidator);
         localOMRSRepositoryConnector.setMetadataCollectionId(metadataCollectionId);
-        localRepositoryContentManager.setupEventProcessor(localOMRSRepositoryConnector, localRepositoryEventManager);
-        repositoryConnector.setRepositoryHelper(new OMRSRepositoryContentHelper(localRepositoryContentManager));
-        repositoryConnector.setRepositoryValidator(new OMRSRepositoryContentValidator(localRepositoryContentManager));
+//        localRepositoryContentManager.setupEventProcessor(localOMRSRepositoryConnector, localRepositoryEventManager);
+        repositoryConnector.setRepositoryHelper(repositoryHelper);
+        repositoryConnector.setRepositoryValidator(repositoryValidator);
         repositoryConnector.setMetadataCollectionId(metadataCollectionId);
         repositoryConnector.start();
         localOMRSRepositoryConnector.start();
@@ -191,19 +191,21 @@ public class FileOMRSMetadataCollection extends OMRSFixedTypeMetadataCollectionB
         // call the embedded in memory connector
         List<EntityDetail>  foundEntities = null;
         // TODO do we need to fix up provenance headers
-        return inMemoryMetadataCollection.findEntities(userId,
-                                                                    entityTypeGUID,
-                                                                    entitySubtypeGUIDs,
-                                                                    matchProperties,
-                                                                    fromEntityElement,
-                                                                    limitResultsByStatus,
-                                                                    matchClassifications,
-                                                                    asOfTime,
-                                                                    sequencingProperty,
-                                                                    sequencingOrder,
-                                                                    pageSize);
-
-
+        if (inMemoryMetadataCollection != null) {
+            return inMemoryMetadataCollection.findEntities(userId,
+                                                           entityTypeGUID,
+                                                           entitySubtypeGUIDs,
+                                                           matchProperties,
+                                                           fromEntityElement,
+                                                           limitResultsByStatus,
+                                                           matchClassifications,
+                                                           asOfTime,
+                                                           sequencingProperty,
+                                                           sequencingOrder,
+                                                           pageSize);
+        } else {
+            return null;
+        }
     }
 
     /**

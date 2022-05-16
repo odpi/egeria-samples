@@ -7,16 +7,13 @@ import org.odpi.egeria.connectors.file.auditlog.FileOMRSAuditCode;
 import org.odpi.egeria.connectors.file.auditlog.FileOMRSErrorCode;
 import org.odpi.egeria.connectors.file.repositoryconnector.FileOMRSMetadataCollection;
 import org.odpi.egeria.connectors.file.repositoryconnector.FileOMRSRepositoryConnector;
-import org.odpi.egeria.connectors.file.repositoryconnector.model.FileGuid;
 
 import org.odpi.openmetadata.repositoryservices.events.OMRSInstanceEvent;
 import org.odpi.openmetadata.frameworks.connectors.ffdc.ConnectorCheckedException;
 import org.odpi.openmetadata.repositoryservices.connectors.openmetadatatopic.OpenMetadataTopicListener;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.instances.*;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.AttributeTypeDef;
-import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.TypeDef;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.TypeDefCategory;
-import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.TypeDefPatch;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.repositoryeventmapper.OMRSRepositoryEventMapperBase;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.instances.InstanceGraph;
 
@@ -47,9 +44,7 @@ import org.odpi.openmetadata.repositoryservices.ffdc.exception.TypeDefInUseExcep
 import org.odpi.openmetadata.repositoryservices.ffdc.exception.TypeDefKnownException;
 import org.odpi.openmetadata.repositoryservices.ffdc.exception.TypeDefNotKnownException;
 import org.odpi.openmetadata.repositoryservices.ffdc.exception.TypeDefNotSupportedException;
-import org.odpi.openmetadata.repositoryservices.ffdc.exception.TypeErrorException;
 import org.odpi.openmetadata.repositoryservices.ffdc.exception.UserNotAuthorizedException;
-import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.AttributeTypeDef;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.TypeDef;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.properties.typedefs.TypeDefPatch;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.metadatacollectionstore.repositoryconnector.OMRSRepositoryConnector;
@@ -118,6 +113,7 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
         this.repositoryHelper = this.fileRepositoryConnector.getRepositoryHelper();
 
 
+
         // this.deserializer = new EntityMessageDeserializer();
 
         this.pollingThread = new PollingThread();
@@ -176,27 +172,59 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
                     // classification types
                     // none at this time
             });
+            final int supportedCount = supportedTypeNames.size();
 
             Map<String,String> typeNameToGuidMap = null;
+            int typesAvailableCount = 0;
+            int retryCount =0;
             while (running.get()) {
-                // the below is only for local OMRS .
-//                OMRSRepositoryEventManager repositoryEventManager = fileRepositoryConnector.getOutboundRepositoryEventManager();
-
-                if (typeNameToGuidMap == null) {
-                    typeNameToGuidMap = new HashMap<>();
+                while ((typesAvailableCount != supportedCount )  && retryCount < 10) {
+                    auditLog.logMessage(methodName, FileOMRSAuditCode.EVENT_MAPPER_ACQUIRING_TYPES_LOOP.getMessageDefinition( typesAvailableCount + "", supportedCount + "", retryCount + ""));
+                    // only come out the while loop when we can get all of the supported types in one iteration.
+                    typesAvailableCount = 0;
+                    if (typeNameToGuidMap == null) {
+                        typeNameToGuidMap = new HashMap<>();
+                    }
                     // populate the type name to guid map
-                       for (String typeName : supportedTypeNames) {
+                    for (String typeName : supportedTypeNames) {
+
                         TypeDef typeDef = repositoryHelper.getTypeDefByName("FileOMRSRepositoryEventMapper",
                                                                             typeName);
-                        typeNameToGuidMap.put(typeName,typeDef.getGUID());
-                       }
+                        if (typeDef != null) {
+                            auditLog.logMessage(methodName, FileOMRSAuditCode.EVENT_MAPPER_ACQUIRING_TYPES_LOOP_FOUND_TYPE.getMessageDefinition(typeName));
+                            typeNameToGuidMap.put(typeName, typeDef.getGUID());
+                            typesAvailableCount++;
+                        }
+                    }
+                    if (typesAvailableCount < supportedCount) {
+                        //delay for 1 second and then retry
+                        auditLog.logMessage(methodName, FileOMRSAuditCode.EVENT_MAPPER_ACQUIRING_TYPES_LOOP_PRE_WAIT.getMessageDefinition());
+                        try {
+                            Thread.sleep(1000);
+                            retryCount++;
+                            auditLog.logMessage(methodName, FileOMRSAuditCode.EVENT_MAPPER_ACQUIRING_TYPES_LOOP_POST_WAIT.getMessageDefinition(retryCount+""));
+                        } catch (InterruptedException e) {
+                            // should not happen as there is only one thread
+                            // if it happens then continue in the while
+                            auditLog.logMessage(methodName, FileOMRSAuditCode.EVENT_MAPPER_ACQUIRING_TYPES_LOOP_INTERRUPTED_EXCEPTION.getMessageDefinition());
+                        }
+                    } else if (typesAvailableCount == supportedCount) {
+                        // log to say we have all the types we need
+                        auditLog.logMessage(methodName, FileOMRSAuditCode.EVENT_MAPPER_ACQUIRED_ALL_TYPES.getMessageDefinition());
+
+                    }
+
                 }
+                if (retryCount ==10) {
 
-                try {
-                    // call the repository connector to refresh its contents.
-                    fileRepositoryConnector.refreshRepository();
+                    //TODO error
+                } else {
+                              try {
+                        // call the repository connector to refresh its contents.
+                        fileRepositoryConnector.refreshRepository();
 
-                    List<EntityDetail> dataFiles = getEntitiesByTypeGuid( "DataFile");
+                        List<EntityDetail> dataFiles = getEntitiesByTypeGuid("DataFile");
+
 //                    List<EntityDetail> dataManagerEntities = getEntitiesByTypeGuid("Connection");
 //                    List<EntityDetail> folderEntities = getEntitiesByTypeGuid("ConnectorType");
 //                    List<EntityDetail> tabularFileColumnEntities = getEntitiesByTypeGuid( "Endpoint");
@@ -205,30 +233,43 @@ public class FileOMRSRepositoryEventMapper extends OMRSRepositoryEventMapperBase
 //                    List<Relationship>  connectionToAssetRelationship = getRelationshipsByTypeGuid( "ConnectionToAsset");
 
 
+                        for (EntityDetail dataFile : dataFiles) {
+                            // create a batch event per file
+                            List<Relationship> relationshipList = new ArrayList<>();
+                            List<EntityDetail> entityList = new ArrayList<>();
+                            entityList.add(dataFile);
+                            // Audit log per file.
+                          //  auditLog.logMessage(methodName, FileOMRSAuditCode.EVENT_MAPPER_ACQUIRING_TYPES_ABOUT_TO_REFRESH.getMessageDefinition());
+                            // TODO fill in the lists
+                            InstanceGraph instances = new InstanceGraph(entityList, relationshipList);
 
-                    for (EntityDetail dataFile: dataFiles ) {
-                        // create a batch event per file
-                        List<Relationship> relationshipList = new ArrayList<>();
-                        List<EntityDetail> entityList = new ArrayList<>();
-                        entityList.add(dataFile);
-                        // TODO fill in the lists
-                        InstanceGraph instances = new InstanceGraph(entityList, relationshipList);
+                            // send the event
+                            repositoryEventProcessor.processInstanceBatchEvent("",
+                                                                               fileRepositoryConnector.getMetadataCollectionId(),
+                                                                               fileRepositoryConnector.getServerName(),
+                                                                               fileRepositoryConnector.getServerType(),
+                                                                               fileRepositoryConnector.getOrganizationName(),
+                                                                               instances);
+                        }
 
-                        // send the event
-                        repositoryEventProcessor.processInstanceBatchEvent("",
-                                                                           fileRepositoryConnector.getMetadataCollectionId(),
-                                                                           fileRepositoryConnector.getServerName(),
-                                                                           fileRepositoryConnector.getServerType(),
-                                                                           fileRepositoryConnector.getOrganizationName(),
-                                                                           instances);
+
+                    } catch (Exception e) {
+                        //TODO
                     }
-
-
-                } catch ( Exception e) {
-                    //TODO
                 }
                 //  scope a call /calls to the repository connector for example for a file
                 //  wait the polling interval.
+                //delay for 5 second and then retry
+                auditLog.logMessage(methodName, FileOMRSAuditCode.EVENT_MAPPER_POLL_LOOP_PRE_WAIT.getMessageDefinition());
+                try {
+                    Thread.sleep(5000);
+                    retryCount++;
+                    auditLog.logMessage(methodName, FileOMRSAuditCode.EVENT_MAPPER_POLL_LOOP_POST_WAIT.getMessageDefinition(retryCount+""));
+                } catch (InterruptedException e) {
+                    // should not happen as there is only one thread
+                    // if it happens then continue in the while
+                    auditLog.logMessage(methodName, FileOMRSAuditCode.EVENT_MAPPER_POLL_LOOP_INTERRUPTED_EXCEPTION.getMessageDefinition());
+                }
             }
         }
 
