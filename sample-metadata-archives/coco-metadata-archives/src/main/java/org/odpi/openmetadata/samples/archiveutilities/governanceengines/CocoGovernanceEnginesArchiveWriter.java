@@ -46,14 +46,14 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
     private static final long   versionNumber = 1L;
     private static final String versionName   = "1.0";
 
-    private static String GOVERNANCE_ACTION_ENGINE_TYPE_NAME  = "GovernanceActionEngine";
-    private static String GOVERNANCE_ACTION_SERVICE_TYPE_NAME = "GovernanceActionService";
+    private static final String GOVERNANCE_ACTION_ENGINE_TYPE_NAME  = "GovernanceActionEngine";
+    private static final String GOVERNANCE_ACTION_SERVICE_TYPE_NAME = "GovernanceActionService";
 
-    private static String OPEN_DISCOVERY_ENGINE_TYPE_NAME  = "OpenDiscoveryEngine";
-    private static String OPEN_DISCOVERY_SERVICE_TYPE_NAME = "OpenDiscoveryService";
+    private static final String OPEN_DISCOVERY_ENGINE_TYPE_NAME  = "OpenDiscoveryEngine";
+    private static final String OPEN_DISCOVERY_SERVICE_TYPE_NAME = "OpenDiscoveryService";
 
-    private OMRSArchiveBuilder      archiveBuilder;
-    private GovernanceArchiveHelper archiveHelper;
+    private final OMRSArchiveBuilder      archiveBuilder;
+    private final GovernanceArchiveHelper archiveHelper;
 
 
     /**
@@ -460,7 +460,7 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
         }
         catch (Exception error)
         {
-            System.out.println("error is " + error.toString());
+            System.out.println("error is " + error);
         }
     }
 }
