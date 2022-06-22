@@ -236,73 +236,73 @@ initialContactList:
 initialEmailList:
     - recordId: 1
       emailType: C
-      emailAddress:  ZachNow@Coco-Pharmaceuticals.com
+      emailAddress:  ZachNow@Coco-Pharmaceuticals.org
     - recordId: 1
       emailType: S
-      emailAddress:  zach@Coco-Pharmaceuticals.com
+      emailAddress:  zach@Coco-Pharmaceuticals.org
     - recordId: 2
       emailType: C
-      emailAddress:  SteveStarter@Coco-Pharmaceuticals.com
+      emailAddress:  SteveStarter@Coco-Pharmaceuticals.org
     - recordId: 2
       emailType: S
-      emailAddress:  steve@Coco-Pharmaceuticals.com
+      emailAddress:  steve@Coco-Pharmaceuticals.org
     - recordId: 3
       emailType: C
-      emailAddress:  TerriDaring@Coco-Pharmaceuticals.com
+      emailAddress:  TerriDaring@Coco-Pharmaceuticals.org
     - recordId: 3
       emailType: S
-      emailAddress:  terri@Coco-Pharmaceuticals.com
+      emailAddress:  terri@Coco-Pharmaceuticals.org
     - recordId: 4
       emailType: C
-      emailAddress:  TanyaTidy@Coco-Pharmaceuticals.com
+      emailAddress:  TanyaTidy@Coco-Pharmaceuticals.org
     - recordId: 4
       emailType: S
-      emailAddress:  tanya@Coco-Pharmaceuticals.com
+      emailAddress:  tanya@Coco-Pharmaceuticals.org
     - recordId: 5
       emailType: C
-      emailAddress:  PollyTasker@Coco-Pharmaceuticals.com
+      emailAddress:  PollyTasker@Coco-Pharmaceuticals.org
     - recordId: 5
       emailType: S
-      emailAddress:  polly@Coco-Pharmaceuticals.com
+      emailAddress:  polly@Coco-Pharmaceuticals.org
     - recordId: 6
       emailType: C
-      emailAddress:  TessaTube@Coco-Pharmaceuticals.com
+      emailAddress:  TessaTube@Coco-Pharmaceuticals.org
     - recordId: 6
       emailType: S
-      emailAddress:  tessa@Coco-Pharmaceuticals.com
+      emailAddress:  tessa@Coco-Pharmaceuticals.org
     - recordId: 7
       emailType: C
-      emailAddress:  CallieQuartile@Coco-Pharmaceuticals.com
+      emailAddress:  CallieQuartile@Coco-Pharmaceuticals.org
     - recordId: 7
       emailType: S
-      emailAddress:  callie@Coco-Pharmaceuticals.com
+      emailAddress:  callie@Coco-Pharmaceuticals.org
     - recordId: 8
       emailType: C
-      emailAddress:  IvorPadlock@Coco-Pharmaceuticals.com
+      emailAddress:  IvorPadlock@Coco-Pharmaceuticals.org
     - recordId: 8
       emailType: S
-      emailAddress:  ivor@Coco-Pharmaceuticals.com
+      emailAddress:  ivor@Coco-Pharmaceuticals.org
     - recordId: 9
       emailType: C
-      emailAddress:  BobNitter@Coco-Pharmaceuticals.com
+      emailAddress:  BobNitter@Coco-Pharmaceuticals.org
     - recordId: 10
       emailType: C
-      emailAddress:  FaithBroker@Coco-Pharmaceuticals.com
+      emailAddress:  FaithBroker@Coco-Pharmaceuticals.org
     - recordId: 11
       emailType: C
-      emailAddress:  SallyCounter@Coco-Pharmaceuticals.com
+      emailAddress:  SallyCounter@Coco-Pharmaceuticals.org
     - recordId: 12
       emailType: C
-      emailAddress:  LemmieStage@Coco-Pharmaceuticals.com
+      emailAddress:  LemmieStage@Coco-Pharmaceuticals.org
     - recordId: 13
       emailType: C
-      emailAddress:  ErinOverview@Coco-Pharmaceuticals.com
+      emailAddress:  ErinOverview@Coco-Pharmaceuticals.org
     - recordId: 14
       emailType: C
-      emailAddress:  HarryHopeful@Coco-Pharmaceuticals.com
+      emailAddress:  HarryHopeful@Coco-Pharmaceuticals.org
     - recordId: 15
       emailType: C
-      emailAddress:  GaryGeeke@Coco-Pharmaceuticals.com
+      emailAddress:  GaryGeeke@Coco-Pharmaceuticals.org
     - recordId: 16
       emailType: C
       emailAddress:  Grant@hh-care.org
@@ -311,10 +311,10 @@ initialEmailList:
       emailAddress:  RobbieRec@hh-care.org
     - recordId: 18
       emailType: C
-      emailAddress:  ReggieMint@Coco-Pharmaceuticals.com
+      emailAddress:  ReggieMint@Coco-Pharmaceuticals.org
     - recordId: 19
       emailType: C
-      emailAddress:  PeterProfile@Coco-Pharmaceuticals.com
+      emailAddress:  PeterProfile@Coco-Pharmaceuticals.org
     - recordId: 20
       emailType: C
       emailAddress:  nancy_noah@gb.ibm.com
@@ -323,7 +323,7 @@ initialEmailList:
       emailAddress:  SJKSeeker@SecIncConSvcs.gmail
     - recordId: 22
       emailType: C
-      emailAddress:  TomTally@Coco-Pharmaceuticals.com
+      emailAddress:  TomTally@Coco-Pharmaceuticals.org
     - recordId: 23
       emailType: C
       emailAddress:  Julie-Stitched@hh-care.org
@@ -335,10 +335,10 @@ initialEmailList:
       emailAddress:  Angela@hh-care.org
     - recordId: 26
       emailType: C
-      emailAddress:  JulesKeeper@Coco-Pharmaceuticals.com
+      emailAddress:  JulesKeeper@Coco-Pharmaceuticals.org
     - recordId: 27
       emailType: C
-      emailAddress:  StewFaster@Coco-Pharmaceuticals.com
+      emailAddress:  StewFaster@Coco-Pharmaceuticals.org
 
 #
 # Initial Phone List

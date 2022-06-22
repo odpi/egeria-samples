@@ -349,9 +349,8 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
     }
 
 
-
     /**
-     * Returns the open metadata type archive containing all of the new type definitions.
+     * Returns the open metadata type archive containing all the new type definitions.
      *
      * @return populated open metadata archive object
      */
@@ -378,8 +377,7 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
 
 
     /**
-     * Generates and writes out an open metadata archive containing all of the connector types
-     * describing the ODPi Egeria data store open connectors.
+     * Generates and writes out an open metadata archive containing the new types.
      */
     public void writeOpenMetadataArchive()
     {

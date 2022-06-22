@@ -18,7 +18,7 @@ There are four archives used in the Coco Pharmaceuticals labs and demos:
 
 * **Additional open metadata types** - provides additional types for Coco Pharmaceuticals.
 
-* **Templates for the Drop Foot Clinical Trials]** - provides the template assets
+* **Templates for the Drop Foot Clinical Trials** - provides the template assets
   used for onboarding weekly patient measurements during a clinical trial.
 
 * **Governance Engine Definitions** - provides the metadata to describe Coco Pharmaceuticals three governance engines:
@@ -30,8 +30,8 @@ There are four archives used in the Coco Pharmaceuticals labs and demos:
 
 ## Further reading
 
-* [Open Metadata Archives](https://odpi.github.io/egeria-docs/concepts/open-metadata-archive/)
-* [Egeria Metadata Access Stores](https://odpi.github.io/egeria-docs/concepts/metadata-access-store/)
+* [Open Metadata Archives](https://egeria-project.org/concepts/open-metadata-archive/)
+* [Egeria Metadata Access Stores](https://egeria-project.org/egeria-docs/concepts/metadata-access-store/)
 
 ----
 License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/),

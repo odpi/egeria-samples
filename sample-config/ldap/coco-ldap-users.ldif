@@ -203,7 +203,7 @@ description: Chief Finance Officer
 givenname: Reggie
 sn: Mint
 uid: reggiemint
-mail: ReggieMint@Coco-Pharmaceuticals.com
+mail: ReggieMint@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=tomtally,ou=people,ou=users,o=cocoPharma
@@ -220,7 +220,7 @@ manager: cn=reggiemint,ou=people,ou=users,o=cocoPharma
 givenname: Tom
 sn: Tally
 uid: tomtally
-mail: TomTally@Coco-Pharmaceuticals.com
+mail: TomTally@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=sallycounter,ou=people,ou=users,o=cocoPharma
@@ -237,7 +237,7 @@ manager: cn=tomtally,ou=people,ou=users,o=cocoPharma
 givenname: Sally
 sn: Counter
 uid: sallycounter
-mail: SallyCounter@Coco-Pharmaceuticals.com
+mail: SallyCounter@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 #
@@ -258,7 +258,7 @@ givenname: Harry
 manager: cn=zachnow,ou=people,ou=users,o=cocoPharma
 sn: Hopeful
 uid: harryhopeful
-mail: HarryHopeful@Coco-Pharmaceuticals.com
+mail: HarryHopeful@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 
@@ -281,7 +281,7 @@ description: Chief Data Officer
 givenname: Jules
 sn: Keeper
 uid: juleskeeper
-mail: JulesKeeper@Coco-Pharmaceuticals.com
+mail: JulesKeeper@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=faithbroker,ou=people,ou=users,o=cocoPharma
@@ -298,7 +298,7 @@ description: HR Director
 givenname: Faith
 sn: Broker
 uid: faithbroker
-mail: FaithBroker@Coco-Pharmaceuticals.com
+mail: FaithBroker@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=ivorpadlock,ou=people,ou=users,o=cocoPharma
@@ -315,7 +315,7 @@ description: Security Officer
 givenname: Ivor
 sn: Padlock
 uid: ivorpadlock
-mail: IvorPadlock@Coco-Pharmaceuticals.com
+mail: IvorPadlock@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 #
@@ -337,7 +337,7 @@ description: IT Infrastructure Administrator
 givenname: Gary
 sn: Geeke
 uid: garygeeke
-mail: GaryGeeke@Coco-Pharmaceuticals.com
+mail: GaryGeeke@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=erinoverview,ou=people,ou=users,o=cocoPharma
@@ -354,7 +354,7 @@ description: Information Architect
 givenname: Erin
 sn: Overview
 uid: erinoverview
-mail: Erin Overview@Coco-Pharmaceuticals.com
+mail: Erin Overview@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=peterprofile,ou=people,ou=users,o=cocoPharma
@@ -371,7 +371,7 @@ description: Information Analyst
 givenname: Peter
 sn: Profile
 uid: peterprofile
-mail: PeterProfile@Coco-Pharmaceuticals.com
+mail: PeterProfile@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 #
@@ -393,7 +393,7 @@ description: IT Project Leader
 givenname: Polly
 sn: Tasker
 uid: pollytasker
-mail: PollyTasker@Coco-Pharmaceuticals.com
+mail: PollyTasker@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=bobnitter,ou=people,ou=users,o=cocoPharma
@@ -410,7 +410,7 @@ description: Integration Architect/Developer (API developer)
 givenname: Bob
 sn: Nitter
 uid: bobnitter
-mail: BobNitter@Coco-Pharmaceuticals.com
+mail: BobNitter@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=lemmiestage,ou=people,ou=users,o=cocoPharma
@@ -427,7 +427,7 @@ description: DataStage specialist
 givenname: Lemmie
 sn: Stage
 uid: lemmiestage
-mail: LemmieStage@Coco-Pharmaceuticals.com
+mail: LemmieStage@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 
@@ -450,7 +450,7 @@ description: Manufacturing Manager
 givenname: Stew
 sn: Faster
 uid: stewfaster
-mail: StewFaster@Coco-Pharmaceuticals.com
+mail: StewFaster@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 
@@ -473,7 +473,7 @@ manager: cn=zachnow,ou=people,ou=users,o=cocoPharma
 givenname: Tessa
 sn: Tube
 uid: tessatube
-mail: TessaTube@Coco-Pharmaceuticals.com
+mail: TessaTube@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=calliequartile,ou=people,ou=users,o=cocoPharma
@@ -490,7 +490,7 @@ manager: cn=tessatube,ou=people,ou=users,o=cocoPharma
 givenname: Callie
 sn: Quartile
 uid: calliequartile
-mail: CallieQuartile@Coco-Pharmaceuticals.com
+mail: CallieQuartile@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=tanyatidie,ou=people,ou=users,o=cocoPharma
@@ -507,7 +507,7 @@ manager: cn=tessatube,ou=people,ou=users,o=cocoPharma
 givenname: Tanya
 sn: Tidie
 uid: tanyatidie
-mail: TanyaTidie@Coco-Pharmaceuticals.com
+mail: TanyaTidie@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 #
@@ -669,7 +669,7 @@ givenname: Reddy
 sn: Leftie
 manager: cn=tomtally,ou=people,ou=users,o=cocoPharma
 uid: reddyleftie
-mail: ReddyLeftie@Coco-Pharmaceuticals.com
+mail: ReddyLeftie@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=mattdarker,ou=people,ou=users,o=cocoPharma
@@ -707,7 +707,7 @@ description: Founder and Head of NY Office
 givenname: Zach
 sn: Now
 uid: zachnow
-mail: ZachNow@Coco-Pharmaceuticals.com
+mail: ZachNow@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=stevestarter,ou=people,ou=users,o=cocoPharma
@@ -723,7 +723,7 @@ description: Founder and Head of Amsterdam Office
 givenname: Steve
 sn: Starter
 uid: stevestarter
-mail: SteveStarter@Coco-Pharmaceuticals.com
+mail: SteveStarter@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=terridaring,ou=people,ou=users,o=cocoPharma
@@ -739,7 +739,7 @@ description: Founder and Head of London Office
 givenname: Terri
 sn: Daring
 uid: terridaring
-mail: TerriDaring@Coco-Pharmaceuticals.com
+mail: TerriDaring@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 
