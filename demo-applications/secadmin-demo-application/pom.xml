@@ -12,12 +12,12 @@
     <scm>
         <connection>scm:git:git://github.com/odpi/egeria-samples.git</connection>
         <developerConnection>scm:git:ssh://github.com/odpi/egeria-samples.git</developerConnection>
-        <url>http://github.com/odpi/egeria-samples/tree/master</url>
+        <url>https://github.com/odpi/egeria-samples/tree/master</url>
     </scm>
 
     <groupId>org.odpi.egeria</groupId>
     <artifactId>secadmin-demo-application</artifactId>
-    <version>3.8-SNAPSHOT</version>
+    <version>3.11-SNAPSHOT</version>
 
     <name>Security Admin (SecAdmin)</name>
     <description>
