@@ -294,7 +294,7 @@ displayName: Faith Broker
 employeeNumber: 139870
 employeeType: Employee
 manager: cn=stevestarter,ou=people,ou=users,o=cocoPharma
-description: HR Director
+description: HR Director and Chief Privacy Officer
 givenname: Faith
 sn: Broker
 uid: faithbroker
@@ -354,7 +354,7 @@ description: Information Architect
 givenname: Erin
 sn: Overview
 uid: erinoverview
-mail: Erin Overview@Coco-Pharmaceuticals.org
+mail: ErinOverview@Coco-Pharmaceuticals.org
 userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
 
 dn: cn=peterprofile,ou=people,ou=users,o=cocoPharma
@@ -446,7 +446,7 @@ displayName: Stew Faster
 employeeNumber: 483942
 employeeType: Employee
 manager: cn=terridaring,ou=people,ou=users,o=cocoPharma
-description: Manufacturing Manager
+description: Manufacturing Leader
 givenname: Stew
 sn: Faster
 uid: stewfaster
@@ -703,7 +703,7 @@ cn: zachnow
 displayName: Zach Now
 employeeNumber: 133777
 employeeType: Founder
-description: Founder and Head of NY Office
+description: Founder and Head of NY Site
 givenname: Zach
 sn: Now
 uid: zachnow
@@ -719,7 +719,7 @@ cn: stevestarter
 displayName: Steve Starter
 employeeNumber: 439222
 employeeType: Founder
-description: Founder and Head of Amsterdam Office
+description: Founder and Head of Amsterdam Site
 givenname: Steve
 sn: Starter
 uid: stevestarter
@@ -735,7 +735,7 @@ cn: terridaring
 displayName: Terri Daring
 employeeNumber: 371803
 employeeType: Founder
-description: Founder and Head of London Office
+description: Founder and Head of London Site
 givenname: Terri
 sn: Daring
 uid: terridaring
