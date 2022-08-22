@@ -44,7 +44,7 @@ public class CocoOrganizationArchiveWriter extends CocoBaseArchiveWriter
     /**
      * Add the content to the archive builder.
      */
-    protected void getArchiveContent()
+    public void getArchiveContent()
     {
         writeContactTypesValidValueSet();
         writeCountryCodesValidValueSet();
@@ -556,8 +556,10 @@ public class CocoOrganizationArchiveWriter extends CocoBaseArchiveWriter
 
         String userId = mf.format(messageParameters);
 
+        Object[] dnMessageParameters = { userId };
+
         mf = new MessageFormat(distinguishedNamePattern);
-        String distinguishedName = mf.format(messageParameters);
+        String distinguishedName = mf.format(dnMessageParameters);
 
         String userIdQualifiedName = "UserIdentity:" + distinguishedName;
 

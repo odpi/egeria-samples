@@ -50,14 +50,31 @@ public class CocoComboArchiveWriter extends CocoBaseArchiveWriter
     }
 
 
+
+
+    /**
+     * Returns the open metadata archive containing new metadata entities.
+     *
+     * @return populated open metadata archive object
+     */
+    public OpenMetadataArchive getOpenMetadataArchive()
+    {
+        getArchiveContent();
+
+        /*
+         * The completed archive is ready to be packaged up and returned
+         */
+        return this.archiveBuilder.getOpenMetadataArchive();
+    }
+
+
     /**
      * Add the content to the archive builder.
      */
-    protected void getArchiveContent()
+    public void getArchiveContent()
     {
         CocoClinicalTrialsArchiveWriter    clinicalTrialsArchiveWriter    = new CocoClinicalTrialsArchiveWriter();
         CocoGovernanceProgramArchiveWriter governanceProgramArchiveWriter = new CocoGovernanceProgramArchiveWriter();
-        CocoGovernanceEnginesArchiveWriter governanceEnginesArchiveWriter = new CocoGovernanceEnginesArchiveWriter();
         CocoBusinessSystemsArchiveWriter   businessSystemsArchiveWriter   = new CocoBusinessSystemsArchiveWriter();
         CocoOrganizationArchiveWriter      organizationArchiveWriter      = new CocoOrganizationArchiveWriter();
         CocoSustainabilityArchiveWriter    sustainabilityArchiveWriter    = new CocoSustainabilityArchiveWriter();
@@ -67,17 +84,15 @@ public class CocoComboArchiveWriter extends CocoBaseArchiveWriter
          */
         clinicalTrialsArchiveWriter.setArchiveBuilder(archiveBuilder);
         governanceProgramArchiveWriter.setArchiveBuilder(archiveBuilder);
-        governanceEnginesArchiveWriter.setArchiveBuilder(archiveBuilder);
         businessSystemsArchiveWriter.setArchiveBuilder(archiveBuilder);
         organizationArchiveWriter.setArchiveBuilder(archiveBuilder);
         sustainabilityArchiveWriter.setArchiveBuilder(archiveBuilder);
 
-        clinicalTrialsArchiveWriter.writeOpenMetadataArchive();
-        governanceProgramArchiveWriter.writeOpenMetadataArchive();
-        governanceEnginesArchiveWriter.writeOpenMetadataArchive();
-        businessSystemsArchiveWriter.writeOpenMetadataArchive();
-        organizationArchiveWriter.writeOpenMetadataArchive();
-        sustainabilityArchiveWriter.writeOpenMetadataArchive();
+        clinicalTrialsArchiveWriter.getArchiveContent();
+        businessSystemsArchiveWriter.getArchiveContent();
+        organizationArchiveWriter.getArchiveContent();
+        governanceProgramArchiveWriter.getArchiveContent();
+        sustainabilityArchiveWriter.getArchiveContent();
     }
 
 }
