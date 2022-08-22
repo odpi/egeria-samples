@@ -45,7 +45,7 @@ public class CocoClinicalTrialsArchiveWriter extends CocoBaseArchiveWriter
     /**
      * Add the content to the archive builder.
      */
-    protected void getArchiveContent()
+    public void getArchiveContent()
     {
     }
 

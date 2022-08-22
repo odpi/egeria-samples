@@ -46,7 +46,7 @@ public class CocoSustainabilityArchiveWriter extends CocoBaseArchiveWriter
     /**
      * Add the content to the archive builder.
      */
-    protected void getArchiveContent()
+    public void getArchiveContent()
     {
         writeFacilityTypeValidValueSet();
         writeGlossary();

@@ -39,8 +39,12 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
     protected static final long   versionNumber = 1L;
     protected static final String versionName   = "1.0";
 
-    protected       OMRSArchiveBuilder         archiveBuilder;
-    protected final SimpleCatalogArchiveHelper archiveHelper;
+    protected  OMRSArchiveBuilder         archiveBuilder;
+    protected  SimpleCatalogArchiveHelper archiveHelper;
+
+    private final String              archiveGUID;
+    private final String              archiveName;
+    private final Date                creationDate;
 
     private final String archiveFileName;
 
@@ -81,6 +85,10 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
                                     String              archiveFileName,
                                     OpenMetadataArchive additionalDependencies)
     {
+        this.archiveGUID = archiveGUID;
+        this.archiveName = archiveName;
+        this.creationDate = creationDate;
+
         List<OpenMetadataArchive> dependentOpenMetadataArchives = new ArrayList<>();
 
         /*
@@ -126,6 +134,14 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
     protected void setArchiveBuilder(OMRSArchiveBuilder archiveBuilder)
     {
         this.archiveBuilder = archiveBuilder;
+        this.archiveHelper = new GovernanceArchiveHelper(archiveBuilder,
+                                                         archiveGUID,
+                                                         archiveName,
+                                                         originatorName,
+                                                         creationDate,
+                                                         versionNumber,
+                                                         versionName,
+                                                         guidMapFileName);
     }
 
 
@@ -136,7 +152,6 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
      */
     public OpenMetadataArchive getOpenMetadataArchive()
     {
-
         getArchiveContent();
 
         archiveHelper.saveGUIDs();
@@ -151,7 +166,7 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
     /**
      * Implemented by subclass to add the content.
      */
-    protected abstract void getArchiveContent();
+    public abstract void getArchiveContent();
 
 
     /**
@@ -162,6 +177,8 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
         try
         {
             System.out.println("Writing to file: " + archiveFileName);
+
+            archiveHelper.saveGUIDs();
 
             super.writeOpenMetadataArchive(archiveFileName, this.getOpenMetadataArchive());
         }

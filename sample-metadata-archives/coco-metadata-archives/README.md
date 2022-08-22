@@ -21,8 +21,11 @@ There are four archives used in the Coco Pharmaceuticals labs and demos:
 * **Coco Pharmaceuticals Organizations** - provides the profiles, user identifies and team of the featured
   personas of Coco Pharmaceuticals.
 
-* **Governance Program Definitions** - provides the metadata to describe Coco Pharmaceuticals three governance engines:
-  `AssetGovernance`, `AssetDiscovery` and `AssetQuality`.
+![Coco Organization](docs/coco-metadata-archives-organization.png)
+
+* **Governance Program Definitions** - provides the metadata to describe Coco Pharmaceuticals governance program.
+
+![Coco Sustainability](docs/coco-metadata-archives-governance-program.png)
 
 * **Templates for the Drop Foot Clinical Trials** - provides the template assets
   used for onboarding weekly patient measurements during a clinical trial.
@@ -37,16 +40,7 @@ There are four archives used in the Coco Pharmaceuticals labs and demos:
 * **Coco Pharmaceuticals Sustainability Initiative** provides the base definitions for Coco Pharmaceutical's
   sustainability initiative.  This includes:
 
-  * A simple glossary with new terms related to sustainability.
-  * A definition of a governance domain for sustainability.
-  * A campaign and related projects for sustainability.
-  * Governance definitions (strategy, policies, controls) for sustainability.
-  * Valid value sets for:
-     * Facility type (such as office, factory, lab, distribution centre, ...)
-     * Employee type and primary work location
-     * Equipment type
-     * Power type
-     * Coolant type
+![Coco Sustainability](docs/coco-metadata-archives-sustainability.png)
 
 ## Further reading
 
