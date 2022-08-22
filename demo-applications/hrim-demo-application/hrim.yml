@@ -150,7 +150,7 @@ initialEmployees:
           firstName: Bob
           lastName: Nitter
           employeeStatus: PART_TIME_PERMANENT
-          jobLevel: 4
+          jobLevel: 3
           departmentCode: 3082
           role: Application Developer
           locationCode: 1
@@ -178,9 +178,9 @@ initialEmployees:
           firstName: Sally
           lastName: Counter
           employeeStatus: PART_TIME_PERMANENT
-          jobLevel: 2
+          jobLevel: 3
           departmentCode: 6877
-          role: Payment Clerk
+          role: Payments Clerk
           locationCode: 2
           taxStatus: 1
       roles:
@@ -192,7 +192,7 @@ initialEmployees:
           firstName: Lemmie
           lastName: Stage
           employeeStatus: FULL_TIME_PERMANENT
-          jobLevel: 4
+          jobLevel: 2
           departmentCode: 3082
           role: DataStage Specialist
           locationCode: 1
@@ -206,7 +206,7 @@ initialEmployees:
           firstName: Erin
           lastName: Overview
           employeeStatus: FULL_TIME_PERMANENT
-          jobLevel: 7
+          jobLevel: 5
           departmentCode: 7432
           role: Information Architect
           locationCode: 2
@@ -222,7 +222,7 @@ initialEmployees:
           employeeStatus: FULL_TIME_PERMANENT
           jobLevel: 6
           departmentCode: 2343
-          role: Sales Speciclist, NY
+          role: Sales Specialist, NY
           locationCode: 3
           taxStatus: 1
       roles:
@@ -276,7 +276,7 @@ initialEmployees:
           firstName: Tom
           lastName: Tally
           employeeStatus: FULL_TIME_PERMANENT
-          jobLevel: 7
+          jobLevel: 6
           departmentCode: 6788
           role: Accounts Manager, Finance HQ
           locationCode: 2

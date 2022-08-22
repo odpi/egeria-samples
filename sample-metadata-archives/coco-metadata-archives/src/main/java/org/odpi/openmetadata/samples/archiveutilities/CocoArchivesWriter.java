@@ -4,7 +4,11 @@ package org.odpi.openmetadata.samples.archiveutilities;
 
 import org.odpi.openmetadata.samples.archiveutilities.businesssystems.CocoBusinessSystemsArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.clinicaltrialtemplates.CocoClinicalTrialsArchiveWriter;
+import org.odpi.openmetadata.samples.archiveutilities.combo.CocoComboArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.governanceengines.CocoGovernanceEnginesArchiveWriter;
+import org.odpi.openmetadata.samples.archiveutilities.governanceprogram.CocoGovernanceProgramArchiveWriter;
+import org.odpi.openmetadata.samples.archiveutilities.organization.CocoOrganizationArchiveWriter;
+import org.odpi.openmetadata.samples.archiveutilities.sustainability.CocoSustainabilityArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.types.CocoTypesArchiveWriter;
 
 /**
@@ -24,18 +28,26 @@ public class CocoArchivesWriter
         try
         {
             CocoTypesArchiveWriter             typesArchiveWriter = new CocoTypesArchiveWriter();
-            CocoClinicalTrialsArchiveWriter    clinicalTrialsArchiveWriter = new CocoClinicalTrialsArchiveWriter();
+            CocoClinicalTrialsArchiveWriter    clinicalTrialsArchiveWriter    = new CocoClinicalTrialsArchiveWriter();
+            CocoGovernanceProgramArchiveWriter cocoGovernanceProgramArchiveWriter = new CocoGovernanceProgramArchiveWriter();
             CocoGovernanceEnginesArchiveWriter governanceEnginesArchiveWriter = new CocoGovernanceEnginesArchiveWriter();
             CocoBusinessSystemsArchiveWriter   businessSystemsArchiveWriter = new CocoBusinessSystemsArchiveWriter();
+            CocoOrganizationArchiveWriter      organizationArchiveWriter = new CocoOrganizationArchiveWriter();
+            CocoSustainabilityArchiveWriter    sustainabilityArchiveWriter  = new CocoSustainabilityArchiveWriter();
+            CocoComboArchiveWriter             cocoComboArchiveWriter  = new CocoComboArchiveWriter();
 
             typesArchiveWriter.writeOpenMetadataArchive();
             clinicalTrialsArchiveWriter.writeOpenMetadataArchive();
             governanceEnginesArchiveWriter.writeOpenMetadataArchive();
             businessSystemsArchiveWriter.writeOpenMetadataArchive();
+            organizationArchiveWriter.writeOpenMetadataArchive();
+            cocoGovernanceProgramArchiveWriter.writeOpenMetadataArchive();
+            sustainabilityArchiveWriter.writeOpenMetadataArchive();
+            cocoComboArchiveWriter.writeOpenMetadataArchive();
         }
         catch (Exception error)
         {
-            System.err.println("Exception: " + error.toString());
+            System.err.println("Exception: " + error);
             System.exit(-1);
         }
     }

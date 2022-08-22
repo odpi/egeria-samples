@@ -50,8 +50,8 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
     private static final String versionName   = "1.0";
 
 
-    private OMRSArchiveBuilder archiveBuilder;
-    private OMRSArchiveHelper  archiveHelper;
+    private final OMRSArchiveBuilder archiveBuilder;
+    private final OMRSArchiveHelper  archiveHelper;
 
     /**
      * Default constructor initializes the archive.
@@ -84,7 +84,7 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
 
 
     /**
-     * Create a enum type that can be used as a type of attribute in an entity, relationship or classification.
+     * Create an enum type that can be used as a type of attribute in an entity, relationship or classification.
      * It defines a set of values that the attribute can be set up with along with a default value.
      *
      * @return enum attribute type definition (EnumDef)
@@ -389,7 +389,7 @@ public class CocoTypesArchiveWriter extends OMRSArchiveWriter
         }
         catch (Exception error)
         {
-            System.out.println("error is " + error.toString());
+            System.out.println("error is " + error);
         }
     }
 }

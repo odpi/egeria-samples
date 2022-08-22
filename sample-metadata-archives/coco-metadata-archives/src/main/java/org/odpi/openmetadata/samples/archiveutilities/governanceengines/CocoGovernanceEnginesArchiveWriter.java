@@ -52,7 +52,7 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
     private static final String OPEN_DISCOVERY_ENGINE_TYPE_NAME  = "OpenDiscoveryEngine";
     private static final String OPEN_DISCOVERY_SERVICE_TYPE_NAME = "OpenDiscoveryService";
 
-    private final OMRSArchiveBuilder      archiveBuilder;
+    private OMRSArchiveBuilder      archiveBuilder;
     private final GovernanceArchiveHelper archiveHelper;
 
 
@@ -64,7 +64,7 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
         List<OpenMetadataArchive> dependentOpenMetadataArchives = new ArrayList<>();
 
         /*
-         * This value allows the Coco Types to be based on the existing open metadata types
+         * This value allows the governance engine definitions to be based on the existing open metadata types
          */
         dependentOpenMetadataArchives.add(new OpenMetadataTypesArchive().getOpenMetadataArchive());
 
@@ -84,6 +84,17 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
                                                          creationDate,
                                                          versionNumber,
                                                          versionName);
+    }
+
+
+    /**
+     * Provide an alternative archive builder.  Used when consolidating archives.
+     *
+     * @param archiveBuilder new archive builder
+     */
+    public void setArchiveBuilder(OMRSArchiveBuilder archiveBuilder)
+    {
+        this.archiveBuilder = archiveBuilder;
     }
 
 
