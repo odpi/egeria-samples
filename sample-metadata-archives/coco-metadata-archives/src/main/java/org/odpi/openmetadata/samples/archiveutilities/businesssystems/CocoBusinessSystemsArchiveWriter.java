@@ -9,7 +9,9 @@ import org.odpi.openmetadata.repositoryservices.archiveutilities.OMRSArchiveWrit
 import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchive;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchiveType;
 import org.odpi.openmetadata.samples.archiveutilities.GovernanceArchiveHelper;
+import org.odpi.openmetadata.samples.archiveutilities.SimpleCatalogArchiveHelper;
 import org.odpi.openmetadata.samples.archiveutilities.combo.CocoBaseArchiveWriter;
+import org.odpi.openmetadata.samples.archiveutilities.organization.ContactTypeDefinition;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,5 +52,21 @@ public class CocoBusinessSystemsArchiveWriter extends CocoBaseArchiveWriter
      */
     public void getArchiveContent()
     {
+        addSystems();
+    }
+
+    private void addSystems()
+    {
+        for (SystemDefinition systemDefinition : SystemDefinition.values())
+        {
+            archiveHelper.addAsset("SoftwareServer",
+                                   systemDefinition.getQualifiedName(),
+                                   systemDefinition.getDisplayName(),
+                                   systemDefinition.getDescription(),
+                                   systemDefinition.getZones(),
+                                   null,
+                                   null);
+        }
     }
 }
+
