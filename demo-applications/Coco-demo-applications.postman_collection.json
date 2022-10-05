@@ -1,0 +1,1020 @@
+{
+	"info": {
+		"_postman_id": "24d5c314-5570-4126-accf-48ac50a2bca9",
+		"name": "Coco-demo-applications",
+		"description": "REST API calls for the sample Coco Pharmaceuticals Applications that are used in demos:\n\n- HR Information Manager\n- Security Admin\n- cocopages (the company directory)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "HR Information Manager (HRIM)",
+			"item": [
+				{
+					"name": "Departments",
+					"item": [
+						{
+							"name": "Get all departments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/departments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"departments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add department",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"departmentCode\": \"9996\",\n    \"departmentName\": \"New Lab\",\n    \"managerPNUM\": \"371803\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/departments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"departments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update department",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"departmentCode\": \"9996\",\n    \"departmentName\": \"New Secret Lab\",\n    \"managerPNUM\": \"371803\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/departments/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"departments",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete department",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/departments/9996",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"departments",
+										"9996"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get department",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/departments/5656",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"departments",
+										"5656"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Employees",
+					"item": [
+						{
+							"name": "Get all employees",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"employees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add employee",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"pnum\": \"999999\",\n    \"firstName\": \"Fred\",\n    \"lastName\": \"Bloggs\",\n    \"employeeStatus\": \"FULL_TIME_PERMANENT\",\n    \"jobLevel\": 3,\n    \"departmentCode\": \"5656\",\n    \"locationCode\": 3,\n    \"taxStatus\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"employees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add award",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"awardType\": \"Karma Point Plateau\",\n    \"awardOrganization\": \"CDO\",\n    \"recipientPNUM\": \"999999\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/employees/awards",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"employees",
+										"awards"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add role",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"pnum\": \"999999\",\n    \"startDate\": 1637609914395,\n    \"roleType\": \"GovernanceRole\",\n    \"roleName\" : \"Security Steward\",\n    \"roleDescription\": \"Ensure all security settings are approved and validated.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/employees/roles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"employees",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Role",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"pnum\": \"999999\",\n    \"startDate\": 1637609914395,\n    \"endDate\" : {{$timestamp}},\n    \"roleType\": \"GovernanceRole\",\n    \"roleName\" : \"Security Steward\",\n    \"roleDescription\": \"Ensure all security settings are approved and validated.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/employees/roles/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"employees",
+										"roles",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update employee personal details",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"pnum\": \"999999\",\n    \"firstName\": \"Fred\",\n    \"lastName\": \"Bloggs\",\n    \"employeeStatus\": \"FULL_TIME_PERMANENT\",\n    \"jobLevel\": 4,\n    \"role\": \"Newbee\",\n    \"departmentCode\": \"5656\",\n    \"locationCode\": 3,\n    \"taxStatus\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/employees/personal-details",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"employees",
+										"personal-details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get employee",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/employees/133777",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"employees",
+										"133777"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete employee",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/hrim/api/v1/employees/999999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hrim",
+										"api",
+										"v1",
+										"employees",
+										"999999"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "HR Information Manager (HRIM)"
+		},
+		{
+			"name": "Company Directory (cocopages)",
+			"item": [
+				{
+					"name": "Contacts",
+					"item": [
+						{
+							"name": "Get all contacts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/cocopages/api/v1/contacts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cocopages",
+										"api",
+										"v1",
+										"contacts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add contacts",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contact\": {\n        \"recordId\": \"28\",\n        \"contactType\": \"E\",\n        \"firstName\": \"Reddy\",\n        \"lastName\": \"Leftie\",\n        \"company\": \"Coco Pharmaceuticals\",\n        \"jobTitle\": \"Procurement Manager\",\n        \"userId\": \"reddyleftie\",\n        \"workLocation\": 2\n    },\n    \"emailAccounts\": [\n        {\n            \"recordId\": \"28\",\n            \"emailType\": \"C\",\n            \"emailAddress\": \"ReddyLeftie@Coco-Pharmaceuticals.org\"\n        }\n    ],\n    \"phoneNumbers\": [\n        {\n            \"recordId\": \"28\",\n            \"contactType\": \"O\",\n            \"phoneNumber\": \"44-20-372-2223 (ext 12)\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/cocopages/api/v1/contacts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cocopages",
+										"api",
+										"v1",
+										"contacts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update contacts",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contact\": {\n        \"recordId\": \"28\",\n        \"contactType\": \"E\",\n        \"firstName\": \"Reddy\",\n        \"lastName\": \"Leftie\",\n        \"company\": \"Coco Pharmaceuticals\",\n        \"jobTitle\": \"Procurement Manager - left\",\n        \"userId\": \"reddyleftie\",\n        \"workLocation\": 2\n    },\n    \"emailAccounts\": [\n        {\n            \"recordId\": \"28\",\n            \"emailType\": \"C\",\n            \"emailAddress\": \"ReddyLeftie@Coco-Pharmaceuticals.org\"\n        }\n    ],\n    \"phoneNumbers\": [\n        {\n            \"recordId\": \"28\",\n            \"contactType\": \"O\",\n            \"phoneNumber\": \"44-20-372-2223 (ext 12)\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/cocopages/api/v1/contacts/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cocopages",
+										"api",
+										"v1",
+										"contacts",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete contacts",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/cocopages/api/v1/contacts/28",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cocopages",
+										"api",
+										"v1",
+										"contacts",
+										"28"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get contacts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/cocopages/api/v1/contacts/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cocopages",
+										"api",
+										"v1",
+										"contacts",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "WorkLocations",
+					"item": [
+						{
+							"name": "Get all work locations",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/cocopages/api/v1/work-locations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cocopages",
+										"api",
+										"v1",
+										"work-locations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add work location",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"wlId\": 5,\n    \"wlName\": \"Amsterdam Factory\",\n    \"streetNumber\": \"1835\",\n    \"streetName\": \"Wilhelmdreef\",\n    \"district\": \"Amsterdam-Zuidoost\",\n    \"city\": \"Amsterdam\",\n    \"area\": \"North Holland\",\n    \"country\": \"Netherlands\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/cocopages/api/v1/work-locations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cocopages",
+										"api",
+										"v1",
+										"work-locations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update work location",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"wlId\": 5,\n    \"wlName\": \"Amsterdam Factory\",\n    \"streetNumber\": \"1835-7\",\n    \"streetName\": \"Wilhelmdreef\",\n    \"district\": \"Amsterdam-Zuidoost\",\n    \"city\": \"Amsterdam\",\n    \"area\": \"North Holland\",\n    \"country\": \"Netherlands\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/cocopages/api/v1/work-locations/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cocopages",
+										"api",
+										"v1",
+										"work-locations",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete work location",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/cocopages/api/v1/work-locations/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cocopages",
+										"api",
+										"v1",
+										"work-locations",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get work location",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/cocopages/api/v1/work-locations/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cocopages",
+										"api",
+										"v1",
+										"work-locations",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Security Administration (SecAdmin)",
+			"item": [
+				{
+					"name": "Groups",
+					"item": [
+						{
+							"name": "Get all groups",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/groups",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"groups"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get group",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/groups/cn=metadata-architects,ou=roles,ou=groups,o=cocoPharma",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"groups",
+										"cn=metadata-architects,ou=roles,ou=groups,o=cocoPharma"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add group",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"distinguishedName\": \"cn=metadata-architects,ou=roles,ou=groups,o=cocoPharma\",\n    \"commonName\": \"metadata-architects\",\n    \"description\": \"Contains entries of individuals who are responsible for the open metadata ecosystem.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/groups",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"groups"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update group",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"distinguishedName\": \"cn=metadata-architects,ou=roles,ou=groups,o=cocoPharma\",\n    \"commonName\": \"metadata-architects\",\n    \"description\": \"Contains entries of individuals who are responsible for the design and operation of the open metadata ecosystem.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/groups/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"groups",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete group",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/groups/cn=metadata-architects,ou=roles,ou=groups,o=cocoPharma",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"groups",
+										"cn=metadata-architects,ou=roles,ou=groups,o=cocoPharma"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Get all users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/users/tomtally",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"users",
+										"tomtally"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"testSystemUser\",\n    \"sytemName\": \"testSystem\",\n    \"description\": \"UserId used for testing\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"testSystemUser\",\n    \"sytemName\": \"testSystem\",\n    \"description\": \"UserId used for testing access to open metadata.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/users/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"users",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/users/testSystemUser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"users",
+										"testSystemUser"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UserAccess",
+					"item": [
+						{
+							"name": "Get user access",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/users/access/tomtally",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"users",
+										"access",
+										"tomtally"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add user access",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/users/access/testSystemUser/groups/cn=npa,ou=roles,ou=groups,o=cocoPharma",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"users",
+										"access",
+										"testSystemUser",
+										"groups",
+										"cn=npa,ou=roles,ou=groups,o=cocoPharma"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove user access",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/secadmin/api/v1/users/access/testSystemUser/groups/cn=npa,ou=roles,ou=groups,o=cocoPharma",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"secadmin",
+										"api",
+										"v1",
+										"users",
+										"access",
+										"testSystemUser",
+										"groups",
+										"cn=npa,ou=roles,ou=groups,o=cocoPharma"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

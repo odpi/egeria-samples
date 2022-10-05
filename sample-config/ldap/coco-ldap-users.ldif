@@ -1,0 +1,856 @@
+# Sample LDIF data for the Coco Pharmaceuticals LDAF server
+#
+# Loads a basic entry for each of the personas
+# userpassword for all persons is "pass"
+#
+version: 1
+
+#dn: o=cocoPharma
+#o: cocoPharma
+#objectClass: top
+#objectClass: organization
+#description: The context entry for suffix o=cocoPharma
+
+#
+# Organizational Units
+#
+dn: ou=users,o=cocoPharma
+objectclass: organizationalUnit
+objectclass: top
+description: Contains entries that describe systems or people.
+ou: users
+
+dn: ou=people,ou=users,o=cocoPharma
+objectclass: organizationalUnit
+objectclass: top
+description: Contains entries which describe persons.
+ou: people
+
+dn: ou=systems,ou=users,o=cocoPharma
+objectclass: organizationalUnit
+objectclass: top
+description: Contains entries which describe Coco Pharmaceuticals' systems
+ou: systems
+
+dn: ou=groups,o=cocoPharma
+objectclass: organizationalUnit
+objectclass: top
+description: Contains entries which describe groups (departments, for instance)
+ou: groups
+
+dn: ou=departments,ou=groups,o=cocoPharma
+objectclass: organizationalUnit
+objectclass: top
+description: Contains groups that describe Coco Pharmaceuticals' departments
+ou: departments
+
+dn: ou=roles,ou=groups,o=cocoPharma
+objectclass: organizationalUnit
+objectclass: top
+description: Contains groups of individuals by roles
+ou: roles
+
+dn: ou=partners,ou=groups,o=cocoPharma
+objectclass: organizationalUnit
+objectclass: top
+description: Contains entries of individuals who are employees of partner organizations
+ou: partners
+
+dn: ou=projects,ou=groups,o=cocoPharma
+objectclass: organizationalUnit
+objectclass: top
+description: Contains entries which describe Coco Pharmaceuticals' projects
+ou: projects
+
+
+
+
+#
+# Systems
+# --------------
+
+dn: cn=cocoMDS1,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: cocoMDS1
+description: Data Lake Operations - a metadata server used to manage the data in the data lake.
+uid: cocoMDS1npa
+userpassword: cocoMDS1passw0rd
+
+
+dn: cn=cocoMDS2,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: cocoMDS2
+description: Governance - a metadata server used by all of the governance teams to operate the governance programs.
+uid: cocoMDS2npa
+
+dn: cn=cocoMDS3,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: cocoMDS3
+description: Research - a metadata server used by the research teams who are developing new treatments.
+uid: cocoMDS3npa
+
+dn: cn=cocoMDS4,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: cocoMDS4
+description: Data Lake Users - a metadata access point used by general business users and the executive team to access data from the data lake.
+uid: cocoMDS4npa
+
+dn: cn=cocoMDS5,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: cocoMDS5
+description: Business Systems - a repository proxy used to connect to the existing ETL tool that manages data movement amongst the business systems.
+uid: cocoMDS5npa
+
+dn: cn=cocoMDS6,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: cocoMDS6
+description: Manufacturing - a metadata server used by the supplies warehouse, manufacturing and distribution teams.
+uid: cocoMDS6npa
+
+dn: cn=cocoMDSx,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: cocoMDSx
+description: Development - a metadata server used by the software development teams building new IT capability.
+uid: cocoMDSxnpa
+
+dn: cn=cocoView1,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: cocoView1
+description: Ecosystem UI - a view server that runs the services for the user interface.
+uid: cocoMDSxnpa
+
+dn: cn=exchangeDL01,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: exchangeDL01
+description: Metadata Exchange - an integration daemon that supports the automatic exchange of metadata with third party technologies.
+uid: exchangeDL01npa
+
+dn: cn=onboardDL01,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: onboardDL01
+description: Integration connector onboarding metadata into the data lake.
+uid: onboardDL01npa
+
+dn: cn=monitorDL01,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: monitorDL01
+description: Integration connector monitoring metadata into the data lake.
+uid: monitorDL01npa
+
+dn: cn=monitorGov01,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: monitorGov01
+description: Metadata Governance Activity Monitor - an integration daemon that supports the capture of lineage for the governance actions and external processing in the data lake.
+uid: monitorGov01npa
+
+dn: cn=governDL01,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: governDL01
+description: Metadata Governance - an engine host that runs governance functions that monitor, validate, correct and enrich metadata for use by all of the technologies in the connected open metadata ecosystem.
+uid: governDL01npa
+
+dn: cn=cocoOLS1,ou=systems,ou=users,o=cocoPharma
+objectclass: applicationProcess
+objectclass: uidObject
+objectclass: top
+cn: cocoOLS1
+description: Open Lineage Server - managing lineage for business.
+uid: cocoOLS1npa
+
+
+
+#
+# Finance teams
+# --------------
+
+dn: cn=reggiemint,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: reggiemint
+displayName: Reggie Mint
+employeeNumber: 188888
+employeeType: Employee
+manager: cn=terridaring,ou=people,ou=users,o=cocoPharma
+description: Chief Finance Officer
+givenname: Reggie
+sn: Mint
+uid: reggiemint
+mail: ReggieMint@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=tomtally,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: tomtally
+displayName: Tom Tally
+employeeNumber: 896419
+employeeType: Employee
+description: Accounts Manager
+manager: cn=reggiemint,ou=people,ou=users,o=cocoPharma
+givenname: Tom
+sn: Tally
+uid: tomtally
+mail: TomTally@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=sallycounter,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: sallycounter
+displayName: Sally Counter
+employeeNumber: 457911
+employeeType: Employee
+description: Payments Clerk
+manager: cn=tomtally,ou=people,ou=users,o=cocoPharma
+givenname: Sally
+sn: Counter
+uid: sallycounter
+mail: SallyCounter@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+#
+# Sales team
+# --------------
+
+dn: cn=harryhopeful,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: harryhopeful
+displayName: Harry Hopeful
+employeeNumber: 144994
+employeeType: Employee
+description: Sales Leader
+givenname: Harry
+manager: cn=zachnow,ou=people,ou=users,o=cocoPharma
+sn: Hopeful
+uid: harryhopeful
+mail: HarryHopeful@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+
+#
+# Corporate Governance
+# --------------
+# Jules Keeper (Chief Data Officer), Faith Broker (HR Director), Ivor Padlock (Security Officer)
+
+dn: cn=juleskeeper,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: juleskeeper
+displayName: Jules Keeper
+employeeNumber: 296776
+employeeType: Employee
+manager: cn=terridaring,ou=people,ou=users,o=cocoPharma
+description: Chief Data Officer
+givenname: Jules
+sn: Keeper
+uid: juleskeeper
+mail: JulesKeeper@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=faithbroker,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: faithbroker
+displayName: Faith Broker
+employeeNumber: 139870
+employeeType: Employee
+manager: cn=stevestarter,ou=people,ou=users,o=cocoPharma
+description: HR Director and Chief Privacy Officer
+givenname: Faith
+sn: Broker
+uid: faithbroker
+mail: FaithBroker@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=ivorpadlock,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: ivorpadlock
+displayName: Ivor Padlock
+employeeNumber: 499888
+employeeType: Employee
+manager: cn=stevestarter,ou=people,ou=users,o=cocoPharma
+description: Security Officer
+givenname: Ivor
+sn: Padlock
+uid: ivorpadlock
+mail: IvorPadlock@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+#
+# IT Operations team
+# --------------
+# Gary Geeke (IT Infrastructure Administrator), Erin Overview (Information Architect), Peter Profile (Information Analyst)
+
+dn: cn=garygeeke,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: garygeeke
+displayName: Gary Geeke
+employeeNumber: 199995
+employeeType: Employee
+manager: cn=stevestarter,ou=people,ou=users,o=cocoPharma
+description: IT Infrastructure Administrator
+givenname: Gary
+sn: Geeke
+uid: garygeeke
+mail: GaryGeeke@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=erinoverview,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: erinoverview
+displayName: Erin Overview
+employeeNumber: 324713
+employeeType: Employee
+manager: cn=garygeeke,ou=people,ou=users,o=cocoPharma
+description: Information Architect
+givenname: Erin
+sn: Overview
+uid: erinoverview
+mail: ErinOverview@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=peterprofile,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: peterprofile
+displayName: Peter Profile
+employeeNumber: 986419
+employeeType: Employee
+manager: cn=erinoverview,ou=people,ou=users,o=cocoPharma
+description: Information Analyst
+givenname: Peter
+sn: Profile
+uid: peterprofile
+mail: PeterProfile@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+#
+# IT project team
+# --------------
+# Polly Tasker (IT Project Leader), Bob Nitter (Integration Architect/Developer (API developer)), Lemmie Stage (DataStage specialist)
+
+dn: cn=pollytasker,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: pollytasker
+displayName: Polly Tasker
+employeeNumber: 338575
+employeeType: Employee
+manager: cn=stevestarter,ou=people,ou=users,o=cocoPharma
+description: IT Project Leader
+givenname: Polly
+sn: Tasker
+uid: pollytasker
+mail: PollyTasker@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=bobnitter,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: bobnitter
+displayName: Bob Nitter
+employeeNumber: 458109
+employeeType: Employee
+manager: cn=pollytasker,ou=people,ou=users,o=cocoPharma
+description: Integration Architect/Developer (API developer)
+givenname: Bob
+sn: Nitter
+uid: bobnitter
+mail: BobNitter@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=lemmiestage,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: lemmiestage
+displayName: Lemmie Stage
+employeeNumber: 818928
+employeeType: Employee
+manager: cn=pollytasker,ou=people,ou=users,o=cocoPharma
+description: DataStage specialist
+givenname: Lemmie
+sn: Stage
+uid: lemmiestage
+mail: LemmieStage@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+
+#
+# Manufacturing
+# --------------
+# Stew Faster (Manufacturing Manager)
+
+dn: cn=stewfaster,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: stewfaster
+displayName: Stew Faster
+employeeNumber: 483942
+employeeType: Employee
+manager: cn=terridaring,ou=people,ou=users,o=cocoPharma
+description: Manufacturing Leader
+givenname: Stew
+sn: Faster
+uid: stewfaster
+mail: StewFaster@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+
+#
+# Clinical Trials team
+# --------------
+# Callie Quartile (Data Scientist), Tessa Tube (Lead Researcher), Tanya Tidie (Clinical Records Clerk)
+
+dn: cn=tessatube,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: tessatube
+displayName: Tessa Tube
+employeeNumber: 302145
+employeeType: Employee
+description: Lead Researcher
+manager: cn=zachnow,ou=people,ou=users,o=cocoPharma
+givenname: Tessa
+sn: Tube
+uid: tessatube
+mail: TessaTube@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=calliequartile,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: calliequartile
+displayName: Callie Quartile
+employeeNumber: 328080
+employeeType: Employee
+description: Data Scientist
+manager: cn=tessatube,ou=people,ou=users,o=cocoPharma
+givenname: Callie
+sn: Quartile
+uid: calliequartile
+mail: CallieQuartile@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=tanyatidie,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: tanyatidie
+displayName: Tanya Tidie
+employeeNumber: 209482
+employeeType: Employee
+description: Clinical Records Clerk
+manager: cn=tessatube,ou=people,ou=users,o=cocoPharma
+givenname: Tanya
+sn: Tidie
+uid: tanyatidie
+mail: TanyaTidie@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+#
+# Hospital teams
+# --------------
+# Grant Able (Consultant), Julie Stitched (Surgeon), Robbie Records (Patient Data Manager), Angela Cummings (Nurse)
+
+dn: cn=grantable,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: grantable
+displayName: Grant Able
+employeeType: External
+description: Consultant (Hampton Hospital)
+givenname: Grant
+sn: Able
+uid: grantable
+mail: Grant@hh-care.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=juliestitched,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: juliestitched
+displayName: Julie Stitched
+employeeType: External
+description: Surgeon (Hampton Hospital)
+givenname: Julie
+sn: Stitched
+uid: juliestitched
+mail: Julie-Stitched@hh-care.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=robbierecords,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: robbierecords
+displayName: Robbie Records
+employeeType: External
+description: Patient Data Manager (Hampton Hospital)
+givenname: Robbie
+sn: Records
+uid: robbierecords
+mail: RobbieRec@hh-care.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=angelacummings,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: angelacummings
+displayName: Angela Cummings
+employeeType: External
+description: Nurse (Hampton Hospital)
+givenname: Angela
+sn: Cummings
+uid: angelacummings
+mail: angela@hh-care.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+#
+# Cancer Patients
+# --------------
+# Florence Paynter, George Pie have access to portal that gives them access to the portal so they can view their records.
+
+dn: cn=florencepaynter,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: florencepaynter
+displayName: Florence Paynter
+employeeType: Patient
+description: Patient
+givenname: Florence
+sn: Paynter
+uid: florencepaynter
+mail: FlorencePaynter@my.gmail
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=georgepie,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: georgepie
+displayName: George Pie
+employeeType: Patient
+description: Patient
+givenname: George
+sn: Pie
+uid: georgepie
+mail: George.Pie@warmmail.com
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+
+
+#
+# External consultants
+# --------------
+# Nancy Noah (Cloud Architect), Des Signa (Mobile Developer), Sidney Seeker (Fraud Investigator)
+# Nancy added dynamically during demo
+
+dn: cn=sidneyseeker,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: sidneyseeker
+displayName: Sidney Seeker
+description: Fraud Investigator
+manager: cn=reggiemint,ou=people,ou=users,o=cocoPharma
+employeeType: Contractor
+givenname: Sidney
+sn: Seeker
+uid: sidneyseeker
+mail: SJKSeeker@SecIncConSvcs.gmail
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=dessigna,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: dessigna
+displayName: Des Signa
+manager: cn=pollytasker,ou=people,ou=users,o=cocoPharma
+employeeType: Contractor
+description: Mobile Developer
+givenname: Des
+sn: Signa
+uid: dessigna
+mail: des_signa@gb.ibm.com
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+#
+# Bad Users
+# ----------------
+# Reddy Leftie (Procurement Lead) - already left the company, Matt Darker (Unknown) - unknown user - probably a hacker
+
+dn: cn=reddyleftie,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: reddyleftie
+displayName: Reddy Leftie
+employeeNumber: 921848
+employeeType: Employee
+description: Procurement Lead (Finance)
+givenname: Reddy
+sn: Leftie
+manager: cn=tomtally,ou=people,ou=users,o=cocoPharma
+uid: reddyleftie
+mail: ReddyLeftie@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=mattdarker,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: mattdarker
+displayName: Matt Darker
+employeeNumber: 999999
+employeeType: Employee
+description: IT Administrator
+manager: cn=mattdarker,ou=people,ou=users,o=cocoPharma
+givenname: Matt
+sn: Darker
+uid: mattdarker
+mail: mattdarker@gmail.com
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+#
+# Founders
+# ---------------
+# Zach, Steve and Terri
+
+dn: cn=zachnow,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: zachnow
+displayName: Zach Now
+employeeNumber: 133777
+employeeType: Founder
+description: Founder and Head of NY Site
+givenname: Zach
+sn: Now
+uid: zachnow
+mail: ZachNow@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=stevestarter,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: stevestarter
+displayName: Steve Starter
+employeeNumber: 439222
+employeeType: Founder
+description: Founder and Head of Amsterdam Site
+givenname: Steve
+sn: Starter
+uid: stevestarter
+mail: SteveStarter@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+dn: cn=terridaring,ou=people,ou=users,o=cocoPharma
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: top
+cn: terridaring
+displayName: Terri Daring
+employeeNumber: 371803
+employeeType: Founder
+description: Founder and Head of London Site
+givenname: Terri
+sn: Daring
+uid: terridaring
+mail: TerriDaring@Coco-Pharmaceuticals.org
+userpassword: {SHA}nU4eI71bcnBGqeO0t9tXvY1u5oQ=
+
+
+#
+# Groups
+#
+
+dn: cn=managers,ou=roles,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+description: Contains entries of individuals who are managers
+cn: managers
+
+dn: cn=employees,ou=roles,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+description: Contains entries of individuals who are employees of Coco Pharmaceuticals
+cn: employees
+
+dn: cn=contractors,ou=roles,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+description: Contains entries of individuals who are contractors to Coco Pharmaceuticals
+cn: contractors
+
+dn: cn=Hampton Hospital,ou=partners,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+description: Contains entries of individuals who work for Hampton Hospital
+cn: Hampton Hospital
+uniquemember: cn=grantable,ou=people,ou=users,o=cocoPharma
+uniquemember: cn=juliestitched,ou=people,ou=users,o=cocoPharma
+uniquemember: cn=robbierecords,ou=people,ou=users,o=cocoPharma
+uniquemember: cn=angelacummings,ou=people,ou=users,o=cocoPharma
+
+dn: cn=patients,ou=partners,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: patients
+description: The list of patients with access to the portal so they can view their records.
+uniquemember: cn=florencepaynter,ou=people,ou=users,o=cocoPharma
+uniquemember: cn=georgepie,ou=people,ou=users,o=cocoPharma
+
+dn: cn=Founders,ou=departments,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: founders
+description: The list of founders for the organization
+uniquemember: cn=zachnow,ou=people,ou=users,o=cocoPharma
+uniquemember: cn=stevestarter,ou=people,ou=users,o=cocoPharma
+uniquemember: cn=terridaring,ou=people,ou=users,o=cocoPharma
+uniquemember: cn=mattdarker,ou=people,ou=users,o=cocoPharma
+
+dn: cn=open-metadata-users,ou=roles,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+description: Contains entries of all known users with access to Coco Pharmaceuticals' open metadata systems
+cn: open-metadata-users
+
+dn: cn=npa,ou=roles,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+description: Contains entries of the Coco Pharmaceuticals' systems
+cn: npa
+uniquemember: cn=cocoMDS1,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=cocoMDS2,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=cocoMDS3,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=cocoMDS4,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=cocoMDS5,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=cocoMDS6,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=cocoMDS7,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=cocoMDS8,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=cocoMDSx,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=exchangeDL01,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=monitorGov01,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=governDL01,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=cocoOLS1,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=cocoView1,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=onboardDL01,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=monitorDL01,ou=systems,ou=users,o=cocoPharma
+uniquemember: cn=Matt Darker,ou=people,ou=users,o=cocoPharma
+
+dn: cn=platform-administrators,ou=roles,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+description: Contains the users who can issue platform commands.
+cn: platform-administrators
+uniquemember: cn=garygeeke,ou=people,ou=users,o=cocoPharma
+
+dn: cn=server-administrators,ou=roles,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+description: Contains the users who can issue server administration commands.
+cn: server-administrators
+uniquemember: cn=garygeeke,ou=people,ou=users,o=cocoPharma
+
+dn: cn=server-operators,ou=roles,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+description: Contains the users who can issue commands to start and stop servers.
+cn: server-operators
+uniquemember: cn=garygeeke,ou=people,ou=users,o=cocoPharma
+
+dn: cn=server-investigators,ou=roles,ou=groups,o=cocoPharma
+objectclass: groupOfUniqueNames
+objectclass: top
+description: Contains the users who can issue diagnostic commands to a server.
+cn: server-investigators
+uniquemember: cn=garygeeke,ou=people,ou=users,o=cocoPharma
+
+
+
+
+
