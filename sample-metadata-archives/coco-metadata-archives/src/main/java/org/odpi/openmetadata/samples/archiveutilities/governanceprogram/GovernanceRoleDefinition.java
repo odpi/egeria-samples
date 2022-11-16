@@ -102,6 +102,28 @@ public enum GovernanceRoleDefinition
 
 
     /**
+     * Return the domain of the governance role.
+     *
+     * @return domain
+     */
+    public GovernanceDomainDefinition getDomain()
+    {
+        return domain;
+    }
+
+
+    /**
+     * Return the appointees.
+     *
+     * @return list of profiles
+     */
+    public PersonDefinition[] getAppointees()
+    {
+        return appointees;
+    }
+
+
+    /**
      * Returns a descriptive name of the role.
      *
      * @return display name
