@@ -12,7 +12,7 @@
     <scm>
         <connection>scm:git:git://github.com/odpi/egeria-samples.git</connection>
         <developerConnection>scm:git:ssh://github.com/odpi/egeria-samples.git</developerConnection>
-        <url>https://github.com/odpi/egeria-samples/tree/master</url>
+        <url>https://github.com/odpi/egeria-samples/tree/main</url>
     </scm>
 
     <groupId>org.odpi.egeria</groupId>
