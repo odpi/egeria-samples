@@ -65,5 +65,9 @@ sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/buildOutputCleanup/out
 **/.factorypath
 **/**.code-workspace
 
+# Ignore Archive files in top-level directory
+/*Archive.json
+
+
 
 

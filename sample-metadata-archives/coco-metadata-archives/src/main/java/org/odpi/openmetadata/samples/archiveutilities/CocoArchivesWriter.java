@@ -27,6 +27,9 @@ public class CocoArchivesWriter
     {
         try
         {
+            CocoComboArchiveWriter             cocoComboArchiveWriter  = new CocoComboArchiveWriter();
+            cocoComboArchiveWriter.writeOpenMetadataArchive();
+
             CocoTypesArchiveWriter             typesArchiveWriter = new CocoTypesArchiveWriter();
             CocoClinicalTrialsArchiveWriter    clinicalTrialsArchiveWriter    = new CocoClinicalTrialsArchiveWriter();
             CocoGovernanceProgramArchiveWriter cocoGovernanceProgramArchiveWriter = new CocoGovernanceProgramArchiveWriter();
@@ -34,7 +37,6 @@ public class CocoArchivesWriter
             CocoBusinessSystemsArchiveWriter   businessSystemsArchiveWriter = new CocoBusinessSystemsArchiveWriter();
             CocoOrganizationArchiveWriter      organizationArchiveWriter = new CocoOrganizationArchiveWriter();
             CocoSustainabilityArchiveWriter    sustainabilityArchiveWriter  = new CocoSustainabilityArchiveWriter();
-            CocoComboArchiveWriter             cocoComboArchiveWriter  = new CocoComboArchiveWriter();
 
             typesArchiveWriter.writeOpenMetadataArchive();
             clinicalTrialsArchiveWriter.writeOpenMetadataArchive();
@@ -43,7 +45,6 @@ public class CocoArchivesWriter
             organizationArchiveWriter.writeOpenMetadataArchive();
             cocoGovernanceProgramArchiveWriter.writeOpenMetadataArchive();
             sustainabilityArchiveWriter.writeOpenMetadataArchive();
-            cocoComboArchiveWriter.writeOpenMetadataArchive();
         }
         catch (Exception error)
         {
