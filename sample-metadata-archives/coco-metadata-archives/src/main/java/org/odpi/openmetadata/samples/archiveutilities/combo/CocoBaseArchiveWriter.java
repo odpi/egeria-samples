@@ -9,7 +9,6 @@ import org.odpi.openmetadata.repositoryservices.archiveutilities.OMRSArchiveWrit
 import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchive;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchiveType;
 import org.odpi.openmetadata.samples.archiveutilities.GovernanceArchiveHelper;
-import org.odpi.openmetadata.samples.archiveutilities.SimpleCatalogArchiveHelper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +25,7 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
     protected static final OpenMetadataArchiveType archiveType        = OpenMetadataArchiveType.CONTENT_PACK;
     protected static final String                  originatorName     = "Egeria Project";
 
-    private static final String guidMapFileName = "CocoComboGUIDMap.json";
+    protected static final String guidMapFileName = "CocoComboGUIDMap.json";
 
     /*
      * Common values for naming of elements in the archive.
@@ -39,14 +38,14 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
     protected static final long   versionNumber = 1L;
     protected static final String versionName   = "1.0";
 
-    protected  OMRSArchiveBuilder         archiveBuilder;
-    protected  SimpleCatalogArchiveHelper archiveHelper;
+    protected  OMRSArchiveBuilder      archiveBuilder;
+    protected  GovernanceArchiveHelper archiveHelper;
 
-    private final String              archiveGUID;
-    private final String              archiveName;
-    private final Date                creationDate;
+    protected final String              archiveGUID;
+    protected final String              archiveName;
+    protected final Date                creationDate;
 
-    private final String archiveFileName;
+    protected final String archiveFileName;
 
 
     /**
@@ -131,17 +130,11 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
      *
      * @param archiveBuilder new archive builder
      */
-    protected void setArchiveBuilder(OMRSArchiveBuilder archiveBuilder)
+    protected void setArchiveBuilder(OMRSArchiveBuilder      archiveBuilder,
+                                     GovernanceArchiveHelper archiveHelper)
     {
         this.archiveBuilder = archiveBuilder;
-        this.archiveHelper = new GovernanceArchiveHelper(archiveBuilder,
-                                                         archiveGUID,
-                                                         archiveName,
-                                                         originatorName,
-                                                         creationDate,
-                                                         versionNumber,
-                                                         versionName,
-                                                         guidMapFileName);
+        this.archiveHelper = archiveHelper;
     }
 
 
@@ -153,8 +146,6 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
     public OpenMetadataArchive getOpenMetadataArchive()
     {
         getArchiveContent();
-
-        archiveHelper.saveGUIDs();
 
         /*
          * The completed archive is ready to be packaged up and returned

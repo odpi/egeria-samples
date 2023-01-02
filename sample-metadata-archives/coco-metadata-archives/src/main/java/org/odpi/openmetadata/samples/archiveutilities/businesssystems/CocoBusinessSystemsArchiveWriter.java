@@ -3,19 +3,10 @@
 package org.odpi.openmetadata.samples.archiveutilities.businesssystems;
 
 
-import org.odpi.openmetadata.opentypes.OpenMetadataTypesArchive;
-import org.odpi.openmetadata.repositoryservices.archiveutilities.OMRSArchiveBuilder;
-import org.odpi.openmetadata.repositoryservices.archiveutilities.OMRSArchiveWriter;
-import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchive;
-import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchiveType;
-import org.odpi.openmetadata.samples.archiveutilities.GovernanceArchiveHelper;
-import org.odpi.openmetadata.samples.archiveutilities.SimpleCatalogArchiveHelper;
-import org.odpi.openmetadata.samples.archiveutilities.combo.CocoBaseArchiveWriter;
-import org.odpi.openmetadata.samples.archiveutilities.organization.ContactTypeDefinition;
 
-import java.util.ArrayList;
+import org.odpi.openmetadata.samples.archiveutilities.combo.CocoBaseArchiveWriter;
+
 import java.util.Date;
-import java.util.List;
 
 
 /**

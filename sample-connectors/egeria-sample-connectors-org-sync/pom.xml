@@ -17,7 +17,7 @@
 
     <groupId>org.odpi.egeria</groupId>
     <artifactId>egeria-sample-connectors-org-sync</artifactId>
-    <version>3.11-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
 
     <name>Coco Pharmaceuticals Organization Data Synchronization Connector</name>
     <description>
@@ -26,7 +26,7 @@
     </description>
 
     <properties>
-        <open-metadata.version>${project.version}</open-metadata.version>
+        <open-metadata.version>3.14</open-metadata.version>
 
         <!-- Level of Java  -->
         <maven.compiler.source>11</maven.compiler.source>
