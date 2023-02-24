@@ -7,6 +7,8 @@ package org.odpi.openmetadata.samples.archiveutilities.businesssystems;
 import org.odpi.openmetadata.samples.archiveutilities.combo.CocoBaseArchiveWriter;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -46,17 +48,30 @@ public class CocoBusinessSystemsArchiveWriter extends CocoBaseArchiveWriter
         addSystems();
     }
 
+
+    /**
+     * The systems define the software servers.
+     */
     private void addSystems()
     {
         for (SystemDefinition systemDefinition : SystemDefinition.values())
         {
+            Map<String, Object> extendedProperties = new HashMap<>();
+
+            extendedProperties.put("deployedImplementationType", systemDefinition.getSystemType().getPreferredValue());
+            extendedProperties.put("userId", systemDefinition.getUserId());
+
             archiveHelper.addAsset("SoftwareServer",
                                    systemDefinition.getQualifiedName(),
-                                   systemDefinition.getDisplayName(),
+                                   systemDefinition.getSystemId(),
+                                   systemDefinition.getVersionIdentifier(),
                                    systemDefinition.getDescription(),
                                    systemDefinition.getZones(),
                                    null,
-                                   null);
+                                   extendedProperties);
+
+            archiveHelper.addAssetLocationRelationship(systemDefinition.getSystemLocation().getQualifiedName(),
+                                                       systemDefinition.getQualifiedName());
         }
     }
 }
