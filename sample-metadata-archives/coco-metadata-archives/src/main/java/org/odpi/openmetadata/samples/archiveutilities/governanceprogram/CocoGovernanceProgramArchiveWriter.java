@@ -54,7 +54,7 @@ public class CocoGovernanceProgramArchiveWriter extends CocoBaseArchiveWriter
         writeCommunities();
         writeProjectStatusValidValueSet();
         writeProjects();
-
+        writeRoles();
     }
 
     /**
@@ -72,14 +72,49 @@ public class CocoGovernanceProgramArchiveWriter extends CocoBaseArchiveWriter
 
         for (GovernanceDomainDefinition domainDefinition : GovernanceDomainDefinition.values())
         {
-            String domainGUID = archiveHelper.addGovernanceDomainDescription(governanceDomainSetGUID,
+            archiveHelper.addGovernanceDomainDescription(governanceDomainSetGUID,
                                                          domainDefinition.getQualifiedName(),
                                                          domainDefinition.getDomainIdentifier(),
                                                          domainDefinition.getDisplayName(),
                                                          domainDefinition.getDescription(),
                                                          null);
 
+            String communityQName = "Community: " + domainDefinition.getQualifiedName();
 
+            archiveHelper.addCommunity(null,
+                                       communityQName,
+                                       domainDefinition.getCommunityName(),
+                                       "Community supporting " + domainDefinition.getDisplayName() + " that is lead by the governance domain leader and includes all the people supporting the domain.",
+                                       "To provide a mechanism for communication and coordination of work across Coco Pharmaceuticals that supports this governance domain.",
+                                       null,
+                                       null);
+
+
+            archiveHelper.addResourceListRelationship(domainDefinition.getQualifiedName(),
+                                                      communityQName,
+                                                      "Implementing team",
+                                                      false);
+
+
+            String governanceOfficerQName = SimpleCatalogArchiveHelper.GOVERNANCE_OFFICER_TYPE_NAME + ": " + domainDefinition.getQualifiedName();
+            archiveHelper.addGovernanceRole(SimpleCatalogArchiveHelper.GOVERNANCE_OFFICER_TYPE_NAME,
+                                            governanceOfficerQName,
+                                            domainDefinition.getDomainIdentifier(),
+                                            "GOV_OFFICER:" + domainDefinition.getDomainIdentifier(),
+                                            "Governance Officer for " + domainDefinition.getDisplayName(),
+                                            null,
+                                            null,
+                                            true,
+                                            1,
+                                            null,
+                                            null);
+
+            if (domainDefinition.getGovernanceOfficer() != null)
+            {
+                archiveHelper.addPersonRoleAppointmentRelationship(domainDefinition.getGovernanceOfficer().getQualifiedName(),
+                                                                   governanceOfficerQName,
+                                                                   true);
+            }
         }
     }
 
@@ -116,14 +151,14 @@ public class CocoGovernanceProgramArchiveWriter extends CocoBaseArchiveWriter
         for (CocoSubjectAreaDefinition subjectAreaDefinition : CocoSubjectAreaDefinition.values())
         {
             String subjectAreaGUID = archiveHelper.addSubjectAreaDefinition(subjectAreaDefinition.getQualifiedName(),
-                                                   subjectAreaDefinition.getSubjectAreaName(),
-                                                   subjectAreaDefinition.getDisplayName(),
-                                                   subjectAreaDefinition.getDescription(),
-                                                   subjectAreaDefinition.getScope(),
-                                                   subjectAreaDefinition.getUsage(),
-                                                   subjectAreaDefinition.getDomain(),
-                                                   null,
-                                                   null);
+                                                                            subjectAreaDefinition.getSubjectAreaName(),
+                                                                            subjectAreaDefinition.getDisplayName(),
+                                                                            subjectAreaDefinition.getDescription(),
+                                                                            subjectAreaDefinition.getScope(),
+                                                                            subjectAreaDefinition.getUsage(),
+                                                                            subjectAreaDefinition.getDomain(),
+                                                                            null,
+                                                                            null);
 
             subjectAreaMap.put(subjectAreaDefinition.getSubjectAreaName(), subjectAreaGUID);
 
@@ -136,7 +171,6 @@ public class CocoGovernanceProgramArchiveWriter extends CocoBaseArchiveWriter
     }
 
 
-
     /**
      * Creates Communities and related elements.
      */
@@ -144,11 +178,93 @@ public class CocoGovernanceProgramArchiveWriter extends CocoBaseArchiveWriter
     {
         for (CommunityDefinition communityDefinition : CommunityDefinition.values())
         {
+            archiveHelper.addCommunity(null,
+                                       communityDefinition.getQualifiedName(),
+                                       communityDefinition.getDisplayName(),
+                                       communityDefinition.getDescription(),
+                                       null,
+                                       null,
+                                       null);
 
+            if (communityDefinition.getLeaders() != null)
+            {
+                String leaderRoleQName = "Leader: " + communityDefinition.getQualifiedName();
+
+                archiveHelper.addPersonRole(SimpleCatalogArchiveHelper.COMMUNITY_MEMBER_TYPE_NAME,
+                                            leaderRoleQName,
+                                            "Community Leader",
+                                            null,
+                                            null,
+                                            "Community",
+                                            false,
+                                            0,
+                                            null,
+                                            null);
+
+                archiveHelper.addCommunityMembershipRelationship(communityDefinition.getQualifiedName(), leaderRoleQName, SimpleCatalogArchiveHelper.COMMUNITY_MEMBERSHIP_TYPE_LEADER);
+
+                for (PersonDefinition leader : communityDefinition.getLeaders())
+                {
+                    archiveHelper.addPersonRoleAppointmentRelationship(leader.getQualifiedName(), leaderRoleQName, true);
+                }
+            }
+
+            if (communityDefinition.getMembers() != null)
+            {
+                String memberRoleQName = "Member: " + communityDefinition.getQualifiedName();
+
+                archiveHelper.addPersonRole(SimpleCatalogArchiveHelper.COMMUNITY_MEMBER_TYPE_NAME,
+                                            memberRoleQName,
+                                            "CommunityMember",
+                                            null,
+                                            null,
+                                            "Community",
+                                            false,
+                                            0,
+                                            null,
+                                            null);
+
+                archiveHelper.addCommunityMembershipRelationship(communityDefinition.getQualifiedName(), memberRoleQName, SimpleCatalogArchiveHelper.COMMUNITY_MEMBERSHIP_TYPE_CONTRIBUTOR);
+
+                for (PersonDefinition member : communityDefinition.getMembers())
+                {
+                    archiveHelper.addPersonRoleAppointmentRelationship(member.getQualifiedName(), memberRoleQName, true);
+                }
+            }
         }
     }
 
 
+    /**
+     * Creates PersonRoles and related elements.
+     */
+    private void writeRoles()
+    {
+        for (GovernanceRoleDefinition roleDefinition : GovernanceRoleDefinition.values())
+        {
+            archiveHelper.addGovernanceRole(roleDefinition.getTypeName(),
+                                            roleDefinition.getQualifiedName(),
+                                            roleDefinition.getDomain().getDomainIdentifier(),
+                                            roleDefinition.getIdentifier(),
+                                            roleDefinition.getDisplayName(),
+                                            roleDefinition.getDescription(),
+                                            roleDefinition.getScope(),
+                                            roleDefinition.isHeadCountSet(),
+                                            roleDefinition.getHeadCount(),
+                                            null,
+                                            null);
+
+            if (roleDefinition.getAppointees() != null)
+            {
+                for (PersonDefinition appointee : roleDefinition.getAppointees())
+                {
+                    archiveHelper.addPersonRoleAppointmentRelationship(appointee.getQualifiedName(),
+                                                                       roleDefinition.getQualifiedName(),
+                                                                       true);
+                }
+            }
+        }
+    }
 
 
     /**

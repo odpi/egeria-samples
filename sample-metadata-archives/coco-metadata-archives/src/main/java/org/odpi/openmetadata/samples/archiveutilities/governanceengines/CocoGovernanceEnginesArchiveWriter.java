@@ -7,17 +7,10 @@ import org.odpi.openmetadata.adapters.connectors.governanceactions.provisioning.
 import org.odpi.openmetadata.adapters.connectors.governanceactions.remediation.OriginSeekerGovernanceActionProvider;
 import org.odpi.openmetadata.adapters.connectors.governanceactions.remediation.ZonePublisherGovernanceActionProvider;
 import org.odpi.openmetadata.adapters.connectors.governanceactions.watchdog.GenericFolderWatchdogGovernanceActionProvider;
-import org.odpi.openmetadata.opentypes.OpenMetadataTypesArchive;
-import org.odpi.openmetadata.repositoryservices.archiveutilities.OMRSArchiveWriter;
-import org.odpi.openmetadata.repositoryservices.archiveutilities.OMRSArchiveBuilder;
-import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchive;
-import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchiveType;
-import org.odpi.openmetadata.samples.archiveutilities.GovernanceArchiveHelper;
+import org.odpi.openmetadata.samples.archiveutilities.combo.CocoBaseArchiveWriter;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -25,7 +18,7 @@ import java.util.Map;
  * CocoGovernanceEnginesArchiveWriter creates a physical open metadata archive file containing the governance engine definitions
  * needed by Coco Pharmaceuticals.
  */
-public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
+public class CocoGovernanceEnginesArchiveWriter extends CocoBaseArchiveWriter
 {
     private static final String archiveFileName = "CocoGovernanceEngineDefinitionsArchive.json";
 
@@ -34,67 +27,52 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
      */
     private static final String                  archiveGUID        = "9cbd2b33-e80f-4df2-adc6-d859ebff4c34";
     private static final String                  archiveName        = "CocoGovernanceEngineDefinitions";
-    private static final String                  archiveLicense     = "Apache 2.0";
     private static final String                  archiveDescription = "Governance Engines for Coco Pharmaceuticals.";
-    private static final OpenMetadataArchiveType archiveType        = OpenMetadataArchiveType.CONTENT_PACK;
-    private static final String                  originatorName     = "Egeria Project";
-    private static final Date                    creationDate       = new Date(1639984840038L);
 
     /*
      * Specific values for initializing TypeDefs
      */
-    private static final long   versionNumber = 1L;
-    private static final String versionName   = "1.0";
-
     private static final String GOVERNANCE_ACTION_ENGINE_TYPE_NAME  = "GovernanceActionEngine";
     private static final String GOVERNANCE_ACTION_SERVICE_TYPE_NAME = "GovernanceActionService";
 
     private static final String OPEN_DISCOVERY_ENGINE_TYPE_NAME  = "OpenDiscoveryEngine";
     private static final String OPEN_DISCOVERY_SERVICE_TYPE_NAME = "OpenDiscoveryService";
 
-    private OMRSArchiveBuilder      archiveBuilder;
-    private final GovernanceArchiveHelper archiveHelper;
-
-
     /**
      * Default constructor initializes the archive.
      */
     public CocoGovernanceEnginesArchiveWriter()
     {
-        List<OpenMetadataArchive> dependentOpenMetadataArchives = new ArrayList<>();
-
-        /*
-         * This value allows the governance engine definitions to be based on the existing open metadata types
-         */
-        dependentOpenMetadataArchives.add(new OpenMetadataTypesArchive().getOpenMetadataArchive());
-
-        this.archiveBuilder = new OMRSArchiveBuilder(archiveGUID,
-                                                     archiveName,
-                                                     archiveDescription,
-                                                     archiveType,
-                                                     originatorName,
-                                                     archiveLicense,
-                                                     creationDate,
-                                                     dependentOpenMetadataArchives);
-
-        this.archiveHelper = new GovernanceArchiveHelper(archiveBuilder,
-                                                         archiveGUID,
-                                                         archiveName,
-                                                         originatorName,
-                                                         creationDate,
-                                                         versionNumber,
-                                                         versionName);
+        super(archiveGUID,
+              archiveName,
+              archiveDescription,
+              new Date(),
+              archiveFileName,
+              null);
     }
 
 
     /**
-     * Provide an alternative archive builder.  Used when consolidating archives.
+     * Create an entity for the FileProvisioner governance engine.
      *
-     * @param archiveBuilder new archive builder
+     * @return unique identifier for the governance engine
      */
-    public void setArchiveBuilder(OMRSArchiveBuilder archiveBuilder)
+    private String getFileProvisioningEngine()
     {
-        this.archiveBuilder = archiveBuilder;
+        final String governanceEngineName        = "FileProvisioning";
+        final String governanceEngineDisplayName = "File Provisioning Governance Action Engine";
+        final String governanceEngineDescription = "Copies, moves or deletes a file on request.";
+
+        return archiveHelper.addGovernanceEngine(GOVERNANCE_ACTION_ENGINE_TYPE_NAME,
+                                                 governanceEngineName,
+                                                 governanceEngineDisplayName,
+                                                 governanceEngineDescription,
+                                                 null,
+                                                 null,
+                                                 null,
+                                                 null,
+                                                 null,
+                                                 null);
     }
 
 
@@ -147,45 +125,50 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
 
 
     /**
-     * Create an entity for the FTP governance action service.
+     * Create an entity for the AssetQuality governance engine.
      *
      * @return unique identifier for the governance engine
      */
-    private String getFTPGovernanceActionService()
+    private String getAssetQualityEngine()
     {
-        final String ftpGovernanceServiceName = "ftp-governance-action-service";
-        final String ftpGovernanceServiceDisplayName = "FTP Governance Action Service";
-        final String ftpGovernanceServiceDescription = "Simulates FTP from an external party.";
-        final String ftpGovernanceServiceProviderClassName = MoveCopyFileGovernanceActionProvider.class.getName();
-        final String ftpGovernanceServiceConfigurationPropertyName = "noLineage";
+        final String assetQualityEngineName        = "AssetQuality";
+        final String assetQualityEngineDisplayName = "AssetQuality Open Discovery Engine";
+        final String assetQualityEngineDescription = "Assess the quality of a digital resource identified by the asset in the request.";
 
-        Map<String, Object> configurationProperties = new HashMap<>();
-
-        configurationProperties.put(ftpGovernanceServiceConfigurationPropertyName, "");
-
-        return archiveHelper.addGovernanceService(GOVERNANCE_ACTION_ENGINE_TYPE_NAME,
-                                                  ftpGovernanceServiceProviderClassName,
-                                                  configurationProperties,
-                                                  ftpGovernanceServiceName,
-                                                  ftpGovernanceServiceDisplayName,
-                                                  ftpGovernanceServiceDescription,
-                                                  null,
-                                                  null);
+        return archiveHelper.addGovernanceEngine(OPEN_DISCOVERY_ENGINE_TYPE_NAME,
+                                                 assetQualityEngineName,
+                                                 assetQualityEngineDisplayName,
+                                                 assetQualityEngineDescription,
+                                                 null,
+                                                 null,
+                                                 null,
+                                                 null,
+                                                 null,
+                                                 null);
     }
 
 
     /**
-     * Set up the request type that links the governance engine to the governance service.
+     * Create an entity for the FileProvisioning governance action service.
      *
-     * @param governanceEngineGUID unique identifier of the governance engine
-     * @param governanceServiceGUID unique identifier of the governance service
+     * @return unique identifier for the governance engine
      */
-    private void addCopyFileRequestType(String governanceEngineGUID,
-                                        String governanceServiceGUID)
+    private String getFileProvisioningGovernanceActionService()
     {
-        final String governanceServiceRequestType = "copy-file";
+        final String governanceServiceName        = "file-provisioning-governance-action-service";
+        final String governanceServiceDisplayName = "File {move, copy, delete} Governance Action Service";
+        final String governanceServiceDescription = "Works with files.  The request type defines which action is taken.  " +
+                                                               "The request parameters define the source file and destination, along with lineage options";
+        final String ftpGovernanceServiceProviderClassName = MoveCopyFileGovernanceActionProvider.class.getName();
 
-        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceServiceRequestType, null, governanceServiceGUID);
+        return archiveHelper.addGovernanceService(GOVERNANCE_ACTION_SERVICE_TYPE_NAME,
+                                                  ftpGovernanceServiceProviderClassName,
+                                                  null,
+                                                  governanceServiceName,
+                                                  governanceServiceDisplayName,
+                                                  governanceServiceDescription,
+                                                  null,
+                                                  null);
     }
 
 
@@ -213,6 +196,74 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
 
 
     /**
+     * Add a governance service that walks backwards through an asset's lineage to find an origin classification.  If found, the same origin is added
+     * to the asset.
+     *
+     * @return unique identifier fo the governance service
+     */
+    private String getZonePublisherGovernanceActionService()
+    {
+        final String governanceServiceName = "zone-publisher-governance-action-service";
+        final String governanceServiceDisplayName = "Update Asset's Zone Membership Governance Action Service";
+        final String governanceServiceDescription = "Set up the zone membership for one or more assets supplied as action targets.";
+        final String governanceServiceProviderClassName = ZonePublisherGovernanceActionProvider.class.getName();
+
+        return archiveHelper.addGovernanceService(GOVERNANCE_ACTION_SERVICE_TYPE_NAME,
+                                                  governanceServiceProviderClassName,
+                                                  null,
+                                                  governanceServiceName,
+                                                  governanceServiceDisplayName,
+                                                  governanceServiceDescription,
+                                                  null,
+                                                  null);
+    }
+
+
+    /**
+     * Set up the request type that links the governance engine to the governance service.
+     *
+     * @return unique identifier fo the governance service
+     */
+    private String getOriginSeekerGovernanceActionService()
+    {
+        final String governanceServiceName = "origin-seeker-governance-action-service";
+        final String governanceServiceDisplayName = "Locate and Set Origin Governance Action Service";
+        final String governanceServiceDescription = "Navigates back through the lineage relationships to locate the origin classification(s) from the source(s) and sets it on the requested asset if the origin is unique.";
+        final String governanceServiceProviderClassName = OriginSeekerGovernanceActionProvider.class.getName();
+
+        return archiveHelper.addGovernanceService(GOVERNANCE_ACTION_SERVICE_TYPE_NAME,
+                                                  governanceServiceProviderClassName,
+                                                  null,
+                                                  governanceServiceName,
+                                                  governanceServiceDisplayName,
+                                                  governanceServiceDescription,
+                                                  null,
+                                                  null);
+    }
+
+
+    /**
+     * Set up the request type that links the governance engine to the governance service.
+     *
+     * @param governanceEngineGUID unique identifier of the governance engine
+     * @param governanceServiceGUID unique identifier of the governance service
+     */
+    private void addFTPFileRequestType(String governanceEngineGUID,
+                                       String governanceServiceGUID)
+    {
+        final String governanceRequestType = "simulate-ftp";
+        final String serviceRequestType = "copy-file";
+        final String noLineagePropertyName = "noLineage";
+
+        Map<String, String> requestParameters = new HashMap<>();
+
+        requestParameters.put(noLineagePropertyName, "");
+
+        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceRequestType, serviceRequestType, requestParameters, governanceServiceGUID);
+    }
+
+
+    /**
      * Set up the request type that links the governance engine to the governance service.
      *
      * @param governanceEngineGUID unique identifier of the governance engine
@@ -221,42 +272,10 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
     private void addWatchNestedInFolderRequestType(String governanceEngineGUID,
                                                    String governanceServiceGUID)
     {
-        final String governanceServiceRequestType = "watch-nested-in-folder";
+        final String governanceRequestType = "watch-for-new-files";
+        final String serviceRequestType = "watch-nested-in-folder";
 
-        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceServiceRequestType, null, governanceServiceGUID);
-    }
-
-
-    /**
-     * Add a governance service that moves files from one location to another and creates lineage.
-     *
-     * @return unique identifier fo the governance service
-     */
-    private String addProvisionFileGovernanceActionService()
-    {
-        final String governanceServiceName = "provision-weekly-measurements-governance-action-service";
-        final String governanceServiceDisplayName = "File Provisioning Governance Action Service";
-        final String governanceServiceDescription = "Provisions weekly measurement files from the landing area to the data lake.";
-        final String governanceServiceProviderClassName = MoveCopyFileGovernanceActionProvider.class.getName();
-
-        final String targetFileNameConfigurationPropertyName = "targetFileNamePattern";
-        final String targetFileNameConfigurationPropertyValue = "DropFoot_{1, number,000000}.csv";
-        final String destinationFolderNameConfigurationPropertyName = "destinationFolder";
-        final String destinationFolder = "./data-lake/research/clinical-trials/drop-foot/weekly-measurements";
-
-        Map<String, Object> configurationProperties = new HashMap<>();
-
-        configurationProperties.put(targetFileNameConfigurationPropertyName, targetFileNameConfigurationPropertyValue);
-        configurationProperties.put(destinationFolderNameConfigurationPropertyName, destinationFolder);
-
-        return archiveHelper.addGovernanceService(GOVERNANCE_ACTION_SERVICE_TYPE_NAME,
-                                                  governanceServiceProviderClassName,
-                                                  configurationProperties,
-                                                  governanceServiceName,
-                                                  governanceServiceDisplayName,
-                                                  governanceServiceDescription,
-                                                  null,
-                                                  null);
+        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceRequestType, serviceRequestType, null, governanceServiceGUID);
     }
 
 
@@ -266,46 +285,44 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
      * @param governanceEngineGUID unique identifier of the governance engine
      * @param governanceServiceGUID unique identifier of the governance service
      */
-    private void addProvisionFileRequestType(String governanceEngineGUID,
-                                             String governanceServiceGUID)
+    private void addCopyFileRequestType(String governanceEngineGUID,
+                                        String governanceServiceGUID)
     {
-        final String governanceServiceRequestType = "move-file";
+        final String governanceRequestType = "copy-file";
 
-        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceServiceRequestType, null, governanceServiceGUID);
+        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceRequestType, null, null, governanceServiceGUID);
     }
 
 
+
     /**
-     * Add a governance service that walks backwards through an asset's lineage to find an origin classification.  If found, the same origin is added
-     * to the asset.
+     * Set up the request type that links the governance engine to the governance service.
      *
-     * @return unique identifier fo the governance service
+     * @param governanceEngineGUID unique identifier of the governance engine
+     * @param governanceServiceGUID unique identifier of the governance service
      */
-    private String addOriginSeekerGovernanceActionService()
+    private void addMoveFileRequestType(String governanceEngineGUID,
+                                        String governanceServiceGUID)
     {
-        final String governanceServiceName = "origin-seeker-governance-action-service";
-        final String governanceServiceDisplayName = "Locate and Set Origin Governance Action Service";
-        final String governanceServiceDescription = "Navigates back through the lineage relationships to locate the origin classification(s) from the source(s) and sets it on the requested asset if the origin is unique.";
-        final String governanceServiceProviderClassName = OriginSeekerGovernanceActionProvider.class.getName();
+        final String governanceRequestType = "move-file";
 
-        final String targetFileNameConfigurationPropertyName = "targetFileNamePattern";
-        final String targetFileNameConfigurationPropertyValue = "DropFoot_{1, number,000000}.csv";
-        final String destinationFolderNameConfigurationPropertyName = "destinationFolder";
-        final String destinationFolder = "./data-lake/research/clinical-trials/drop-foot/weekly-measurements";
+        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceRequestType, null, null, governanceServiceGUID);
+    }
 
-        Map<String, Object> configurationProperties = new HashMap<>();
 
-        configurationProperties.put(targetFileNameConfigurationPropertyName, targetFileNameConfigurationPropertyValue);
-        configurationProperties.put(destinationFolderNameConfigurationPropertyName, destinationFolder);
 
-        return archiveHelper.addGovernanceService(GOVERNANCE_ACTION_SERVICE_TYPE_NAME,
-                                                  governanceServiceProviderClassName,
-                                                  configurationProperties,
-                                                  governanceServiceName,
-                                                  governanceServiceDisplayName,
-                                                  governanceServiceDescription,
-                                                  null,
-                                                  null);
+    /**
+     * Set up the request type that links the governance engine to the governance service.
+     *
+     * @param governanceEngineGUID unique identifier of the governance engine
+     * @param governanceServiceGUID unique identifier of the governance service
+     */
+    private void addDeleteFileRequestType(String governanceEngineGUID,
+                                          String governanceServiceGUID)
+    {
+        final String governanceRequestType = "delete-file";
+
+        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceRequestType, null, null, governanceServiceGUID);
     }
 
 
@@ -320,39 +337,9 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
     {
         final String governanceServiceRequestType = "seek-origin";
 
-        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceServiceRequestType, null, governanceServiceGUID);
+        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceServiceRequestType, null, null, governanceServiceGUID);
     }
 
-
-    /**
-     * Add a governance service that walks backwards through an asset's lineage to find an origin classification.  If found, the same origin is added
-     * to the asset.
-     *
-     * @return unique identifier fo the governance service
-     */
-    private String addZonePublisherGovernanceActionService()
-    {
-        final String governanceServiceName = "zone-publisher-governance-action-service";
-        final String governanceServiceDisplayName = "Update Asset's Zone Membership Governance Action Service";
-        final String governanceServiceDescription = "Set up the zone membership for one or more assets supplied as action targets.";
-        final String governanceServiceProviderClassName = ZonePublisherGovernanceActionProvider.class.getName();
-
-        final String publishZoneConfigurationPropertyName = "publishZones";
-        final String publishZoneConfigurationPropertyValue = "data-lake,clinical-trials";
-
-        Map<String, Object> configurationProperties = new HashMap<>();
-
-        configurationProperties.put(publishZoneConfigurationPropertyName, publishZoneConfigurationPropertyValue);
-
-        return archiveHelper.addGovernanceService(GOVERNANCE_ACTION_SERVICE_TYPE_NAME,
-                                                  governanceServiceProviderClassName,
-                                                  configurationProperties,
-                                                  governanceServiceName,
-                                                  governanceServiceDisplayName,
-                                                  governanceServiceDescription,
-                                                  null,
-                                                  null);
-    }
 
 
     /**
@@ -366,7 +353,7 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
     {
         final String governanceServiceRequestType = "set-zone-membership";
 
-        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceServiceRequestType, null, governanceServiceGUID);
+        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, governanceServiceRequestType, null, null, governanceServiceGUID);
     }
 
 
@@ -398,68 +385,50 @@ public class CocoGovernanceEnginesArchiveWriter extends OMRSArchiveWriter
     {
         final String discoveryServiceRequestType = "small-csv";
 
-        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, discoveryServiceRequestType, null, governanceServiceGUID);
+        archiveHelper.addSupportedGovernanceService(governanceEngineGUID, discoveryServiceRequestType, null, null, governanceServiceGUID);
     }
 
 
     /**
-     * Create an entity for the AssetQuality governance engine.
-     *
-     * @return unique identifier for the governance engine
+     * Add the content to the archive builder.
      */
-    private String getAssetQualityEngine()
+    public void getArchiveContent()
     {
-        final String assetQualityEngineName        = "AssetQuality";
-        final String assetQualityEngineDisplayName = "AssetQuality Open Discovery Engine";
-        final String assetQualityEngineDescription = "Assess the quality of a digital resource identified by the asset in the request.";
+        /*
+         * Create governance services
+         */
+        String fileProvisionerGUID = this.getFileProvisioningGovernanceActionService();
+        String watchDogServiceGUID = this.getWatchdogGovernanceActionService();
+        String originSeekerGUID = this.getOriginSeekerGovernanceActionService();
+        String zonePublisherGUID = this.getZonePublisherGovernanceActionService();
+        String csvDiscoveryGUID = this.getCSVAssetDiscoveryService();
 
-        return archiveHelper.addGovernanceEngine(OPEN_DISCOVERY_ENGINE_TYPE_NAME,
-                                                 assetQualityEngineName,
-                                                 assetQualityEngineDisplayName,
-                                                 assetQualityEngineDescription,
-                                                 null,
-                                                 null,
-                                                 null,
-                                                 null,
-                                                 null,
-                                                 null);
-    }
+        String fileProvisioningEngineGUID = this.getFileProvisioningEngine();
 
+        this.addCopyFileRequestType(fileProvisioningEngineGUID, fileProvisionerGUID);
+        this.addMoveFileRequestType(fileProvisioningEngineGUID, fileProvisionerGUID);
+        this.addDeleteFileRequestType(fileProvisioningEngineGUID, fileProvisionerGUID);
 
-    /**
-     * Returns the open metadata archive containing new metadata entities.
-     *
-     * @return populated open metadata archive object
-     */
-    protected OpenMetadataArchive getOpenMetadataArchive()
-    {
         String assetGovernanceEngineGUID = this.getAssetGovernanceEngine();
 
-        this.addCopyFileRequestType(assetGovernanceEngineGUID, this.getFTPGovernanceActionService());
-        this.addWatchNestedInFolderRequestType(assetGovernanceEngineGUID, this.getWatchdogGovernanceActionService());
-        this.addProvisionFileRequestType(assetGovernanceEngineGUID, this.addProvisionFileGovernanceActionService());
-        this.addSeekOriginRequestType(assetGovernanceEngineGUID, this.addOriginSeekerGovernanceActionService());
-        this.addSetZoneMembershipRequestType(assetGovernanceEngineGUID, this.addZonePublisherGovernanceActionService());
+        this.addFTPFileRequestType(assetGovernanceEngineGUID, fileProvisionerGUID);
+        this.addWatchNestedInFolderRequestType(assetGovernanceEngineGUID, watchDogServiceGUID);
+        this.addSeekOriginRequestType(assetGovernanceEngineGUID, originSeekerGUID);
+        this.addSetZoneMembershipRequestType(assetGovernanceEngineGUID, zonePublisherGUID);
+        this.addMoveFileRequestType(assetGovernanceEngineGUID, fileProvisionerGUID);
+        this.addDeleteFileRequestType(assetGovernanceEngineGUID, fileProvisionerGUID);
 
         String assetDiscoveryEngineGUID = this.getAssetDiscoveryEngine();
 
-        this.addSmallCSVRequestType(assetDiscoveryEngineGUID, this.getCSVAssetDiscoveryService());
+        this.addSmallCSVRequestType(assetDiscoveryEngineGUID, csvDiscoveryGUID);
 
         String assetQualityEngineGUID = this.getAssetQualityEngine();
         // todo add services when they written
 
-        archiveHelper.saveGUIDs();
-
-        /*
-         * The completed archive is ready to be packaged up and returned
-         */
-        return this.archiveBuilder.getOpenMetadataArchive();
     }
 
-
     /**
-     * Generates and writes out an open metadata archive containing all of the connector types
-     * describing the ODPi Egeria data store open connectors.
+     * Generates and writes out an open metadata archive for Coco Pharmaceuticals governance engines.
      */
     public void writeOpenMetadataArchive()
     {

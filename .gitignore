@@ -19,6 +19,10 @@ pom.xml.releaseBackup
 .idea
 venv
 
+# DrawIO temporary files
+*.dtmp
+*.bkp
+
 # Eclipse
 .cache
 .classpath
@@ -60,6 +64,10 @@ sample-omrs-proxy-servers/polling-file-omrs-proxy/.gradle/buildOutputCleanup/out
 **/.vscode*/**
 **/.factorypath
 **/**.code-workspace
+
+# Ignore Archive files in top-level directory
+/*Archive.json
+
 
 
 

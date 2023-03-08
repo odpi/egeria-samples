@@ -3,11 +3,7 @@
 package org.odpi.openmetadata.samples.archiveutilities.combo;
 
 
-import org.odpi.openmetadata.opentypes.OpenMetadataTypesArchive;
-import org.odpi.openmetadata.repositoryservices.archiveutilities.OMRSArchiveBuilder;
-import org.odpi.openmetadata.repositoryservices.archiveutilities.OMRSArchiveWriter;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchive;
-import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchiveType;
 import org.odpi.openmetadata.samples.archiveutilities.GovernanceArchiveHelper;
 import org.odpi.openmetadata.samples.archiveutilities.businesssystems.CocoBusinessSystemsArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.clinicaltrialtemplates.CocoClinicalTrialsArchiveWriter;
@@ -15,11 +11,8 @@ import org.odpi.openmetadata.samples.archiveutilities.governanceengines.CocoGove
 import org.odpi.openmetadata.samples.archiveutilities.governanceprogram.CocoGovernanceProgramArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.organization.CocoOrganizationArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.sustainability.CocoSustainabilityArchiveWriter;
-import org.odpi.openmetadata.samples.archiveutilities.types.CocoTypesArchiveWriter;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -75,6 +68,7 @@ public class CocoComboArchiveWriter extends CocoBaseArchiveWriter
     {
         CocoClinicalTrialsArchiveWriter    clinicalTrialsArchiveWriter    = new CocoClinicalTrialsArchiveWriter();
         CocoGovernanceProgramArchiveWriter governanceProgramArchiveWriter = new CocoGovernanceProgramArchiveWriter();
+        CocoGovernanceEnginesArchiveWriter governanceEnginesArchiveWriter = new CocoGovernanceEnginesArchiveWriter();
         CocoBusinessSystemsArchiveWriter   businessSystemsArchiveWriter   = new CocoBusinessSystemsArchiveWriter();
         CocoOrganizationArchiveWriter      organizationArchiveWriter      = new CocoOrganizationArchiveWriter();
         CocoSustainabilityArchiveWriter    sustainabilityArchiveWriter    = new CocoSustainabilityArchiveWriter();
@@ -82,16 +76,22 @@ public class CocoComboArchiveWriter extends CocoBaseArchiveWriter
         /*
          * By setting the builder to the combo builder, the archive writers create content in the combo builder rather than their own private builder.
          */
-        clinicalTrialsArchiveWriter.setArchiveBuilder(archiveBuilder);
-        governanceProgramArchiveWriter.setArchiveBuilder(archiveBuilder);
-        businessSystemsArchiveWriter.setArchiveBuilder(archiveBuilder);
-        organizationArchiveWriter.setArchiveBuilder(archiveBuilder);
-        sustainabilityArchiveWriter.setArchiveBuilder(archiveBuilder);
-
-        clinicalTrialsArchiveWriter.getArchiveContent();
-        businessSystemsArchiveWriter.getArchiveContent();
+        organizationArchiveWriter.setArchiveBuilder(archiveBuilder, archiveHelper);
         organizationArchiveWriter.getArchiveContent();
+
+        clinicalTrialsArchiveWriter.setArchiveBuilder(archiveBuilder, archiveHelper);
+        clinicalTrialsArchiveWriter.getArchiveContent();
+
+        governanceProgramArchiveWriter.setArchiveBuilder(archiveBuilder,archiveHelper);
         governanceProgramArchiveWriter.getArchiveContent();
+
+        governanceEnginesArchiveWriter.setArchiveBuilder(archiveBuilder,archiveHelper);
+        governanceEnginesArchiveWriter.getArchiveContent();
+
+        businessSystemsArchiveWriter.setArchiveBuilder(archiveBuilder,archiveHelper);
+        businessSystemsArchiveWriter.getArchiveContent();
+
+        sustainabilityArchiveWriter.setArchiveBuilder(archiveBuilder, archiveHelper);
         sustainabilityArchiveWriter.getArchiveContent();
     }
 

@@ -30,8 +30,8 @@ There are four archives used in the Coco Pharmaceuticals labs and demos:
 * **Templates for the Drop Foot Clinical Trials** - provides the template assets
   used for onboarding weekly patient measurements during a clinical trial.
 
-* **Governance Engine Definitions** - provides the metadata to describe Coco Pharmaceuticals three governance engines:
-  `AssetGovernance`, `AssetDiscovery` and `AssetQuality`.
+* **Governance Engine Definitions** - provides the metadata to describe Coco Pharmaceuticals four governance engines:
+  `FileProvisioning`, `AssetGovernance`, `AssetDiscovery` and `AssetQuality`.
 
 * **Coco Pharmaceuticals Business Systems** provides a catalog of the business systems and the lineage between
   them and the load of their data into the data lake.  This archive simulates the type of metadata expected from
