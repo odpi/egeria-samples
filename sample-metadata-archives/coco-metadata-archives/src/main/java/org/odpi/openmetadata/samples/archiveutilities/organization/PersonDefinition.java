@@ -461,7 +461,7 @@ public enum PersonDefinition
 
     DES_SIGNA("Des Signa",
               "They/them/their",
-              OrganizationDefinition.IBM,
+              OrganizationDefinition.XDC,
               "Mr",
               "Desmond",
               "D",
@@ -474,12 +474,12 @@ public enum PersonDefinition
               null,
               "dessigna",
               "cn=dessigna,ou=people,ou=users,o=cocoPharma",
-              "des_signa@gb.ibm.com",
+              "des_signa@gb.xdc.com",
               WorkLocationDefinition.AMSTERDAM_SITE),
 
     NANCY_NOAH("Nancy Noah",
                "She/her/hers",
-               OrganizationDefinition.IBM,
+               OrganizationDefinition.XDC,
                "Mrs",
                "Nancy",
                "N",
@@ -492,7 +492,7 @@ public enum PersonDefinition
                null,
                "nancynoah",
                "cn=nancynoah,ou=people,ou=users,o=cocoPharma",
-               "nnoah@ibm.com",
+               "nnoah@xdc.com",
                WorkLocationDefinition.AMSTERDAM_SITE),
 
     ;

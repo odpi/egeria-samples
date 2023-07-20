@@ -3,13 +3,15 @@
 package org.odpi.openmetadata.samples.archiveutilities.sustainability;
 
 
+import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchive;
 import org.odpi.openmetadata.samples.archiveutilities.SimpleCatalogArchiveHelper;
 import org.odpi.openmetadata.samples.archiveutilities.combo.CocoBaseArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.organization.CocoOrganizationArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.organization.ScopeDefinition;
 
 import java.util.Date;
-
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -39,7 +41,7 @@ public class CocoSustainabilityArchiveWriter extends CocoBaseArchiveWriter
               archiveDescription,
               new Date(),
               archiveFileName,
-              new CocoOrganizationArchiveWriter().getOpenMetadataArchive());
+              new OpenMetadataArchive[]{ new CocoOrganizationArchiveWriter().getOpenMetadataArchive() });
     }
 
 
@@ -146,30 +148,42 @@ public class CocoSustainabilityArchiveWriter extends CocoBaseArchiveWriter
 
         archiveHelper.addSubjectAreaClassification(glossaryGUID, sustainabilitySubjectArea);
 
-        archiveHelper.addCategory(glossaryGUID,
-                                  "GlossaryCategory:Chemicals",
-                                  "Chemicals",
-                                  "Types of chemicals that are significant in managing sustainability.",
-                                  null);
+        Map<String, String> categoryLookup = new HashMap<>();
+        for (GlossaryCategoryDefinition glossaryCategoryDefinition : GlossaryCategoryDefinition.values())
+        {
+            String glossaryCategoryGUID = archiveHelper.addCategory(glossaryGUID,
+                                                                    glossaryCategoryDefinition.getQualifiedName(),
+                                                                    glossaryCategoryDefinition.getName(),
+                                                                    glossaryCategoryDefinition.getDescription(),
+                                                                    null);
+
+            categoryLookup.put(glossaryCategoryDefinition.getName(), glossaryCategoryGUID);
+        }
 
         for (GlossaryTermDefinition glossaryTermDefinition : GlossaryTermDefinition.values())
         {
-            String glossaryTerm = archiveHelper.addTerm(glossaryGUID,
-                                                        null,
-                                                        false,
-                                                        "GlossaryTerm:" + glossaryTermDefinition.getName(),
-                                                        glossaryTermDefinition.getName(),
-                                                        glossaryTermDefinition.getSummary(),
-                                                        glossaryTermDefinition.getDescription(),
-                                                        null,
-                                                        glossaryTermDefinition.getAbbreviation(),
-                                                        null,
-                                                        false,
-                                                        false,
-                                                        false,
-                                                        null,
-                                                        null,
-                                                        null);
+            String glossaryTermGUID = archiveHelper.addTerm(glossaryGUID,
+                                                            null,
+                                                            false,
+                                                            "GlossaryTerm:" + glossaryTermDefinition.getName(),
+                                                            glossaryTermDefinition.getName(),
+                                                            glossaryTermDefinition.getSummary(),
+                                                            glossaryTermDefinition.getDescription(),
+                                                            null,
+                                                            glossaryTermDefinition.getAbbreviation(),
+                                                            null,
+                                                            false,
+                                                            false,
+                                                            false,
+                                                            null,
+                                                            null,
+                                                            null);
+
+            if (glossaryTermDefinition.getCategory() != null)
+            {
+                archiveHelper.addTermToCategory(categoryLookup.get(glossaryTermDefinition.getCategory().getName()),
+                                                glossaryTermGUID);
+            }
 
             if (glossaryTermDefinition.getUrl() != null)
             {

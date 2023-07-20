@@ -3,6 +3,7 @@
 package org.odpi.openmetadata.samples.archiveutilities.sustainability;
 
 
+import org.odpi.openmetadata.samples.archiveutilities.organization.OrganizationDefinition;
 import org.odpi.openmetadata.samples.archiveutilities.organization.PersonDefinition;
 import org.odpi.openmetadata.samples.archiveutilities.organization.WorkLocationDefinition;
 
@@ -19,7 +20,8 @@ public enum FacilityDefinition
                    null,
                    WorkLocationDefinition.AMSTERDAM_SITE,
                    SustainabilityRoleDefinition.AMS_SITE_LEADER,
-                   PersonDefinition.STEVE_STARTER),
+                   PersonDefinition.STEVE_STARTER,
+                   OrganizationDefinition.COCO),
 
     AMSTERDAM_LAB("AMS-LAB",
                   "Van Leeuwenhoek Cancer Research Laboratory",
@@ -28,7 +30,8 @@ public enum FacilityDefinition
                   FacilityDefinition.AMSTERDAM_SITE,
                   null,
                   SustainabilityRoleDefinition.AMS_LAB_LEADER,
-                  PersonDefinition.STEVE_STARTER),
+                  PersonDefinition.STEVE_STARTER,
+                  OrganizationDefinition.COCO),
 
     AMSTERDAM_OFFICE("AMS-OFFICE",
                      "Amsterdam Office",
@@ -37,16 +40,18 @@ public enum FacilityDefinition
                      FacilityDefinition.AMSTERDAM_SITE,
                      null,
                      SustainabilityRoleDefinition.AMS_OFFICE_LEADER,
-                     PersonDefinition.STEVE_STARTER),
+                     PersonDefinition.STEVE_STARTER,
+                     OrganizationDefinition.COCO),
 
-    AMSTERDAM_DATA_CENTER("AMS-DATA-CENTER",
-                          "Amsterdam Data Centre",
-                          "Shared systems data located on the Amsterdam Site.",
-                          FacilityTypeDefinition.DATA_CENTER,
-                          FacilityDefinition.AMSTERDAM_SITE,
-                          null,
-                          SustainabilityRoleDefinition.AMS_OFFICE_LEADER,
-                          PersonDefinition.GARY_GEEKE),
+    AMSTERDAM_DC("AMS-DATA-CENTER",
+                 "Amsterdam Data Centre",
+                 "Shared systems data located on the Amsterdam Site.",
+                 FacilityTypeDefinition.DATA_CENTER,
+                 FacilityDefinition.AMSTERDAM_SITE,
+                 null,
+                 SustainabilityRoleDefinition.AMS_OFFICE_LEADER,
+                 PersonDefinition.GARY_GEEKE,
+                 OrganizationDefinition.COCO),
 
     AMSTERDAM_DEPOT("AMS-DEPOT",
                     "Amsterdam Distribution Center",
@@ -55,7 +60,8 @@ public enum FacilityDefinition
                     FacilityDefinition.AMSTERDAM_SITE,
                     null,
                     SustainabilityRoleDefinition.AMS_DEPOT_LEADER,
-                    PersonDefinition.STEW_FASTER),
+                    PersonDefinition.STEW_FASTER,
+                    OrganizationDefinition.COCO),
 
     LONDON_SITE("LDN-SITE",
                 "London Site",
@@ -64,7 +70,8 @@ public enum FacilityDefinition
                 null,
                 WorkLocationDefinition.LONDON_SITE,
                 SustainabilityRoleDefinition.LONDON_SITE_LEADER,
-                PersonDefinition.TERRI_DARING),
+                PersonDefinition.TERRI_DARING,
+                OrganizationDefinition.COCO),
 
     LONDON_LAB("LDN-LAB",
                "Nightingale Cancer Research Laboratory",
@@ -73,7 +80,8 @@ public enum FacilityDefinition
                FacilityDefinition.LONDON_SITE,
                null,
                SustainabilityRoleDefinition.LONDON_LAB_LEADER,
-               PersonDefinition.TERRI_DARING),
+               PersonDefinition.TERRI_DARING,
+               OrganizationDefinition.COCO),
 
     LONDON_OFFICE("LDN-OFFICE",
                   "London Office",
@@ -82,7 +90,8 @@ public enum FacilityDefinition
                   FacilityDefinition.LONDON_SITE,
                   null,
                   SustainabilityRoleDefinition.LONDON_OFFICE_LEADER,
-                  PersonDefinition.REGGIE_MINT),
+                  PersonDefinition.REGGIE_MINT,
+                  OrganizationDefinition.COCO),
 
     LONDON_DC("LDN-DC",
               "London Data Centre",
@@ -91,7 +100,8 @@ public enum FacilityDefinition
               FacilityDefinition.LONDON_SITE,
               null,
               SustainabilityRoleDefinition.LONDON_DC_LEADER,
-              PersonDefinition.GARY_GEEKE),
+              PersonDefinition.GARY_GEEKE,
+              OrganizationDefinition.COCO),
 
     NEW_YORK_SITE("NY-SITE",
                   "New York",
@@ -100,7 +110,8 @@ public enum FacilityDefinition
                   null,
                   WorkLocationDefinition.NEW_YORK_SITE,
                   SustainabilityRoleDefinition.NEW_YORK_SITE_LEADER,
-                  PersonDefinition.ZACH_NOW),
+                  PersonDefinition.ZACH_NOW,
+                  OrganizationDefinition.COCO),
 
     NEW_YORK_LAB("NY-LAB",
                  "Salk Cancer Research Laboratory",
@@ -109,7 +120,8 @@ public enum FacilityDefinition
                  FacilityDefinition.NEW_YORK_SITE,
                  null,
                  SustainabilityRoleDefinition.NEW_YORK_LAB_LEADER,
-                 PersonDefinition.TESSA_TUBE),
+                 PersonDefinition.TESSA_TUBE,
+                 OrganizationDefinition.COCO),
 
     NEW_YORK_OFFICE("NY-OFFICE",
                     "New York Office",
@@ -118,7 +130,8 @@ public enum FacilityDefinition
                     FacilityDefinition.NEW_YORK_SITE,
                     null,
                     SustainabilityRoleDefinition.NEW_YORK_OFFICE_LEADER,
-                    PersonDefinition.ZACH_NOW),
+                    PersonDefinition.ZACH_NOW,
+                    OrganizationDefinition.COCO),
 
     NEW_YORK_DC("NY-DC",
                 "New York Data Center",
@@ -127,7 +140,8 @@ public enum FacilityDefinition
                 FacilityDefinition.NEW_YORK_SITE,
                 null,
                 SustainabilityRoleDefinition.NEW_YORK_DC_LEADER,
-                PersonDefinition.GARY_GEEKE),
+                PersonDefinition.GARY_GEEKE,
+                OrganizationDefinition.COCO),
 
     WINCHESTER_SITE("WINCH-SITE",
                     "Winchester Site",
@@ -136,7 +150,8 @@ public enum FacilityDefinition
                     null,
                     WorkLocationDefinition.WINCHESTER_SITE,
                     SustainabilityRoleDefinition.WINCHESTER_SITE_LEADER,
-                    null),
+                    null,
+                    OrganizationDefinition.COCO),
 
     WINCHESTER_FACTORY("WINCH-FACTORY",
                        "Rosalind Franklin Factory",
@@ -145,7 +160,8 @@ public enum FacilityDefinition
                        FacilityDefinition.WINCHESTER_SITE,
                        null,
                        SustainabilityRoleDefinition.WINCHESTER_FACTORY_LEADER,
-                       PersonDefinition.STEW_FASTER),
+                       PersonDefinition.STEW_FASTER,
+                       OrganizationDefinition.COCO),
 
     WINCHESTER_OFFICE("WINCH-OFFICE",
                       "Winchester Office",
@@ -154,7 +170,8 @@ public enum FacilityDefinition
                       FacilityDefinition.WINCHESTER_SITE,
                       null,
                       SustainabilityRoleDefinition.WINCHESTER_OFFICE_LEADER,
-                      PersonDefinition.STEW_FASTER),
+                      PersonDefinition.STEW_FASTER,
+                      OrganizationDefinition.COCO),
 
     WINCHESTER_DC("WINCH-DC",
                   "Winchester Data Centre",
@@ -163,7 +180,8 @@ public enum FacilityDefinition
                   FacilityDefinition.WINCHESTER_SITE,
                   null,
                   SustainabilityRoleDefinition.WINCHESTER_DC_LEADER,
-                  PersonDefinition.STEW_FASTER),
+                  PersonDefinition.STEW_FASTER,
+                  OrganizationDefinition.COCO),
 
     WINCHESTER_DEPOT("WINCH-DEPOT",
                      "Winchester Distribution Center",
@@ -172,7 +190,8 @@ public enum FacilityDefinition
                      FacilityDefinition.WINCHESTER_SITE,
                      null,
                      SustainabilityRoleDefinition.WINCHESTER_DEPOT_LEADER,
-                     PersonDefinition.STEW_FASTER),
+                     PersonDefinition.STEW_FASTER,
+                     OrganizationDefinition.COCO),
 
     KANSAS_CITY_SITE("KC-SITE",
                      "Kansas City Site",
@@ -181,7 +200,8 @@ public enum FacilityDefinition
                      null,
                      WorkLocationDefinition.KANSAS_CITY_SITE,
                      SustainabilityRoleDefinition.KANSAS_CITY_SITE_LEADER,
-                     null),
+                     null,
+                     OrganizationDefinition.COCO),
 
     KANSAS_CITY_OFFICE("KC-OFFICE",
                        "Kansas City Office",
@@ -190,7 +210,8 @@ public enum FacilityDefinition
                        FacilityDefinition.KANSAS_CITY_SITE,
                        null,
                        SustainabilityRoleDefinition.KANSAS_CITY_OFFICE_LEADER,
-                       PersonDefinition.STEW_FASTER),
+                       PersonDefinition.STEW_FASTER,
+                       OrganizationDefinition.COCO),
 
     KANSAS_CITY_DEPOT("KC-DEPOT",
                       "Kansas City Distribution Center",
@@ -199,7 +220,8 @@ public enum FacilityDefinition
                       FacilityDefinition.KANSAS_CITY_SITE,
                       null,
                       SustainabilityRoleDefinition.KANSAS_CITY_DEPOT_LEADER,
-                      PersonDefinition.STEW_FASTER),
+                      PersonDefinition.STEW_FASTER,
+                      OrganizationDefinition.COCO),
 
     EDMONTON_SITE("ED-SITE",
                   "Edmonton Site",
@@ -208,7 +230,8 @@ public enum FacilityDefinition
                   null,
                   WorkLocationDefinition.EDMONTON_SITE,
                   SustainabilityRoleDefinition.EDMONTON_SITE_LEADER,
-                  null),
+                  null,
+                  OrganizationDefinition.COCO),
 
     EDMONTON_OFFICE("ED-OFFICE",
                     "Edmonton Office",
@@ -217,7 +240,8 @@ public enum FacilityDefinition
                     FacilityDefinition.EDMONTON_SITE,
                     null,
                     SustainabilityRoleDefinition.EDMONTON_OFFICE_LEADER,
-                    null),
+                    null,
+                    OrganizationDefinition.COCO),
 
     EDMONTON_FACTORY("ED-FACTORY",
                      "Edmonton Manufacturing Center",
@@ -226,7 +250,8 @@ public enum FacilityDefinition
                      FacilityDefinition.EDMONTON_SITE,
                      null,
                      SustainabilityRoleDefinition.EDMONTON_FACTORY_LEADER,
-                     null),
+                     null,
+                     OrganizationDefinition.COCO),
 
     EDMONTON_DEPOT("ED-DEPOT",
                    "Edmonton Distribution Center",
@@ -235,7 +260,8 @@ public enum FacilityDefinition
                    FacilityDefinition.EDMONTON_SITE,
                    null,
                    SustainabilityRoleDefinition.EDMONTON_DEPOT_LEADER,
-                   PersonDefinition.STEW_FASTER),
+                   PersonDefinition.STEW_FASTER,
+                   OrganizationDefinition.COCO),
 
     AUSTIN_SITE("AUS-SITE",
                 "Austin Site",
@@ -244,7 +270,8 @@ public enum FacilityDefinition
                 null,
                 WorkLocationDefinition.AUSTIN_SITE,
                 SustainabilityRoleDefinition.AUSTIN_SITE_LEADER,
-                null),
+                null,
+                OrganizationDefinition.COCO),
 
     AUSTIN_FACTORY("AUS-FACTORY",
                    "Austin Factory",
@@ -253,7 +280,8 @@ public enum FacilityDefinition
                    FacilityDefinition.AUSTIN_SITE,
                    null,
                    SustainabilityRoleDefinition.AUSTIN_FACTORY_LEADER,
-                   PersonDefinition.STEW_FASTER),
+                   PersonDefinition.STEW_FASTER,
+                   OrganizationDefinition.COCO),
 
     AUSTIN_OFFICE("AUS-OFFICE",
                   "Austin Office",
@@ -262,7 +290,8 @@ public enum FacilityDefinition
                   FacilityDefinition.AUSTIN_SITE,
                   null,
                   SustainabilityRoleDefinition.AUSTIN_OFFICE_LEADER,
-                  PersonDefinition.STEW_FASTER),
+                  PersonDefinition.STEW_FASTER,
+                  OrganizationDefinition.COCO),
 
     AUSTIN_DC("AUS-DC",
               "Austin Data Center",
@@ -271,7 +300,8 @@ public enum FacilityDefinition
               FacilityDefinition.AUSTIN_SITE,
               null,
               SustainabilityRoleDefinition.AUSTIN_DC_LEADER,
-              PersonDefinition.STEW_FASTER),
+              PersonDefinition.STEW_FASTER,
+              OrganizationDefinition.COCO),
 
     HAMPTON_HOSPITAL("HH",
                      "New York",
@@ -280,7 +310,8 @@ public enum FacilityDefinition
                      null,
                      WorkLocationDefinition.HAMPTON_HOSPITAL,
                      null,
-                     null),
+                     null,
+                     OrganizationDefinition.HAMPTON),
 
     OAK_DENE_HOSPITAL("ODH",
                       "Oak Dene Hospital",
@@ -289,7 +320,8 @@ public enum FacilityDefinition
                       null,
                       WorkLocationDefinition.OAK_DENE_HOSPITAL,
                       null,
-                      null),
+                      null,
+                      OrganizationDefinition.OAK_DENE),
 
     OLD_MARKET_HOSPITAL("OMH",
                         "Old Market Hospital",
@@ -298,19 +330,51 @@ public enum FacilityDefinition
                         null,
                         WorkLocationDefinition.OLD_MARKET_HOSPITAL,
                         null,
-                        null),
+                        null,
+                        OrganizationDefinition.OLD_MARKET),
+
+    CLOUD_PROVIDER_SALES("Sales4U",
+                        "Customer Sales and Invoicing Cloud Services",
+                        null,
+                        FacilityTypeDefinition.CLOUD,
+                        null,
+                        null,
+                        null,
+                        null,
+                         OrganizationDefinition.SALES_CP),
+
+    CLOUD_PROVIDER_FINANCE("FinMagic",
+                         "Accounting Cloud Services supporting book-keeping and ledgers for international businesses.",
+                         null,
+                         FacilityTypeDefinition.CLOUD,
+                         null,
+                         null,
+                         null,
+                         null,
+                           OrganizationDefinition.FINANCE_CP),
+
+    CLOUD_PROVIDER_TRAVEL("BeThere Travel and Expenses",
+                           "Travel booking and employee expenses cloud services.",
+                           null,
+                           FacilityTypeDefinition.CLOUD,
+                           null,
+                           null,
+                           null,
+                           null,
+                          OrganizationDefinition.TRAVEL_CP),
 
 
     ;
 
-    private final String                   identifier;
-    private final String                   displayName;
-    private final String                   description;
-    private final FacilityTypeDefinition   facilityType;
-    private final FacilityDefinition       parentSite;
+    private final String                       identifier;
+    private final String                       displayName;
+    private final String                       description;
+    private final FacilityTypeDefinition       facilityType;
+    private final FacilityDefinition           parentSite;
     private final WorkLocationDefinition       associatedWorkLocation;
     private final SustainabilityRoleDefinition facilityLeaderRole;
     private final PersonDefinition             facilityLeader;
+    private final OrganizationDefinition       owningOrganization;
 
 
     /**
@@ -324,15 +388,17 @@ public enum FacilityDefinition
      * @param associatedWorkLocation link to work location valid value
      * @param facilityLeaderRole role for the leader
      * @param facilityLeader  person to be appointed to the leader role
+     *
      */
-    FacilityDefinition(String                   identifier,
-                       String                   displayName,
-                       String                   description,
-                       FacilityTypeDefinition   facilityType,
-                       FacilityDefinition       parentSite,
-                       WorkLocationDefinition   associatedWorkLocation,
+    FacilityDefinition(String                       identifier,
+                       String                       displayName,
+                       String                       description,
+                       FacilityTypeDefinition       facilityType,
+                       FacilityDefinition           parentSite,
+                       WorkLocationDefinition       associatedWorkLocation,
                        SustainabilityRoleDefinition facilityLeaderRole,
-                       PersonDefinition         facilityLeader)
+                       PersonDefinition             facilityLeader,
+                       OrganizationDefinition       owningOrganization)
     {
         this.identifier = identifier;
         this.displayName = displayName;
@@ -342,6 +408,7 @@ public enum FacilityDefinition
         this.associatedWorkLocation = associatedWorkLocation;
         this.facilityLeaderRole = facilityLeaderRole;
         this.facilityLeader = facilityLeader;
+        this.owningOrganization = owningOrganization;
     }
 
     public String getQualifiedName()

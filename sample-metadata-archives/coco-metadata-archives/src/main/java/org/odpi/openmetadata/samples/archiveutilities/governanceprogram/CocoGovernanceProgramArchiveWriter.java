@@ -3,6 +3,7 @@
 package org.odpi.openmetadata.samples.archiveutilities.governanceprogram;
 
 
+import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchive;
 import org.odpi.openmetadata.samples.archiveutilities.SimpleCatalogArchiveHelper;
 import org.odpi.openmetadata.samples.archiveutilities.combo.CocoBaseArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.organization.CocoOrganizationArchiveWriter;
@@ -39,7 +40,7 @@ public class CocoGovernanceProgramArchiveWriter extends CocoBaseArchiveWriter
               archiveDescription,
               new Date(),
               archiveFileName,
-              new CocoOrganizationArchiveWriter().getOpenMetadataArchive());
+              new OpenMetadataArchive[]{ new CocoOrganizationArchiveWriter().getOpenMetadataArchive() });
     }
 
 

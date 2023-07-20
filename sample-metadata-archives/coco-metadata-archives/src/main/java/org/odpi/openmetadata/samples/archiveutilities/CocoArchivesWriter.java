@@ -41,10 +41,10 @@ public class CocoArchivesWriter
             typesArchiveWriter.writeOpenMetadataArchive();
             clinicalTrialsArchiveWriter.writeOpenMetadataArchive();
             governanceEnginesArchiveWriter.writeOpenMetadataArchive();
-            businessSystemsArchiveWriter.writeOpenMetadataArchive();
             organizationArchiveWriter.writeOpenMetadataArchive();
             cocoGovernanceProgramArchiveWriter.writeOpenMetadataArchive();
             sustainabilityArchiveWriter.writeOpenMetadataArchive();
+            businessSystemsArchiveWriter.writeOpenMetadataArchive();
         }
         catch (Exception error)
         {
