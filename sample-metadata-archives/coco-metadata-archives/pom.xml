@@ -47,12 +47,12 @@
     </issueManagement>
 
     <properties>
-        <open-metadata.version>4.0-SNAPSHOT</open-metadata.version>
+        <open-metadata.version>4.1</open-metadata.version>
         <logback.version>1.2.9</logback.version>
 
         <!-- Level of Java  -->
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
     </properties>
 

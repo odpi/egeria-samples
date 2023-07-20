@@ -23,13 +23,25 @@ public enum OrganizationDefinition
                "Partner hospital in the Netherlands that takes part in clinical trials.",
                OrganizationTypeDefinition.PARTNER),
 
-    IBM("IBM",
+    XDC("XDC",
         "Partner IT consultancy employed to improve IT systems.",
         OrganizationTypeDefinition.PARTNER),
 
     SEC_INC("Sec Inc Consultancy Services",
         "Partner security consultancy employed to investigate suspected instances of fraud.",
         OrganizationTypeDefinition.PARTNER),
+
+    SALES_CP("Sales and Marketing Cloud Provider",
+            "Organization providing customer sales and marketing cloud services.",
+            OrganizationTypeDefinition.PARTNER),
+
+    FINANCE_CP("Accounting Services Cloud Provider",
+             "Organization providing accounting software through cloud services.",
+             OrganizationTypeDefinition.PARTNER),
+
+    TRAVEL_CP("TravelPlanner Cloud Provider",
+               "Travel planning, approval, booking and expenses.",
+               OrganizationTypeDefinition.PARTNER),
     ;
 
     public static final String               propertyName = "organization";

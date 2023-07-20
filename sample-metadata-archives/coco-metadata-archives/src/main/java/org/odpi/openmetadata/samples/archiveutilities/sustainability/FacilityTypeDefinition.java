@@ -37,7 +37,13 @@ public enum FacilityTypeDefinition
     DATA_CENTER("DataCenter",
           "Data center",
           "Location where shared computing resource is housed and managed from.",
-          "Identify locations with shared computer facilities.  Do not include locations where individuals are using their laptops and other machines allocated to them personally."), ;
+          "Identify locations with shared computer facilities.  Do not include locations where individuals are using their laptops and other machines allocated to them personally."),
+
+    CLOUD("External cloud service",
+          "Cloud provider",
+          "Digital location provided by an external cloud vendor.",
+          "Identify digital services and systems not managed by Coco Pharmaceuticals."),
+    ;
 
     public static final String validValueSetName = "FacilityType";
     public static final String validValueSetDescription = "Describes the type of facility at a physical location.";

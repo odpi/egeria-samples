@@ -4,7 +4,6 @@ package org.odpi.openmetadata.samples.archiveutilities.combo;
 
 
 import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchive;
-import org.odpi.openmetadata.samples.archiveutilities.GovernanceArchiveHelper;
 import org.odpi.openmetadata.samples.archiveutilities.businesssystems.CocoBusinessSystemsArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.clinicaltrialtemplates.CocoClinicalTrialsArchiveWriter;
 import org.odpi.openmetadata.samples.archiveutilities.governanceengines.CocoGovernanceEnginesArchiveWriter;
@@ -75,6 +74,8 @@ public class CocoComboArchiveWriter extends CocoBaseArchiveWriter
 
         /*
          * By setting the builder to the combo builder, the archive writers create content in the combo builder rather than their own private builder.
+         * It is important that the content is loaded into this builder in the right order as there is
+         * no processing of dependent archives.
          */
         organizationArchiveWriter.setArchiveBuilder(archiveBuilder, archiveHelper);
         organizationArchiveWriter.getArchiveContent();
@@ -88,11 +89,11 @@ public class CocoComboArchiveWriter extends CocoBaseArchiveWriter
         governanceEnginesArchiveWriter.setArchiveBuilder(archiveBuilder,archiveHelper);
         governanceEnginesArchiveWriter.getArchiveContent();
 
-        businessSystemsArchiveWriter.setArchiveBuilder(archiveBuilder,archiveHelper);
-        businessSystemsArchiveWriter.getArchiveContent();
-
         sustainabilityArchiveWriter.setArchiveBuilder(archiveBuilder, archiveHelper);
         sustainabilityArchiveWriter.getArchiveContent();
+
+        businessSystemsArchiveWriter.setArchiveBuilder(archiveBuilder,archiveHelper);
+        businessSystemsArchiveWriter.getArchiveContent();
     }
 
 }

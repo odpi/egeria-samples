@@ -8,9 +8,10 @@ import org.odpi.openmetadata.repositoryservices.archiveutilities.OMRSArchiveBuil
 import org.odpi.openmetadata.repositoryservices.archiveutilities.OMRSArchiveWriter;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchive;
 import org.odpi.openmetadata.repositoryservices.connectors.stores.archivestore.properties.OpenMetadataArchiveType;
-import org.odpi.openmetadata.samples.archiveutilities.GovernanceArchiveHelper;
+import org.odpi.openmetadata.samples.archiveutilities.CocoArchiveHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -38,14 +39,12 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
     protected static final long   versionNumber = 1L;
     protected static final String versionName   = "1.0";
 
-    protected  OMRSArchiveBuilder      archiveBuilder;
-    protected  GovernanceArchiveHelper archiveHelper;
-
-    protected final String              archiveGUID;
-    protected final String              archiveName;
-    protected final Date                creationDate;
-
-    protected final String archiveFileName;
+    protected       OMRSArchiveBuilder archiveBuilder;
+    protected       CocoArchiveHelper  archiveHelper;
+    protected final String             archiveGUID;
+    protected final String             archiveName;
+    protected final Date               creationDate;
+    protected final String             archiveFileName;
 
 
     /**
@@ -77,12 +76,12 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
      * @param archiveFileName name of file to write archive to
      * @param additionalDependencies archive that this archive is dependent on
      */
-    protected CocoBaseArchiveWriter(String              archiveGUID,
-                                    String              archiveName,
-                                    String              archiveDescription,
-                                    Date                creationDate,
-                                    String              archiveFileName,
-                                    OpenMetadataArchive additionalDependencies)
+    protected CocoBaseArchiveWriter(String                archiveGUID,
+                                    String                archiveName,
+                                    String                archiveDescription,
+                                    Date                  creationDate,
+                                    String                archiveFileName,
+                                    OpenMetadataArchive[] additionalDependencies)
     {
         this.archiveGUID = archiveGUID;
         this.archiveName = archiveName;
@@ -100,7 +99,7 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
          */
         if (additionalDependencies != null)
         {
-            dependentOpenMetadataArchives.add(additionalDependencies);
+            dependentOpenMetadataArchives.addAll(Arrays.asList(additionalDependencies));
         }
 
         this.archiveBuilder = new OMRSArchiveBuilder(archiveGUID,
@@ -112,14 +111,14 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
                                                      creationDate,
                                                      dependentOpenMetadataArchives);
 
-        this.archiveHelper = new GovernanceArchiveHelper(archiveBuilder,
-                                                         archiveGUID,
-                                                         archiveName,
-                                                         originatorName,
-                                                         creationDate,
-                                                         versionNumber,
-                                                         versionName,
-                                                         guidMapFileName);
+        this.archiveHelper = new CocoArchiveHelper(archiveBuilder,
+                                                   archiveGUID,
+                                                   archiveName,
+                                                   originatorName,
+                                                   creationDate,
+                                                   versionNumber,
+                                                   versionName,
+                                                   guidMapFileName);
 
         this.archiveFileName = archiveFileName;
     }
@@ -130,8 +129,8 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
      *
      * @param archiveBuilder new archive builder
      */
-    protected void setArchiveBuilder(OMRSArchiveBuilder      archiveBuilder,
-                                     GovernanceArchiveHelper archiveHelper)
+    protected void setArchiveBuilder(OMRSArchiveBuilder archiveBuilder,
+                                     CocoArchiveHelper  archiveHelper)
     {
         this.archiveBuilder = archiveBuilder;
         this.archiveHelper = archiveHelper;
@@ -168,10 +167,8 @@ public abstract class CocoBaseArchiveWriter extends OMRSArchiveWriter
         try
         {
             System.out.println("Writing to file: " + archiveFileName);
-
-            archiveHelper.saveGUIDs();
-
             super.writeOpenMetadataArchive(archiveFileName, this.getOpenMetadataArchive());
+            archiveHelper.saveGUIDs();
         }
         catch (Exception error)
         {
