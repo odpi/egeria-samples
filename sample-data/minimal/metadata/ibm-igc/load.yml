@@ -4,17 +4,17 @@
 
 - name: setup Information Server variables
   import_role:
-    name: IBM.infosvr
+    name: ibm.infosvr
     tasks_from: setup_vars.yml
 
 - name: setup Information Server certificate
   import_role:
-    name: IBM.infosvr
+    name: ibm.infosvr
     tasks_from: get_certificate.yml
 
 - name: harvest file metadata via IBM Metadata Asset Manager
   include_role:
-    name: IBM.infosvr-metadata-asset-manager
+    name: ibm.infosvr-metadata-asset-manager
   vars:
     import_areas:
       - name: Minimal_{{ item }}
@@ -30,7 +30,7 @@
 
 - name: harvest DB2 metadata via IBM Metadata Asset Manager
   include_role:
-    name: IBM.infosvr-metadata-asset-manager
+    name: ibm.infosvr-metadata-asset-manager
   vars:
     import_areas:
       - name: Minimal_{{ item | upper }}
@@ -125,7 +125,7 @@
       Cookie: "{{ __minimal_lineage.set_cookie }}"
   when: ('ibm_information_server_domain' in group_names) and __minimal_lineage.json['items'][0].include_for_lineage == "setToFalse"
 
-- import_role: name=IBM.infosvr-import-export
+- import_role: name=ibm.infosvr-import-export
   vars:
     ingest:
       datastage:
