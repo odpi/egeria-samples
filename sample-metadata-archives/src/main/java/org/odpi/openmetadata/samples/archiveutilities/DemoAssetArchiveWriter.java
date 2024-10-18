@@ -113,7 +113,7 @@ public class DemoAssetArchiveWriter extends OMRSArchiveWriter
         final String attribute6Description     = "Has this asset been verified?";
         final String attribute7Name            = "subjectMatterExperts";
         final String attribute7Description     = "Who are the subject matter experts?";
-        final String attribute8Name            = "externalInstanceUpdateTime";
+        final String attribute8Name            = "externalInstanceLastUpdateTime";
         final String attribute8Description     = "When was this resource last updated?";
         final String attribute9Name            = "businessDescription";
         final String attribute9Description     = "Additional business information.";
