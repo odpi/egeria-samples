@@ -37,7 +37,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Versions of dependent libraries -->
-        <spring.version>5.3.12</spring.version>
+        <spring.version>6.0.0</spring.version>
 
     </properties>
 
