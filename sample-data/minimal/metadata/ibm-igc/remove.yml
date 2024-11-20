@@ -4,12 +4,12 @@
 
 - name: setup Information Server variables
   import_role:
-    name: IBM.infosvr
+    name: ibm.infosvr
     tasks_from: setup_vars.yml
 
 - name: setup Information Server certificate
   import_role:
-    name: IBM.infosvr
+    name: ibm.infosvr
     tasks_from: get_certificate.yml
 
 - name: list OpenIGC bundles
